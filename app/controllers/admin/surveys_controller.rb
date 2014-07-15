@@ -1,5 +1,5 @@
 class Admin::SurveysController < Admin::BaseController
-  before_filter :load_survey, only: [:edit, :update, :show, :destroy]
+  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export]
 
   set_tab :survey
 
@@ -41,6 +41,10 @@ class Admin::SurveysController < Admin::BaseController
   def destroy
     @survey.destroy
     redirect_to admin_surveys_path
+  end
+
+  def export
+    set_tab :export
   end
 
   private

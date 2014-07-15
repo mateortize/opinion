@@ -11,11 +11,15 @@ class SurveysController < ApplicationController
   def submit
     @survey = Survey.find(params[:id])
     
-    if @survey.logs.create(ip_address: request.remote_addr, answers: survey_submission_params[:questions])
+    @log = @survey.logs.create(ip_address: request.remote_addr, answers: survey_submission_params[:questions])
+
+    if @log.valid?
       @survey.submit(survey_submission_params[:questions])
+      render :success
+    else
+      render :failed
     end
 
-    redirect_to survey_path(@survey)
   end
 
   private

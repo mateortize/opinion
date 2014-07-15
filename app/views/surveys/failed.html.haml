@@ -1,0 +1,10 @@
+%div.alert.alert-danger
+  %p
+    %strong
+      Sorry, we couldn't accept your submission.
+
+
+  - @log.errors.full_messages.each do |message|
+    %p
+      = message
+
