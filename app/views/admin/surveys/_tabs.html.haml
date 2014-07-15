@@ -1,0 +1,3 @@
+= tabs_tag :open_tabs=>{ class: 'nav nav-tabs' } do |tab|
+  = tab.survey 'Survey', edit_admin_survey_path(@survey)
+  = tab.questions 'Questions', admin_survey_questions_path(@survey)

@@ -1,0 +1,8 @@
+%h3
+  = question.text
+
+- question.answers.each do |answer|
+  .row
+    = radio_button_tag "survey[questions][#{question.id}][rows][0][answer]", answer.id
+    %label{for: "survey_questions_#{question.id}_rows_0_answer_#{answer.id}"}
+      = answer.text

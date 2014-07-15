@@ -1,0 +1,10 @@
+%h3
+  = question.text
+
+
+- question.answers.each do |answer|
+  .row
+    
+    = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
+    %label{for: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"}
+      = answer.text

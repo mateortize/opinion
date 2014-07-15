@@ -1,0 +1,32 @@
+%h2 Question
+= bootstrap_form_for([:admin, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+  = f.text_field :text, label: 'Question'
+  = f.select :question_type, Question::TYPES
+  = f.hidden_field :survey_id
+  - if @question.question_type == 3 # if 2d matrix
+    = f.select :rows, 1..20
+    = f.label :Answers
+    
+    - @question.rows.to_i.times do |n|
+      .well
+        = f.fields_for "answers", @question.send("answers_#{n}") do |builder|
+          = render 'answer_fields', f: builder, row: n
+
+        %div{id: "new-answers-#{n}"}
+
+        = f.form_group do
+          = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers-#{n}", render_options: {locals: {row: n}}
+  - else
+    = f.label :Answers
+    .well
+      = f.fields_for "answers" do |builder|
+        = render 'answer_fields', f: builder, row: 0
+
+      %div{id: "new-answers"}
+
+      = f.form_group do
+        = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers", render_options: {locals: {row: 0}}
+
+  = f.form_group do
+    = f.submit "Save Question", class: 'btn btn-primary'
+    = link_to 'Cancel', admin_survey_questions_path(@survey), class: 'btn btn-default'

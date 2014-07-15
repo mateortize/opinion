@@ -1,0 +1,18 @@
+%h2 Surveys
+%p.text-right
+  = link_to 'Add New Survey', new_admin_survey_path, class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %th
+      Title
+    %th
+      Enabled
+    %th
+      Questions
+    %th.col-sm-2
+      Created At
+    %th.col-sm-2
+      Updated At
+    %th
+  = render @surveys

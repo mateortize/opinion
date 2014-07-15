@@ -1,0 +1,18 @@
+= render 'admin/surveys/tabs'
+%br
+%p.text-right
+  = link_to 'Add New Question', new_admin_survey_question_path(@survey), class: 'btn btn-primary'
+%table.table
+  %thead
+    %th.col-sm-4
+      Text
+    %th.col-sm-3
+      Answers
+    %th
+      Type
+    %th
+      Created At
+    %th
+      Updated At
+    %th
+  = render @questions

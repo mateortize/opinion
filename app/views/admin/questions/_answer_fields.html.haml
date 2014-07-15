@@ -1,0 +1,6 @@
+.answer
+  = f.text_field :text, label: "Answer"
+  - if f.object.question.question_type == 3 # if 2d matrix
+    = f.select :row, 0..f.object.question.rows-1, selected: row, label: "Row #"
+  = f.form_group do
+    = f.check_box :_destroy, label: "Remove"

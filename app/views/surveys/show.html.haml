@@ -1,0 +1,9 @@
+%h2= @survey.title
+%p.help-block
+  = @survey.description
+
+= bootstrap_form_for @survey, url: submit_survey_path(@survey), method: :post do |f|
+  - @survey.questions.each do |question|
+    = render 'questions', question: question
+
+  = f.submit 'Submit', class: 'btn btn-primary'
