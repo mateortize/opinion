@@ -1,0 +1,46 @@
+%div{id: "graph-line-#{question.id}"}
+:javascript
+  $(function () {
+      
+    // Make monochrome colors and set them as default for all pies
+    Highcharts.getOptions().plotOptions.pie.colors = (function () {
+        var colors = [],
+            base = Highcharts.getOptions().colors[0],
+            i
+
+        for (i = 0; i < 10; i++) {
+            // Start out with a darkened base color (negative brighten), and end
+            // up with a much brighter color
+            colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+        }
+        return colors;
+    }());
+    
+    // line
+    $('#graph-line-#{question.id}').highcharts({
+      title: {
+          text: null
+      },
+      xAxis: {
+          categories: #{question.graph_line_categories.to_json}
+      },
+      yAxis: {
+          title: {
+              text: 'Submission count'
+          },
+          allowDecimals: false,
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }]
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+      },
+      series: #{question.graph_line_series.to_json}
+    });
+    });

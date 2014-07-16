@@ -17,10 +17,10 @@ class SurveysController < ApplicationController
     @survey_log = @survey.logs.create(ip_address: request.remote_addr, answers: answers)
     
     if @survey_log.valid?
-      @survey.submit(answers)  
+      @survey.submit(answers)
       render :success
     else
-      render :failed
+      render :failed, :status=> :not_found
     end
   end
 

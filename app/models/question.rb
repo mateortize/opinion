@@ -15,6 +15,10 @@ class Question < ActiveRecord::Base
     :'2D Matrix' => 3
   }
 
+  GRAPH_TYPES = [
+    'pie', 'bar', 'bar_percentage', 'line'
+  ]
+
   20.times do |n|
     define_method "answers_#{n}" do
       self.answers.where(row: n)
