@@ -13,19 +13,15 @@ class SurveysController < ApplicationController
 
   def submit
     @survey = Survey.find(params[:id])
-
     answers = prepare_answers
-
-    @survey_log = @survey.logs.build(ip_address: request.remote_addr, params: answers)
-
+    @survey_log = @survey.logs.create(ip_address: request.remote_addr, answers: answers)
+    
     if @survey_log.valid?
-      @survey.submit(answers)
-      @survey_log.save
+      @survey.submit(answers)  
       render :success
     else
       render :failed
     end
-
   end
 
   def embedded_html

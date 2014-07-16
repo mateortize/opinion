@@ -1,4 +1,6 @@
 class Survey < ActiveRecord::Base
+  mount_uploader :logo, SurveyUploader
+
   has_many :questions, :dependent => :destroy
   has_many :logs, class_name: 'SurveyLog', :dependent => :destroy
 

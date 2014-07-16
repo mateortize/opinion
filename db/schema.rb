@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716071328) do
+ActiveRecord::Schema.define(version: 20140716132722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140716071328) do
 
   create_table "survey_logs", force: true do |t|
     t.string   "ip_address"
-    t.text     "answers"
+    t.text     "params"
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20140716071328) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "submission_count", default: 0
+    t.string   "logo"
   end
 
   add_index "surveys", ["account_id"], name: "index_surveys_on_account_id", using: :btree

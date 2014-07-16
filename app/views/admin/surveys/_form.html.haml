@@ -1,6 +1,13 @@
 = bootstrap_form_for([:admin, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
   = f.text_field :title
   = f.text_area :description, rows: 10
+  - if !@survey.logo.blank?
+    = f.form_group do
+      = image_tag(@survey.logo_url, :class => 'img-responsive')
+      = f.check_box :remove_logo
+  - else
+    = f.file_field :logo
+
   = f.select :enabled, [true, false]
   
   %hr

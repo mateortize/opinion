@@ -1,5 +1,7 @@
 %h2= @survey.title
-%p.help-block
+%p.help-block.clearfix
+  - if !@survey.logo.blank?
+    = image_tag(@survey.logo_url, :class => 'img-responsive pull-left')
   = @survey.description
 
 = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|

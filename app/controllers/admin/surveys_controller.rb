@@ -54,7 +54,7 @@ class Admin::SurveysController < Admin::BaseController
   private
 
   def survey_params
-    params.require(:survey).permit(:title,:description,:enabled)
+    params.require(:survey).permit(:title,:description,:enabled, :logo, :remove_logo)
   end
 
   def load_survey

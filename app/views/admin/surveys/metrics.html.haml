@@ -63,7 +63,7 @@
                   },
                   series: [{
                       type: 'pie',
-                      data: #{question.graph_data.to_json}
+                      data: #{question.graph_pie_data.to_json}
                   }]
               });
           // bar
@@ -101,7 +101,7 @@
                   series: [{
                       type: 'column',
                       name: "#{question.text}",
-                      data: #{question.graph_data_submissions.to_json}
+                      data: #{question.graph_bar_data.to_json}
                   }]
               });
 
@@ -140,7 +140,7 @@
                   series: [{
                       type: 'column',
                       name: "#{question.text}",
-                      data: #{question.graph_data_submission_percentages.to_json}
+                      data: #{question.graph_bar_data_percentages.to_json}
                   }]
               });
 
@@ -150,7 +150,7 @@
                     text: null
                 },
                 xAxis: {
-                    categories: #{question.graph_line_periods.to_json}
+                    categories: #{question.graph_line_categories.to_json}
                 },
                 yAxis: {
                     title: {

@@ -25,15 +25,16 @@
         = f.form_group do
           = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers-#{n}", render_options: {locals: {row: n}}
   - else
-    = f.label :Answers
-    .well
-      = f.fields_for "answers" do |builder|
-        = render 'answer_fields', f: builder, row: 0
+    - unless @question.new_record?
+      = f.label :Answers
+      .well
+        = f.fields_for "answers" do |builder|
+          = render 'answer_fields', f: builder, row: 0
 
-      %div{id: "new-answers"}
+        %div{id: "new-answers"}
 
-      = f.form_group do
-        = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers", render_options: {locals: {row: 0}}
+        = f.form_group do
+          = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers", render_options: {locals: {row: 0}}
 
   = f.form_group do
     = f.submit "Save Question", class: 'btn btn-primary'
