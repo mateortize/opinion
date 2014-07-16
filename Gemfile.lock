@@ -124,6 +124,8 @@ GEM
       activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
+    highcharts-rails (3.0.10)
+      railties (>= 3.1)
     hike (1.2.3)
     i18n (0.6.9)
     inflecto (0.0.2)
@@ -279,6 +281,7 @@ DEPENDENCIES
   guard-rspec
   haml (>= 3.0.0)
   haml-rails
+  highcharts-rails (~> 3.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

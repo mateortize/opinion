@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :surveys do
       get :export, on: :member
+      get :metrics, on: :member
       resources :questions do
         resources :answers
       end

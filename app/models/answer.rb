@@ -21,4 +21,12 @@ class Answer < ActiveRecord::Base
     self.save
   end
 
+  def survey
+    self.question.survey
+  end
+
+  def graph_series
+    {name: self.text, data: []}
+  end
+
 end

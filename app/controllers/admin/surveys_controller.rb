@@ -1,5 +1,5 @@
 class Admin::SurveysController < Admin::BaseController
-  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export]
+  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :metrics]
 
   set_tab :survey
 
@@ -45,6 +45,10 @@ class Admin::SurveysController < Admin::BaseController
 
   def export
     set_tab :export
+  end
+
+  def metrics
+    set_tab :metrics
   end
 
   private
