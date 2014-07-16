@@ -1,9 +1,18 @@
 %tr
-  %td= question.text
+  %td
+    - if !question.image.blank?
+      = image_tag question.image_url
+    - else
+      = question.text
   %td
     - question.answers.each do |answer|
       %li
-        = answer.text
+        - if !answer.image.blank?
+          = image_tag answer.image_url
+        - else
+          = answer.text
+        %strong
+          = "(#{answer.submission_count} submissions)"
   %td= Question::TYPES.key(question.question_type)
   %td
     = time_ago_in_words(question.created_at)

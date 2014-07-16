@@ -51,7 +51,7 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   def question_params
-    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, answers_attributes:[:id, :text, :row, :_destroy] )
+    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, :image, :remove_image, answers_attributes:[:id, :text, :row, :image, :remove_image, :_destroy] )
   end
 
 end

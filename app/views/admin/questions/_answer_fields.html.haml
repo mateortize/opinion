@@ -2,5 +2,14 @@
   = f.text_field :text, label: "Answer"
   - if f.object.question.question_type == 3 # if 2d matrix
     = f.select :row, 0..f.object.question.rows-1, selected: row, label: "Row #"
+
+  - if !f.object.image.blank?
+    = f.form_group do
+      = image_tag(f.object.image_url, :class => 'img-responsive')
+      = f.check_box :remove_image
+  - else
+    = f.file_field :image
+
   = f.form_group do
     = f.check_box :_destroy, label: "Remove"
+%hr

@@ -68,6 +68,8 @@ Rails.application.routes.draw do
 
   resources :surveys do
     post :submit, on: :member
+    get :embedded_script, on: :member
+    get :embedded_html, on: :member
   end
   resources :answers
   resources :question

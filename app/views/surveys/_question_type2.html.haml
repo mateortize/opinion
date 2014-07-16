@@ -1,8 +1,14 @@
 %h3
-  = question.text
+  - if !question.image.blank?
+    = image_tag question.image_url
+  - else
+    = question.text
 
 - question.answers.each do |answer|
-  .row
+  .col-sm-12
     = radio_button_tag "survey[questions][#{question.id}][rows][0][answer]", answer.id
     %label{for: "survey_questions_#{question.id}_rows_0_answer_#{answer.id}"}
-      = answer.text
+      - if !answer.image.blank?
+        = image_tag answer.image_url
+      - else
+        = answer.text

@@ -1,6 +1,14 @@
 %h2 Question
 = bootstrap_form_for([:admin, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
   = f.text_field :text, label: 'Question'
+  
+  - if !@question.image.blank?
+    = f.form_group do
+      = image_tag(@question.image_url, :class => 'img-responsive')
+      = f.check_box :remove_image
+  - else
+    = f.file_field :image
+
   = f.select :question_type, Question::TYPES
   = f.hidden_field :survey_id
   - if @question.question_type == 3 # if 2d matrix

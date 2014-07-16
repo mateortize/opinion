@@ -1,0 +1,21 @@
+var scripts = document.getElementsByTagName('script'),
+currentScript = scripts[scripts.length - 1];
+
+var input = jQuery('script').last().prev();
+
+jQuery.get("<%= embedded_html_survey_url(@survey.id) %>", function(data){
+  jQuery(currentScript).before(data);
+
+  var form = jQuery("#submit-survey-<%=@survey.id%>");
+
+  form.on('submit', function(e){
+    e.preventDefault();
+
+    jQuery.post( form.attr('action'), form.serialize(), function(data){
+      alert("Thanks for your submission");
+    } );
+
+  });
+
+});
+

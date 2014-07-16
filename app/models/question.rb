@@ -1,4 +1,7 @@
 class Question < ActiveRecord::Base
+
+  mount_uploader :image, SurveyUploader
+  
   belongs_to :survey
   has_many :answers, dependent: :destroy
 

@@ -1,4 +1,6 @@
 class SurveysController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+  layout 'embedded', only: [:embedded_html]
   def show
     @survey = Survey.find(params[:id])
   end
@@ -10,8 +12,8 @@ class SurveysController < ApplicationController
 
   def submit
     @survey = Survey.find(params[:id])
-    
     @log = @survey.logs.create(ip_address: request.remote_addr, answers: survey_submission_params[:questions])
+
 
     if @log.valid?
       @survey.submit(survey_submission_params[:questions])
@@ -20,6 +22,14 @@ class SurveysController < ApplicationController
       render :failed
     end
 
+  end
+
+  def embedded_html
+    @survey = Survey.find(params[:id])
+  end
+
+  def embedded_script
+    @survey = Survey.find(params[:id])
   end
 
   private
