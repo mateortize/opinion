@@ -8,7 +8,6 @@
 
     = yield :head
   %body
-    .container-fluid
-      = render "/shared/flashes"
-      = yield
-      = yield :javascript
+    = render "/shared/flashes"
+    = yield
+    = yield :javascript

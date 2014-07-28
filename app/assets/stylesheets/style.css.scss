@@ -1,3 +1,7 @@
+//Webfonts
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700italic,700);
+
 /*--Mixins--*/
 @mixin box-shadow($boxshadow) {
   -moz-box-shadow: $boxshadow;
@@ -28,4 +32,23 @@
 body {
   background: asset-url('bgimage.jpg') center center no-repeat fixed;
   background-size: cover;
+  color: $grey5;
+  font-family: "Roboto";
+  font-weight: 400;
+  line-height: 1.5em;
+}
+.nopadding {
+  padding: 0!important;
+}
+.nomargin {
+  margin: 0!important;
+}
+.well {
+  background: lighten($grey1, 10);
+  border: 1px solid $grey1;
+  @include box-shadow(0 1px 1px $grey3);
+  position: relative;
+}
+.lead {
+  line-height: 1.2em;
 }

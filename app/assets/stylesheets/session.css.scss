@@ -1,0 +1,39 @@
+#sign-in {
+  background: asset-url("bg_loginrow.png") no-repeat right bottom rgba($light, 0.95);
+  @include box-shadow(0 5px 5px 0 rgba($dark, 0.25));
+  overflow: hidden;
+  padding-bottom: 20px;
+  padding-top: 20px;
+
+  .signin-content {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    fieldset {
+      border: none;
+      display: block;
+      padding: 25px 14px;
+      position: relative;
+
+      section {
+
+        h2 {
+          font-family: "roboto condensed";
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  header {
+    background: lighten($grey1, 5);
+    border-bottom: 1px solid rgba($dark, 0.1);
+    color: $grey6;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0;
+    padding: 15px 13px;
+  }
+}
