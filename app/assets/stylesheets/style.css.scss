@@ -1,3 +1,4 @@
+/*--Mixins--*/
 @mixin box-shadow($boxshadow) {
   -moz-box-shadow: $boxshadow;
   -webkit-box-shadow: $boxshadow;
@@ -21,4 +22,10 @@
   -webkit-border-radius: $borderradius;
   -o-border-radius: $borderradius;
   border-radius: $borderradius;
+}
+
+/*--Styles--*/
+body {
+  background: asset-url('bgimage.jpg') center center no-repeat fixed;
+  background-size: cover;
 }
