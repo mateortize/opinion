@@ -13,6 +13,12 @@
  *= require_self
  */
 
- @import 'bootstrap';
-
- 
+@import 'bootstrap';
+@import 'colors';
+@import 'style';
+@import 'admin';
+@import 'header';
+@import 'footer';
+@import 'page';
+@import 'profile';
+@import 'mobile';
