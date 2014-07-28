@@ -3,6 +3,7 @@ class Answer < ActiveRecord::Base
 
   belongs_to :question
   validates_uniqueness_of :text, scope: [ :question_id ]
+  validate :validate_answers_count_per_row
 
   #fix for nested form image deletion
   after_save :clean_remove_image
@@ -29,4 +30,9 @@ class Answer < ActiveRecord::Base
     {name: self.text, data: []}
   end
 
+  def validate_answers_count_per_row
+    if self.question.send("answers_#{self.row}").reject(&:marked_for_destruction?).count > 6
+      self.errors.add :base, "No more than 6 links allowed."
+    end
+  end
 end

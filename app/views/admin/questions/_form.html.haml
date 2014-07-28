@@ -1,5 +1,6 @@
 %h2 Question
 = bootstrap_form_for([:admin, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+  = f.error_summary
   = f.text_field :text, label: 'Question'
   
   - if !@question.image.blank?
