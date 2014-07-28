@@ -30,6 +30,7 @@ gem 'bootstrap_form'
 gem 'tabs_on_rails'
 gem 'cocoon'
 
+gem 'omniauth-bonofa', '~> 0.0.5'
 
 gem "highcharts-rails", "~> 3.0.0"
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

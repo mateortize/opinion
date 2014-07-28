@@ -1,0 +1,22 @@
+#sign-in
+  .container
+    .row
+      .col-md-12
+        %h2 Sign in
+        .shortline.mb2
+        = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9", url: session_path(resource_name)) do |f|
+          = f.email_field :email
+          = f.password_field :password
+
+          = f.form_group do
+            - if devise_mapping.rememberable?
+              = f.check_box :remember_me
+
+          = f.form_group do
+            = f.submit "Sign in", :class => 'btn btn-primary'
+            = render "devise/shared/links"
+
+          = f.form_group do
+            %p.baio-login
+              = link_to "/auth/bonofa" do
+                %span Sign in with BIAO

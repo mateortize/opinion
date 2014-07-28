@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716132722) do
+ActiveRecord::Schema.define(version: 20140728101056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20140716132722) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
@@ -46,6 +48,18 @@ ActiveRecord::Schema.define(version: 20140716132722) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
+  create_table "authentications", force: true do |t|
+    t.integer  "account_id"
+    t.string   "provider"
+    t.integer  "uid"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentications", ["account_id"], name: "index_authentications_on_account_id", using: :btree
+
   create_table "questions", force: true do |t|
     t.string   "text"
     t.string   "description"
@@ -61,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140716132722) do
 
   create_table "survey_logs", force: true do |t|
     t.string   "ip_address"
-    t.text     "params"
+    t.text     "answers"
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"
