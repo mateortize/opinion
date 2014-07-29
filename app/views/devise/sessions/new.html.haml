@@ -19,16 +19,19 @@
               %p
                 Apologies, opinion7 is currently only available in the Closed-Beta version for our members (and partners).
                 Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
+              %p
+                Have fun!
             %section.row
               .col-sm-12
                 = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
-                  = f.email_field :email
-                  = f.password_field :password
+                  .logindummy
+                    = f.email_field :email
+                    = f.password_field :password
 
 
-                  = f.form_group do
-                    = f.submit "Sign in", :class => 'btn btn-primary'
-                    = render "devise/shared/links"
+                    = f.form_group do
+                      = f.submit "Sign in", :class => 'btn btn-primary'
+                      = render "devise/shared/links"
 
                   = f.form_group do
                     %p.baio-login
