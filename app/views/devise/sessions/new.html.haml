@@ -17,11 +17,11 @@
               %h2
                 Dear visitor/member,
               %p
-                Apologies, newsletter7 is currently only available in the Closed-Beta version for our members (and partners).
+                Apologies, opinion7 is currently only available in the Closed-Beta version for our members (and partners).
                 Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
             %section.row
               .col-sm-12
-                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9", url: session_path(resource_name)) do |f|
+                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
                   = f.email_field :email
                   = f.password_field :password
 
@@ -33,4 +33,5 @@
                   = f.form_group do
                     %p.baio-login
                       = link_to "/auth/bonofa" do
-                        %span Sign in with BIAO
+                        %span Sign in with
+                        %span.baio-logo
