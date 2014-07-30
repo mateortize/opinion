@@ -7,7 +7,7 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
-    .container
+    #wrapper
       = render 'layouts/header_admin'
       - if notice
         %p.alert.alert-info.notice= notice

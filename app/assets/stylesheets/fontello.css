@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'fontello';
-  src: asset-url('/fontello.eot', 'font');
-  src: asset-url('/fontello.eot', 'font') format('embedded-opentype'),
+  src: asset-url('/fontello.eot');
+  src: asset-url('/fontello.eot') format('embedded-opentype'),
        asset-url('/fontello.woff') format('woff'),
        asset-url('/fontello.ttf') format('truetype'),
        asset-url('/fontello.svg') format('svg');

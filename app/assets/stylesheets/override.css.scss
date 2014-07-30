@@ -30,7 +30,7 @@ margin-left: -4px;
 
 /* @group NAV */
 .navbar-default {
-    background: #FFF;
+    background: #FFF!important;
     border: none;
 }
 .navbar-default .navbar-toggle {
@@ -46,7 +46,7 @@ margin-left: -4px;
 }
 
 a.navbar-brand{
-  background: transparent url(../img/logobg.png) no-repeat right center;
+  background: asset-url('logobg.png') no-repeat right center;
   -webkit-transition: background 12700ms ease-in-out;
 -moz-transition: background 700ms ease-in-out;
 -ms-transition: background 700ms ease-in-out;
