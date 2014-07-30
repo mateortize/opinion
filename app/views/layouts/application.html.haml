@@ -7,10 +7,5 @@
     = csrf_meta_tags
   %body
     #wrapper
-      - if notice
-        %p.alert.alert-info.notice= notice
-      - if alert
-        %p.alert.alert-danger= alert
-      
       = render "/shared/flashes"
       = yield
