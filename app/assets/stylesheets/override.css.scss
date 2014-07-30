@@ -257,7 +257,7 @@ transition: all 400ms ease;
 	margin: 0;
 	font-size: 1.25em;
 	padding-top: 1em;
-	padding-bottom: 10px;
+	padding-bottom: 20px!important;
 	-webkit-transition: all 200ms linear;
 	-moz-transition: all 200ms linear;
 	-ms-transition: all 200ms linear;
@@ -425,7 +425,7 @@ a.btn-danger:hover, a.btn-danger:active{
 /* @group progres */
 .progress {
     position: relative;
-	height: 33px;
+	height: 33px!important;
 	margin: 15px 0;
 	display: block;
 	background: #faf7f2;

@@ -1,20 +1,99 @@
-%h2 Surveys
-%p.text-right
-  = link_to 'Add New Survey', new_admin_survey_path, class: 'btn btn-primary'
+/ Seetings start
+#content
+  / product actions
+  #contentbody.container
+    .row
+      / h1>wadd can i do</h1
+      .panel.panel-actions
+        .panel-heading
+          %ul.nav.panel-tabs
+            %li.active.bor.w75
+              %a{"data-toggle" => "tab", :href => "#tab1"}
+                %span.icon-list-numbered
+                Surveys / Overview
+            %li
+              %a{"data-toggle" => "tab", :href => "#tab2"}
+                %span.icon-plus>
+                Create survey
+        .panel-body
+          .tab-content
+            / TAB Number 1
+            #tab1.tab-pane.active
+              .row
+                .col-xs-12
+                  .table-responsive
+                    %table#list-table.table.table-hover.table-striped
+                      %thead
+                        %th
+                          Title
+                        %th
+                          Enabled
+                        %th
+                          Questions
+                        %th
+                          Submissions
+                        %th.col-sm-2
+                          Created At
+                        %th.col-sm-2
+                          Updated At
+                        %th
+                      = render @surveys
+              .divider
+              #eval1
+                .row
+                  .col-xs-12
+                    %h1
+                      %small Your current evaluation
+                      Which product would you buy if you could
+                  .col-xs-12.col-sm-8
+                    %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                  .col-xs-4.col-sm-2.infodata
+                    %span.value 124
+                    Votes
+                  .col-xs-4.col-sm-2.infodata
+                    %span.value 839
+                    Hits
+                .row
+                  .col-xs-12
+                    .progress
+                      .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "95", :role => "progressbar", :style => "width: 95%;"}
+                        %span.sr-only Product One - Fluxkompensator
+                      %span.progress-type
+                        Product One
+                        %strong Fluxkompensator
+                      %a.progress-action{:href => "javascript:alert('Show list auf send mails or some other statistic F**k!');"}
+                        %span.glyphicon.glyphicon-eye-open
+                        %span.txt Vote
+                    .progress
+                      .progress-bar.progress-bar-danger{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "63", :role => "progressbar", :style => "width: 63%"}
+                        %span.sr-only Product two - Refrigerator
+                      %span.progress-type
+                        Product two
+                        %strong Refrigerator
+                      %a.progress-action{:href => "javascript:alert('Show list auf send mails or some other statistic F**k!');"}
+                        %span.glyphicon.glyphicon-eye-open
+                        %span.txt Vote
+                    .progress
+                      .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "80", :role => "progressbar", :style => "width: 80%"}
+                        %span.sr-only Product 3 - Porsche GT
+                      %span.progress-type
+                        Product 3
+                        %strong Porsche GT
+                      %a.progress-action{:href => "javascript:alert('Show list auf send mails or some other statistic F**k!');"}
+                        %span.glyphicon.glyphicon-eye-open
+                        %span.txt Vote
+              .divider
 
-%table.table
-  %thead
-    %th
-      Title
-    %th
-      Enabled
-    %th
-      Questions
-    %th
-      Submissions
-    %th.col-sm-2
-      Created At
-    %th.col-sm-2
-      Updated At
-    %th
-  = render @surveys
+
+            / TAb number 2
+            #tab2.tab-pane.contactlist
+              %h1
+                %span.icon-pages
+                Create new survey
+              .row.intro
+                .col-xs-12
+                  %p.lead New survey form
+                  // Todo: Please put the form here
+            #firstchart
+            #secondchart
+          / Setting End
