@@ -59,7 +59,7 @@ class Question < ActiveRecord::Base
       submissions = submissions_on_month(n.months.ago)
 
       self.answers.each do |answer|
-        answers_series[answer.id] ||= answer.graph_series
+        answers_series[answer.id] ||= {name: answer.text, data: []}
         answers_series[answer.id][:data] ||= []
         answers_series[answer.id][:data] << submissions[answer.id.to_s].to_i
       end

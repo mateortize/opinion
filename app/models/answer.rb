@@ -26,10 +26,6 @@ class Answer < ActiveRecord::Base
     self.question.survey
   end
 
-  def graph_series
-    {name: self.text, data: []}
-  end
-
   def validate_answers_count_per_row
     if self.question.send("answers_#{self.row}").reject(&:marked_for_destruction?).count > 6
       self.errors.add :base, "No more than 6 links allowed."
