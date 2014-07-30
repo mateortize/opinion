@@ -27,8 +27,14 @@ font-weight: 600;
 line-height: 1em;
 margin-left: -4px;
 }
+.profilesettings {
+  min-height: 290px!important;
+}
 
 /* @group NAV */
+.navbar {
+  margin-bottom: 0;
+}
 .navbar-default {
     background: #FFF!important;
     border: none;
