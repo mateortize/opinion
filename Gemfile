@@ -29,6 +29,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bootstrap_form'
 gem 'tabs_on_rails'
 gem 'cocoon'
+gem 'active_link_to'
 
 gem 'omniauth-bonofa', '~> 0.0.5'
 

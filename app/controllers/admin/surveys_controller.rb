@@ -14,7 +14,7 @@ class Admin::SurveysController < Admin::BaseController
       @survey.account = current_account
       @survey.save
 
-      redirect_to admin_surveys_path, flash: { success: 'Survey created successfully.'}
+      render :edit, flash: { success: 'Survey created successfully.'}
     else
       render :edit
     end

@@ -15,4 +15,15 @@
         %p.alert.alert-danger= alert
       
       = render "/shared/flashes"
-      = yield
+      / Seetings start
+      #content
+        / product actions
+        #contentbody.container
+          .row
+            / h1>wadd can i do</h1
+            .panel.panel-actions
+              - unless yield(:heading).blank?
+                .panel-heading
+                  = yield :heading
+              .panel-body
+                = yield
