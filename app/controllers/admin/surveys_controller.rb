@@ -5,6 +5,7 @@ class Admin::SurveysController < Admin::BaseController
 
   def index
     @surveys = current_account.surveys
+    @survey = Survey.new
   end
 
   def create
