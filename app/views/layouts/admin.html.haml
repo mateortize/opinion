@@ -9,11 +9,6 @@
   %body
     #wrapper
       = render 'layouts/header_admin'
-      - if notice
-        %p.alert.alert-info.notice= notice
-      - if alert
-        %p.alert.alert-danger= alert
-      
       = render "/shared/flashes"
       / Seetings start
       #content
