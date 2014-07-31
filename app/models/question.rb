@@ -27,13 +27,13 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def graph_pie_data
+  def graph_total_data
     self.answers.collect do |answer|
       {label: answer.text, value: answer.submission_count}
     end
   end
 
-  def graph_line_data(month_count)
+  def graph_historical_data(month_count)
     data = []
     month_count.times do |n|
       submissions = submitted_answer_ids_on(n.months.ago)

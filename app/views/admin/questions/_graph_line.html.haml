@@ -7,7 +7,7 @@
       element: 'graph-line-#{question.id}',
       // Chart data records -- each entry in this array corresponds to a point on
       // the chart.
-      data: #{question.graph_line_data(3).to_json},
+      data: #{question.graph_historical_data(3).to_json},
       // The name of the data record attribute that contains x-values.
       xkey: 'month',
       // A list of names of data record attributes that contain y-values.
