@@ -1,5 +1,6 @@
 function profiletoggle() {
-    $( "#profiletoggle" ).click(function() {
+    $( "#profiletoggle" ).click(function(event) {
+        event.preventDefault();
         $( "#profile" ).slideToggle( "slow" );
 
         var icon = $('#profiletoggle .toggle-icon');
