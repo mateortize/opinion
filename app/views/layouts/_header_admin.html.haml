@@ -29,7 +29,7 @@
     / profileimage
     .col-xs-5.col-sm-5.ccol-md-5.col-lg-4
       .profileimg
-        = image_tag('profile_full.jpg', class: 'img-responsive img-circle')
+        = image_tag('nouserimage.jpg', class: 'img-responsive img-circle')
         %a{:alt => "change profile image", :href => "#"}
           %span.icon-picture
           %span.txt Change Image
@@ -41,7 +41,7 @@
         = succeed "Name," do
           %br/
         Vorname
-      %p Welcome text... news, features etc. ein netter kleiner Wohlfühltext, eventuell textlich andere Produkte anteasern... haben sie schon dies und das probiert?
+      /%p Welcome text... news, features etc. ein netter kleiner Wohlfühltext, eventuell textlich andere Produkte anteasern... haben sie schon dies und das probiert?
   / current package, settinglinks
   .col-xs-12.col-sm-6.col-md-5.col-lg-5.bgcolor.profilesettings
     .actions
@@ -59,7 +59,7 @@
         %td - none -
       %tr
         %td Account:
-        %td PRO User
+        %td FREE user
       %tr
         %td e-Mail:
         %td g.clooney@bonofa.com
@@ -67,6 +67,6 @@
         %td
           %strong Your promolink:
         %td
-          %strong coolclooney48.product.com
+          %strong -
 / Profile End
 %hr.pless.mless/
