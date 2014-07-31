@@ -1,56 +1,5 @@
 %div{id: "graph-bar-percentage-#{question.id}"}
 :javascript
-  $(function () {
-      
-      // Make monochrome colors and set them as default for all pies
-    Highcharts.getOptions().plotOptions.pie.colors = (function () {
-            var colors = [],
-                base = Highcharts.getOptions().colors[0],
-                i
-
-            for (i = 0; i < 10; i++) {
-                // Start out with a darkened base color (negative brighten), and end
-                // up with a much brighter color
-                colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
-            }
-            return colors;
-    }());
-    
-    $('#graph-bar-percentage-#{question.id}').highcharts({
-        chart: {
-          type: 'column'
-        },
-        title: {
-            text: null
-        },
-        xAxis: {
-            categories: #{question.answer_names.to_json},
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            allowDecimals: false,
-            title: {
-                text: 'submission count',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        series: [{
-            type: 'column',
-            name: "#{question.text}",
-            data: #{question.graph_bar_data_percentages.to_json}
-        }]
-    });
+    $(function () {
+        
     });

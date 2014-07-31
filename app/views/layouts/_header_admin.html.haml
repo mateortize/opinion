@@ -38,10 +38,11 @@
     .col-xs-7.col-sm-7.ccol-md-7.col-lg-8.welcome
       %h1.bob
         %span.small Welcome
-        = succeed "Name," do
+        = succeed "#{current_account.first_name}," do
           %br/
-        Vorname
+        = current_account.last_name
       /%p Welcome text... news, features etc. ein netter kleiner Wohlfühltext, eventuell textlich andere Produkte anteasern... haben sie schon dies und das probiert?
+        
   / current package, settinglinks
   .col-xs-12.col-sm-6.col-md-5.col-lg-5.bgcolor.profilesettings
     .actions
@@ -62,7 +63,7 @@
         %td FREE user
       %tr
         %td e-Mail:
-        %td g.clooney@bonofa.com
+        %td=current_account.email
       %tr
         %td
           %strong Your promolink:
