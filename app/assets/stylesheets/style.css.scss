@@ -138,3 +138,52 @@ a.lead{
 .lead {
   line-height: 1.2em;
 }
+.btn {
+  color: $light;
+  @include transition(all 300ms ease);
+
+  &:hover {
+    opacity: .9;
+  }
+
+  &.btn-primary {
+    background-color: $primarybg;
+    color: $light;
+  }
+  &.btn-default {
+    background-color: $grey2!important;
+    color: $light;
+
+    &:hover {
+      background-color: $primarybg!important;
+    }
+  }
+}
+table {
+
+  tbody {
+    tr {
+      @include transition(all 300ms ease);
+
+      &:hover {
+        background-color: darken($light, 1);
+      }
+    }
+  }
+}
+.uebg {
+  background-color: $primarybg;
+  color: $light;
+  margin: -20px -15px 25px -15px;
+  padding: 20px;
+  font-size: 1.7em;
+}
+.panel {
+
+  .panel-heading {
+    background-color: $primarybg;
+    color: $light;
+    padding: 20px;
+    font-size: 1.7em;
+  }
+}

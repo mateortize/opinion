@@ -10,5 +10,5 @@
     = time_ago_in_words(survey.updated_at)
     ago
   %td.text-right
-    = link_to 'Edit', edit_admin_survey_path(survey), class: 'btn btn-primary'
-    = link_to 'Delete', admin_survey_path(survey), class: 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete
+    = link_to 'Edit', edit_admin_survey_path(survey), class: 'btn btn-default'
+    = link_to 'Delete', admin_survey_path(survey),class: 'btn btn-default', data: { confirm: 'Are you sure to delete?' }, method: :delete
