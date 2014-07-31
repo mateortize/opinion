@@ -183,7 +183,31 @@ table {
   .panel-heading {
     background-color: $primarybg;
     color: $light;
-    padding: 20px;
+    padding: 10px 20px;
     font-size: 1.7em;
+  }
+}
+.nav-tabs {
+
+  li {
+
+    a {
+
+      &:hover {
+        color: $grey4;
+        text-decoration: none;
+      }
+    }
+
+    span {
+      border: 1px solid transparent;
+      border-radius: 4px 4px 0 0;
+      line-height: 1.42857;
+      margin-right: 2px;
+      display: block;
+      padding: 10px 15px;
+      background-color: $secondarybg;
+      color: $light;
+    }
   }
 }
