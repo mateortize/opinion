@@ -16,7 +16,7 @@ class Question < ActiveRecord::Base
   }
 
   GRAPH_TYPES = [
-    'pie', 'bar', 'bar_percentage', 'line'
+    'pie', 'bar', 'line'
   ]
 
   20.times do |n|
@@ -27,12 +27,35 @@ class Question < ActiveRecord::Base
     end
   end
 
-  def submissions_on_month(date)
-    submissions = Hash.new(0)
-    self.survey.logs.where("created_at > ? and created_at < ?", date.beginning_of_month, date.end_of_month).each do |log|
-      log.answers.inject(submissions) {|h, v| h[v] += 1; h}
+  def graph_pie_data
+    self.answers.collect do |answer|
+      {label: answer.text, value: answer.submission_count}
     end
-    submissions
+  end
+
+  def graph_line_data(month_count)
+    data = []
+    month_count.times do |n|
+      submissions = submitted_answer_ids_on(n.months.ago)
+
+      month_data = Hash.new
+      month_data[:month] = "#{n.months.ago.year}-#{n.months.ago.month}"
+
+      self.answers.each do |answer|
+        month_data[answer.text] = submissions.count(answer.id.to_s)
+      end
+     
+      data << month_data
+    end
+    data
+  end
+
+  def submitted_answer_ids_on(month)
+    submissions = []
+    self.survey.logs.where("created_at > ? and created_at < ?", month.beginning_of_month, month.end_of_month).inject(submissions) do |h, v|
+      submissions << v.answers & self.answers.map(&:id).map(&:to_s)
+    end
+    submissions.flatten
   end
 
 

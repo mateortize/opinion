@@ -1,5 +1,11 @@
 %div{id: "graph-pie-#{question.id}"}
 :javascript
     $(function () {
-      
+      new Morris.Donut({
+        // ID of the element in which to draw the chart.
+        element: 'graph-pie-#{question.id}',
+        // Chart data records -- each entry in this array corresponds to a point on
+        // the chart.
+        data: #{question.graph_pie_data.to_json}
+      });
     });

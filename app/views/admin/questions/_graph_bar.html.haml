@@ -1,5 +1,15 @@
 %div{id: "graph-bar-#{question.id}"}
 :javascript
   $(function () {
-      
+    new Morris.Bar({
+      element: 'graph-bar-#{question.id}',
+      data: #{question.answers.to_json},
+      // The name of the data record attribute that contains x-values.
+      xkey: 'text',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['submission_count'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ["Submissions"]
+    });
   });
