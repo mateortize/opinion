@@ -17,8 +17,4 @@
           .row
             / h1>wadd can i do</h1
             .panel.panel-actions
-              - unless yield(:heading).blank?
-                .panel-heading
-                  = yield :heading
-              .panel-body
-                = yield
+              = yield
