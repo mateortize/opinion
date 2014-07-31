@@ -115,6 +115,7 @@ a:link, a:visited{
   -ms-transition: all 200ms linear;
   -o-transition: all 200ms linear;
   transition: all 200ms linear;
+  outline: none;
 }
 a:hover, a:active, a.current, a.active{
   color: #00a8e2;
@@ -178,7 +179,7 @@ table {
   padding: 20px;
   font-size: 1.7em;
 }
-.panel {
+/*.panel {
 
   .panel-heading {
     background-color: $primarybg;
@@ -186,7 +187,7 @@ table {
     padding: 10px 20px;
     font-size: 1.7em;
   }
-}
+}*/
 .nav-tabs {
 
   li {
