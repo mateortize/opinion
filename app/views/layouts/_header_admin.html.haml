@@ -16,7 +16,8 @@
         %li
           = link_to "Surveys", admin_surveys_path
         %li
-          = link_to "Sign out", destroy_account_session_path, :method => 'delete'
+          = link_to destroy_account_session_path, :method => 'delete', :title => 'Sign out' do
+            %span.glyphicon.glyphicon-log-out
         %li.dropdown
           %a#profiletoggle{:href => "#"}
             %span.icon-user
