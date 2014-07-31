@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
-  def home
-  end
-
+  skip_before_action :authenticate_account!
   def impress
   end
 end

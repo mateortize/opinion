@@ -85,5 +85,5 @@ Rails.application.routes.draw do
     get :impress, on: :collection
   end
 
-  root to: 'pages#home'
+  root to: 'admin/surveys#index'
 end
