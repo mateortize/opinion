@@ -81,5 +81,9 @@ Rails.application.routes.draw do
   resources :answers
   resources :question
 
+  resources :pages, only: [] do
+    get :impress, on: :collection
+  end
+
   root to: 'pages#home'
 end

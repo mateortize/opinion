@@ -1,46 +1,24 @@
 %div{id: "graph-line-#{question.id}"}
 :javascript
   $(function () {
-      
-    // Make monochrome colors and set them as default for all pies
-    Highcharts.getOptions().plotOptions.pie.colors = (function () {
-        var colors = [],
-            base = Highcharts.getOptions().colors[0],
-            i
-
-        for (i = 0; i < 10; i++) {
-            // Start out with a darkened base color (negative brighten), and end
-            // up with a much brighter color
-            colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
-        }
-        return colors;
-    }());
     
-    // line
-    $('#graph-line-#{question.id}').highcharts({
-      title: {
-          text: null
-      },
-      xAxis: {
-          categories: #{question.graph_line_categories.to_json}
-      },
-      yAxis: {
-          title: {
-              text: 'Submission count'
-          },
-          allowDecimals: false,
-          plotLines: [{
-              value: 0,
-              width: 1,
-              color: '#808080'
-          }]
-      },
-      legend: {
-          layout: 'vertical',
-          align: 'right',
-          verticalAlign: 'middle',
-          borderWidth: 0
-      },
-      series: #{question.graph_line_series.to_json}
-    });
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: 'graph-line-#{question.id}',
+      // Chart data records -- each entry in this array corresponds to a point on
+      // the chart.
+      data: [
+        { year: '2008', value: 20 },
+        { year: '2009', value: 10 },
+        { year: '2010', value: 5 },
+        { year: '2011', value: 5 },
+        { year: '2012', value: 20 }
+      ],
+      // The name of the data record attribute that contains x-values.
+      xkey: 'year',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['value'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Value']
     });
