@@ -182,6 +182,12 @@ table {
 textarea {
   resize: none;
 }
+.panel {
+
+  &:not(.panel-actions) {
+    padding: 20px;
+  }
+}
 /*.panel {
 
   .panel-heading {
