@@ -169,6 +169,10 @@ table {
       &:hover {
         background-color: darken($light, 1);
       }
+      .glyphicon {
+        vertical-align: -2px;
+        font-size: 1em!important;
+      }
     }
   }
 }

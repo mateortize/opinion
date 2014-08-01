@@ -10,6 +10,9 @@
     = time_ago_in_words(survey.updated_at)
     ago
   %td.text-right
-    = link_to 'Show', survey_path(survey), class: 'btn btn-default'
-    = link_to 'Edit', edit_admin_survey_path(survey), class: 'btn btn-default'
-    = link_to 'Delete', admin_survey_path(survey),class: 'btn btn-default', data: { confirm: 'Are you sure to delete?' }, method: :delete
+    = link_to survey_path(survey) do
+      %span.glyphicon.glyphicon-eye-open
+    = link_to edit_admin_survey_path(survey) do
+      %span.glyphicon.glyphicon-pencil
+    = link_to admin_survey_path(survey), data: { confirm: 'Are you sure to delete?' }, method: :delete do
+      %span.glyphicon.glyphicon-trash
