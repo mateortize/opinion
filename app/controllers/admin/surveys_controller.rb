@@ -5,6 +5,7 @@ class Admin::SurveysController < Admin::BaseController
 
   def index
     @surveys = current_account.surveys
+    @latest_survey = current_account.surveys.order("created_at desc").first
     @survey = Survey.new
   end
 

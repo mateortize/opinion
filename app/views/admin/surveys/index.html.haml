@@ -28,42 +28,23 @@
         .col-xs-12
           %h1
             %small Your current evaluation
-            Which product would you buy if you could
+            = @latest_survey.title
         .col-xs-12.col-sm-8
-          %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-        .col-xs-4.col-sm-2.infodata
-          %span.value 124
-          Votes
-        .col-xs-4.col-sm-2.infodata
-          %span.value 839
-          Hits
-      .row
-        .col-xs-12
-          .progress
-            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "95", :role => "progressbar", :style => "width: 95%;"}
-              %span.sr-only Product One - Fluxkompensator
-            %span.progress-type
-              Product
-              %strong One
-            %a.progress-action
-              %span.glyphicon.glyphicon-eye-open
-              %span.txt Vote
-          .progress
-            .progress-bar.progress-bar-danger{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "63", :role => "progressbar", :style => "width: 63%"}
-              %span.sr-only Product two - Refrigerator
-            %span.progress-type
-              Product
-              %strong Two
-            %a.progress-action
-              %span.glyphicon.glyphicon-eye-open
-              %span.txt Vote
-          .progress
-            .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "80", :role => "progressbar", :style => "width: 80%"}
-              %span.sr-only Product 3 - Porsche GT
-            %span.progress-type
-              Product
-              %strong Three
-            %a.progress-action
-              %span.glyphicon.glyphicon-eye-open
-              %span.txt Vote
+          %p= @latest_survey.description
+        .col-xs-4.col-sm-2.infodata.pull-right
+          %span.value= @latest_survey.submission_count
+          Submissions
+      - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
+        .row
+          .col-xs-12
+            - question.answers.each do |answer|
+              .progress
+                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/question.answers.map(&:submission_count).max}%;"}
+                  %span.sr-only= answer.text
+                %span.progress-type
+                  = answer.text
+                %a.progress-action
+                  %span.glyphicon.glyphicon-eye-open
+                  %span.txt Vote
+
     .divider
