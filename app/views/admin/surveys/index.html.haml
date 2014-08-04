@@ -37,6 +37,8 @@
       - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
         .row
           .col-xs-12
+            %h3= question.text
+            %p.help-text= question.description
             - question.answers.each do |answer|
               .progress
                 .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
