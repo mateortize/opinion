@@ -39,7 +39,7 @@
           .col-xs-12
             - question.answers.each do |answer|
               .progress
-                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/@latest_survey.submission_count}%;"}
+                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
                   %span.sr-only= answer.text
                 %span.progress-type
                   = answer.text
