@@ -7,7 +7,11 @@
     = csrf_meta_tags
   %body
     #wrapper
-      = render "layouts/header"
+      - if account_signed_in?
+        = render "layouts/header_admin"
+      - else
+        = render "layouts/header"
+
       = render "/shared/flashes"
       #page.container.nopadding
         .row
