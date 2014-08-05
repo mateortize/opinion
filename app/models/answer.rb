@@ -3,8 +3,8 @@ class Answer < ActiveRecord::Base
   mount_uploader :image, SurveyUploader
 
   belongs_to :question
-  validates_uniqueness_of :text, scope: [ :question_id ]
-  validate :validate_answers_count_per_row
+  validates_uniqueness_of :text, scope: :question_id
+  #validate :validate_answers_count_per_row
 
   #fix for nested form image deletion
   after_save :clean_remove_image
