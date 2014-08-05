@@ -1,9 +1,17 @@
 #footer {
-  margin-top: 20px;
   margin-bottom: 20px;
+  margin-top: 10px;
 
   a {
     color: $light;
     font-size: 1.2em;
+    margin-right: 10px;
+
+    &:hover {
+      color: $secondary;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

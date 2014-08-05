@@ -83,6 +83,7 @@ Rails.application.routes.draw do
 
   resources :pages, only: [] do
     get :impress, on: :collection
+    get :termsofuse, on: :collection
   end
 
   root to: 'admin/surveys#index'

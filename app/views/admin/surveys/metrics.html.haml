@@ -10,7 +10,8 @@
       .col-sm-2
         = answer.submission_count
         
-  - Question::GRAPH_TYPES.each do |graph_type|
-    .col-sm-6
-      = render "/admin/questions/graph_#{graph_type}", question: question
-      %br/
+  .row
+    - Question::GRAPH_TYPES.each do |graph_type|
+      .col-sm-6
+        = render "/admin/questions/graph_#{graph_type}", question: question
+        %br/
