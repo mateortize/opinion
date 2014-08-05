@@ -27,10 +27,4 @@ class Answer < ActiveRecord::Base
   def survey
     self.question.survey
   end
-
-  def validate_answers_count_per_row
-    if self.question.answers.row.count > 6
-      self.errors.add :base, "No more than 6 links allowed."
-    end
-  end
 end

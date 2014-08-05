@@ -17,6 +17,7 @@ class Question < ActiveRecord::Base
   before_save :set_rows
   accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
 
+  # cocoon nested form validation, duplicated answers
   def self.validates_uniqueness(*attr_names)
     # Set the default configuration
     configuration = { :attribute_name => "name", :message => I18n.t("validation.duplicate") }
@@ -53,7 +54,7 @@ class Question < ActiveRecord::Base
 
       value.map do |obj|
         row_numbers << obj.row
-        obj.errors.add(attr_name, "maximum 6 answers in a row") if row_numbers.count(obj.row) > 6
+        obj.errors.add(attr_name, "maximum 6 answers in a row") if row_numbers.count(obj.row) > 6 and record.rows > 1
       end
     end     
   end
@@ -69,6 +70,7 @@ class Question < ActiveRecord::Base
     end
   end
 
+  # graph data related methods
   def graph_total_data
     self.answers.collect do |answer|
       {label: answer.text, value: answer.submission_count}
@@ -105,8 +107,9 @@ class Question < ActiveRecord::Base
     self.answers.map(&:text)
   end
 
-  def set_rows
-    self.rows = 1 if self.question_type != 3 
-  end
+  private
+    def set_rows
+      self.rows = 1 if self.question_type != 3 
+    end
 
 end
