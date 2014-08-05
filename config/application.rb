@@ -27,7 +27,7 @@ module Opinion7
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [:en, :de, :it]
+    config.i18n.available_locales = [:en, :de, :fr, :it, :pt]
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
