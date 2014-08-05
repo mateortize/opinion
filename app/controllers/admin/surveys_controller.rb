@@ -32,11 +32,14 @@ class Admin::SurveysController < Admin::BaseController
   end
 
   def update
-    @survey.update_attributes(survey_params)
-    if @survey.questions.count > 0
-      redirect_to edit_admin_survey_path(@survey), flash: { success: "Successfully updated" }
+    if @survey.update_attributes(survey_params)
+      if @survey.questions.count > 0
+        redirect_to edit_admin_survey_path(@survey), flash: { success: "Successfully updated" }
+      else
+        redirect_to admin_survey_questions_path(@survey)
+      end
     else
-      redirect_to admin_survey_questions_path(@survey)
+      render :edit
     end
   end
 
@@ -56,7 +59,7 @@ class Admin::SurveysController < Admin::BaseController
   private
 
   def survey_params
-    params.require(:survey).permit(:title,:description,:enabled, :logo, :remove_logo)
+    params.require(:survey).permit(:title,:description,:enabled, :logo, :remove_logo, :locales=>[])
   end
 
   def load_survey

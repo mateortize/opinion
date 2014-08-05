@@ -4,11 +4,9 @@
   %td= survey.questions.count
   %td= survey.submission_count
   %td
-    = time_ago_in_words(survey.created_at)
-    ago
+    = survey.created_at
   %td
-    = time_ago_in_words(survey.updated_at)
-    ago
+    = survey.updated_at
   %td.text-right
     = link_to survey_path(survey) do
       %span.glyphicon.glyphicon-eye-open

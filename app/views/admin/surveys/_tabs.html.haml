@@ -3,3 +3,7 @@
   = tab.questions 'Questions', admin_survey_questions_path(@survey)
   = tab.export 'Export', export_admin_survey_path(@survey)
   = tab.metrics 'Metrics', metrics_admin_survey_path(@survey)
+
+= tabs_tag :open_tabs=>{ class: 'nav nav-tabs' }, :namespace => :navigation do |tab|
+  - @survey.locales.each do |locale|
+    = tab.send(locale, locale, url_for(params.merge(locale: locale)))

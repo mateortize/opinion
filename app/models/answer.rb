@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  translates :text
   mount_uploader :image, SurveyUploader
 
   belongs_to :question

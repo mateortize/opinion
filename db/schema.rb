@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728101056) do
+ActiveRecord::Schema.define(version: 20140805091334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20140728101056) do
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+
+  create_table "answer_translations", force: true do |t|
+    t.integer  "answer_id",  null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "text"
+  end
+
+  add_index "answer_translations", ["answer_id"], name: "index_answer_translations_on_answer_id", using: :btree
+  add_index "answer_translations", ["locale"], name: "index_answer_translations_on_locale", using: :btree
 
   create_table "answers", force: true do |t|
     t.string   "text"
@@ -60,6 +71,18 @@ ActiveRecord::Schema.define(version: 20140728101056) do
 
   add_index "authentications", ["account_id"], name: "index_authentications_on_account_id", using: :btree
 
+  create_table "question_translations", force: true do |t|
+    t.integer  "question_id", null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "text"
+    t.text     "description"
+  end
+
+  add_index "question_translations", ["locale"], name: "index_question_translations_on_locale", using: :btree
+  add_index "question_translations", ["question_id"], name: "index_question_translations_on_question_id", using: :btree
+
   create_table "questions", force: true do |t|
     t.string   "text"
     t.string   "description"
@@ -81,6 +104,18 @@ ActiveRecord::Schema.define(version: 20140728101056) do
     t.datetime "updated_at"
   end
 
+  create_table "survey_translations", force: true do |t|
+    t.integer  "survey_id",   null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "description"
+  end
+
+  add_index "survey_translations", ["locale"], name: "index_survey_translations_on_locale", using: :btree
+  add_index "survey_translations", ["survey_id"], name: "index_survey_translations_on_survey_id", using: :btree
+
   create_table "surveys", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -90,6 +125,7 @@ ActiveRecord::Schema.define(version: 20140728101056) do
     t.datetime "updated_at"
     t.integer  "submission_count", default: 0
     t.string   "logo"
+    t.string   "locales"
   end
 
   add_index "surveys", ["account_id"], name: "index_surveys_on_account_id", using: :btree

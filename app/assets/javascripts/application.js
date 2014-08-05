@@ -5,8 +5,6 @@
 //= require profile
 //= require raphael-min
 //= require cocoon
-//= require highcharts
-//= require highcharts/themes/grid
 
 $(function(){
     setTimeout(function(){

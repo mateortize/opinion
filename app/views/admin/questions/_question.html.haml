@@ -15,11 +15,9 @@
           = "(#{answer.submission_count} submissions)"
   %td= Question::TYPES.key(question.question_type)
   %td
-    = time_ago_in_words(question.created_at)
-    ago
+    = question.created_at
   %td
-    = time_ago_in_words(question.updated_at)
-    ago
+    = question.updated_at
   %td.text-right.col-sm-2
     = link_to 'Edit', edit_admin_survey_question_path(@survey, question), class: 'btn btn-primary'
     = link_to 'Delete', admin_survey_question_path(@survey, question), class: 'btn btn-danger', data: { confirm: "Are you sure to delete?" }, method: :delete
