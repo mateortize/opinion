@@ -2,9 +2,10 @@ class Answer < ActiveRecord::Base
   translates :text
   mount_uploader :image, SurveyUploader
 
+  scope :row, ->(number){ where(row: number) }
+
   belongs_to :question
   validates_uniqueness_of :text, scope: :question_id
-  #validate :validate_answers_count_per_row
 
   #fix for nested form image deletion
   after_save :clean_remove_image
@@ -28,7 +29,7 @@ class Answer < ActiveRecord::Base
   end
 
   def validate_answers_count_per_row
-    if self.question.send("answers_#{self.row}").reject(&:marked_for_destruction?).count > 6
+    if self.question.answers.row.count > 6
       self.errors.add :base, "No more than 6 links allowed."
     end
   end

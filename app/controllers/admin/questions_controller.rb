@@ -1,12 +1,16 @@
 class Admin::QuestionsController < Admin::BaseController
   
   before_filter :load_survey
-  before_filter :load_question, only: [:edit, :update, :destroy]
+  before_filter :load_question, only: [:edit, :update, :destroy, :show]
 
   set_tab :questions
 
   def index
     @questions = @survey.questions
+  end
+
+  def show
+    render :edit
   end
 
   def new

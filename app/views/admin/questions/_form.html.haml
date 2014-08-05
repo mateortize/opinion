@@ -18,6 +18,7 @@
     
     - @question.rows.to_i.times do |n|
       .well
+        %h3 Row #{n+1}
         = f.fields_for "answers", @question.send("answers_#{n}") do |builder|
           = render 'answer_fields', f: builder, row: n
 

@@ -2,13 +2,6 @@ class Question < ActiveRecord::Base
   translates :text, :description
   mount_uploader :image, SurveyUploader
   
-  belongs_to :survey
-  has_many :answers, dependent: :destroy
-
-  before_save :set_rows
-
-  accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
-
   TYPES = {
     :'Checkbox' => 1,
     :'Multiple Choice' => 2,
@@ -18,6 +11,55 @@ class Question < ActiveRecord::Base
   GRAPH_TYPES = [
     'pie', 'bar', 'line'
   ]
+
+  belongs_to :survey
+  has_many :answers, dependent: :destroy
+  before_save :set_rows
+  accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
+
+  def self.validates_uniqueness(*attr_names)
+    # Set the default configuration
+    configuration = { :attribute_name => "name", :message => I18n.t("validation.duplicate") }
+           
+    # Update defaults with any supplied configuration values
+    configuration.update(attr_names.extract_options!)
+           
+    validates_each(attr_names) do |record, record_attr_name, value|
+      duplicates = Set.new
+      attr_name = configuration[:attribute_name]
+      value.map do |obj|
+        cur_attr_value = obj.try(attr_name)
+        if(duplicates.member?(cur_attr_value))
+          obj.errors.add(attr_name, "duplicated one")
+        else
+          duplicates.add(cur_attr_value)
+        end
+      end
+    end     
+  end
+
+  def self.validates_length(*attr_names)
+    # Set the default configuration
+    configuration = { :attribute_name => "name", :message => I18n.t("validation.length") }
+           
+    # Update defaults with any supplied configuration values
+    configuration.update(attr_names.extract_options!)
+           
+    validates_each(attr_names) do |record, record_attr_name, value|
+      duplicates = Set.new
+      attr_name = configuration[:attribute_name]
+      
+      row_numbers = []
+
+      value.map do |obj|
+        row_numbers << obj.row
+        obj.errors.add(attr_name, "maximum 6 answers in a row") if row_numbers.count(obj.row) > 6
+      end
+    end     
+  end
+
+  validates_uniqueness :answers, { attribute_name: "text" }
+  validates_length :answers, { attribute_name: "text" }
 
   20.times do |n|
     define_method "answers_#{n}" do

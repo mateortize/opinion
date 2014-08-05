@@ -6,4 +6,4 @@
 
 = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
   - @survey.locales.each do |locale|
-    = tab.send(locale, locale, url_for(params.merge(locale: locale)))
+    = tab.send(locale, locale, url_for({locale: locale}))
