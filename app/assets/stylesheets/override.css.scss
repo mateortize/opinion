@@ -302,10 +302,10 @@ transition: all 400ms ease;
 }
 /* @end */
 /* @group alerts Buttons and soms other standards */
-a.btn{
+a.btn, input.btn{
   color: #FFF;
   border: none;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 1.15em;
   text-shadow: none;
 }

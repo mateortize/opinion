@@ -187,21 +187,14 @@ textarea {
   resize: none;
 }
 .panel {
+  padding: 10px;
 
   &:not(.panel-actions) {
     padding: 20px;
   }
 }
-/*.panel {
-
-  .panel-heading {
-    background-color: $primarybg;
-    color: $light;
-    padding: 10px 20px;
-    font-size: 1.7em;
-  }
-}*/
 .nav-tabs {
+  border-bottom: 1px solid $grey1;
 
   li {
 
@@ -224,4 +217,25 @@ textarea {
       color: $light;
     }
   }
+}
+.main-tabs, .locales-tabs {
+  display: inline-block;
+}
+.main-tabs {
+  width: 80%;
+  margin-bottom: 20px;
+}
+.locales-tabs {
+  float: right;
+}
+.labelbig {
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 50px 10px 20px 0;
+}
+.btn-footer {
+  border-top: 1px solid #eee;
+  margin-top: 70px;
+  padding-bottom: 0;
+  padding-top: 10px;
 }
