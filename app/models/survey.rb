@@ -12,6 +12,8 @@ class Survey < ActiveRecord::Base
 
   accepts_nested_attributes_for :questions, :allow_destroy => true
 
+  validates :title, length: { maximum: 255 }
+  validates :description, length: { maximum: 2000 }
   validate :validate_locales
 
   def submit(answer_ids)

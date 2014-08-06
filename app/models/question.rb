@@ -17,6 +17,9 @@ class Question < ActiveRecord::Base
   before_save :set_rows
   accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:text].blank? }, :allow_destroy => true
 
+  validates :text, length: { maximum: 255 }
+  validates :description, length: { maximum: 2000 }
+
   # cocoon nested form validation, duplicated answers
   def self.validates_uniqueness(*attr_names)
     # Set the default configuration
