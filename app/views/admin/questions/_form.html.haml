@@ -8,7 +8,7 @@
       = image_tag(@question.image_url, :class => 'img-responsive')
       = f.check_box :remove_image
   - else
-    = f.file_field :image
+    = f.file_field :image, accept: "image/*"
 
   = f.select :question_type, Question::TYPES
   = f.hidden_field :survey_id
