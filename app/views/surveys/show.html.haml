@@ -12,7 +12,6 @@
               = @survey.description
 
           %hr
-          %h3 Questions
           = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
             - @survey.questions.each do |question|
               .question
