@@ -1,4 +1,4 @@
-= bootstrap_form_for([:admin, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+= bootstrap_form_for([:account, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
   = f.text_field :title
   = f.text_area :description, rows: 10
   - if !@survey.logo.blank?
@@ -15,5 +15,5 @@
   = f.form_group do
     = f.submit "Save Survey", class: 'btn btn-primary'
     - unless @survey.new_record?
-      = link_to "Edit Questions", admin_survey_questions_path(@survey), class: 'btn btn-primary'
+      = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
     = link_to 'Cancel', :back, class: 'btn btn-default'

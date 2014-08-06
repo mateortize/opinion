@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  namespace :admin do
+  namespace :account do
     resources :surveys do
       get :export, on: :member
       get :metrics, on: :member
@@ -86,5 +86,5 @@ Rails.application.routes.draw do
     get :termsofuse, on: :collection
   end
 
-  root to: 'admin/surveys#index'
+  root to: 'account/surveys#index'
 end

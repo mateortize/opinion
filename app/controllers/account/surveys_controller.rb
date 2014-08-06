@@ -1,4 +1,4 @@
-class Admin::SurveysController < Admin::BaseController
+class Account::SurveysController < Account::BaseController
   before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :metrics]
 
   set_tab :survey

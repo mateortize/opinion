@@ -19,5 +19,5 @@
   %td
     = question.updated_at
   %td.text-right.col-sm-2
-    = link_to 'Edit', edit_admin_survey_question_path(@survey, question), class: 'btn btn-primary'
-    = link_to 'Delete', admin_survey_question_path(@survey, question), class: 'btn btn-danger', data: { confirm: "Are you sure to delete?" }, method: :delete
+    = link_to 'Edit', edit_account_survey_question_path(@survey, question), class: 'btn btn-primary'
+    = link_to 'Delete', account_survey_question_path(@survey, question), class: 'btn btn-danger', data: { confirm: "Are you sure to delete?" }, method: :delete

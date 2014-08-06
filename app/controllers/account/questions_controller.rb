@@ -1,4 +1,4 @@
-class Admin::QuestionsController < Admin::BaseController
+class Account::QuestionsController < Account::BaseController
   
   before_filter :load_survey
   before_filter :load_question, only: [:edit, :update, :destroy, :show]

@@ -1,8 +1,8 @@
 = tabs_tag :open_tabs=>{ class: 'nav nav-tabs main-tabs' } do |tab|
-  = tab.survey 'Survey', edit_admin_survey_path(@survey)
-  = tab.questions 'Questions', admin_survey_questions_path(@survey)
-  = tab.export 'Export', export_admin_survey_path(@survey)
-  = tab.metrics 'Metrics', metrics_admin_survey_path(@survey)
+  = tab.survey 'Survey', edit_account_survey_path(@survey)
+  = tab.questions 'Questions', account_survey_questions_path(@survey)
+  = tab.export 'Export', export_account_survey_path(@survey)
+  = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
 
 = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
   - @survey.locales.each do |locale|

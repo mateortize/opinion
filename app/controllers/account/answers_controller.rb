@@ -1,4 +1,4 @@
-class Admin::AnswersController < Admin::BaseController
+class Account::AnswersController < Account::BaseController
   
   before_filter :load_survey
   before_filter :load_question

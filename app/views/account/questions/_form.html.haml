@@ -1,5 +1,5 @@
 %h2 Question
-= bootstrap_form_for([:admin, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+= bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
   = f.error_summary
   = f.text_field :text, label: 'Question'
   = f.text_area :description, rows: 10
@@ -41,4 +41,4 @@
   .btn-footer.text-right
     = f.form_group do
       = f.submit "Save Question", class: 'btn btn-primary'
-      = link_to 'Cancel', admin_survey_questions_path(@survey), class: 'btn btn-default'
+      = link_to 'Back', :back, class: 'btn btn-default'

@@ -10,7 +10,7 @@
   %td.text-right
     = link_to survey_path(survey) do
       %span.glyphicon.glyphicon-eye-open
-    = link_to edit_admin_survey_path(survey) do
+    = link_to edit_account_survey_path(survey) do
       %span.glyphicon.glyphicon-pencil
-    = link_to admin_survey_path(survey), data: { confirm: 'Are you sure to delete?' }, method: :delete do
+    = link_to account_survey_path(survey), data: { confirm: 'Are you sure to delete?' }, method: :delete do
       %span.glyphicon.glyphicon-trash

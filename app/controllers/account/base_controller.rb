@@ -1,7 +1,7 @@
-class Admin::BaseController < ActionController::Base
+class Account::BaseController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_account!
-  layout 'admin'
+  layout 'account'
 
   before_action :set_locale
   def set_locale
