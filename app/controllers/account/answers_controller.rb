@@ -24,13 +24,13 @@ class Account::AnswersController < Account::BaseController
       flash[:danger] = "Sorry, failed to create."
     end
 
-    redirect_to edit_admin_survey_question_path(@survey, @question)
+    redirect_to edit_account_survey_question_path(@survey, @question)
   end
 
   def update
     @answer = Answer.find(params[id])
     if @answer.update_attributes(answer_params)
-      redirect_to edit_admin_survey_question_path(@survey, @question)
+      redirect_to edit_account_survey_question_path(@survey, @question)
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class Account::AnswersController < Account::BaseController
 
   def destroy
     @answer.destroy
-    redirect_to edit_admin_survey_question_path(@survey, @question)
+    redirect_to edit_account_survey_question_path(@survey, @question)
   end
 
   private

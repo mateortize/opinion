@@ -22,7 +22,7 @@ class Account::QuestionsController < Account::BaseController
     @question.survey = @survey
 
     if @question.save
-      redirect_to edit_admin_survey_question_path(@survey, @question), flash: { success: 'Created successfully. Please add some answers.'}
+      redirect_to edit_account_survey_question_path(@survey, @question), flash: { success: 'Created successfully. Please add some answers.'}
     else
       render :new
     end
@@ -30,7 +30,7 @@ class Account::QuestionsController < Account::BaseController
 
   def update
     if @question.update_attributes(question_params)
-      redirect_to edit_admin_survey_question_path(@survey, @question), flash: { success: 'Question updated successfully.'}
+      redirect_to edit_account_survey_question_path(@survey, @question), flash: { success: 'Question updated successfully.'}
     else
       render :edit
     end
