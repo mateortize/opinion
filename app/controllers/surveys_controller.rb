@@ -1,6 +1,8 @@
 class SurveysController < ApplicationController
   skip_before_filter :verify_authenticity_token
   skip_before_action :authenticate_account!
+  before_filter :add_xframe
+
   layout 'embedded'
 
   def show
@@ -58,6 +60,10 @@ class SurveysController < ApplicationController
         end
       end
       return answers
+    end
+
+    def add_xframe
+      headers['X-Frame-Options'] = 'GOFORIT'
     end
 
 end
