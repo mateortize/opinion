@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   skip_before_filter :verify_authenticity_token
   skip_before_action :authenticate_account!
-  before_filter :add_xframe
+  before_filter :allow_iframe
 
   layout 'embedded'
 
@@ -62,8 +62,8 @@ class SurveysController < ApplicationController
       return answers
     end
 
-    def add_xframe
-      headers['X-Frame-Options'] = 'GOFORIT'
+    def allow_iframe
+      response.headers.except! 'X-Frame-Options'
     end
 
 end
