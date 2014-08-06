@@ -19,6 +19,17 @@ class Question < ActiveRecord::Base
 
   validates :text, length: { maximum: 255 }
   validates :description, length: { maximum: 2000 }
+  validate :image_file_size
+
+  def image_file_size
+    if !image.blank?
+      if !image.file.blank?
+        if image.file.size.to_f/(1000*1000) > 5
+          errors.add(:file, "cannot be greater than 5MB")
+        end
+      end
+    end
+  end
 
   # cocoon nested form validation, duplicated answers
   def self.validates_uniqueness(*attr_names)
