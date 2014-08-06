@@ -23,27 +23,28 @@
             = render @surveys
 
     .divider
-    #eval1
-      .row
-        .col-xs-12
-          %h1
-            %small Your current evaluation
-            = @latest_survey.title
-        .col-xs-12.col-sm-8
-          %p= @latest_survey.description
-        .col-xs-4.col-sm-2.infodata.pull-right
-          %span.value= @latest_survey.submission_count
-          Submissions
-      - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
+    - if !@latest_survey.blank?
+      #eval1
         .row
           .col-xs-12
-            %h3= question.text
-            %p.help-text= question.description
-            - question.answers.each do |answer|
-              .progress
-                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
-                  %span.sr-only= answer.text
-                %span.progress-type
-                  = answer.text
+            %h1
+              %small Your current evaluation
+              = @latest_survey.title
+          .col-xs-12.col-sm-8
+            %p= @latest_survey.description
+          .col-xs-4.col-sm-2.infodata.pull-right
+            %span.value= @latest_survey.submission_count
+            Submissions
+        - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
+          .row
+            .col-xs-12
+              %h3= question.text
+              %p.help-text= question.description
+              - question.answers.each do |answer|
+                .progress
+                  .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
+                    %span.sr-only= answer.text
+                  %span.progress-type
+                    = answer.text
 
     .divider
