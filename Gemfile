@@ -34,6 +34,7 @@ gem 'active_link_to'
 gem 'omniauth-bonofa', '~> 0.0.5'
 gem 'globalize'
 gem 'globalize-versioning', '~> 0.1.0.alpha.1'
+gem 'i18n_data'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',      group: :development
 

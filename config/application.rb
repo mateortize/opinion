@@ -28,7 +28,7 @@ module Opinion7
     
     config.i18n.default_locale = :en
     config.i18n.fallbacks =[:en]
-    config.i18n.available_locales = [:en, :de, :fr, :it, :pt]
+    config.i18n.available_locales = [:en, :de, :fr, :it, :pt, :zh, :es, :ja, :ru, :ko, :ar, :nl, :tr, :tw]
 
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
