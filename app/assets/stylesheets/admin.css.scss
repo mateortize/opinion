@@ -1,4 +1,8 @@
 @import 'bootstrap';
+
+@import 'flags16';
+@import 'flags32';
+
 @import 'colors';
 @import 'session';
 @import 'header';
@@ -14,4 +18,10 @@
       
     }
   }
+}
+
+.flag{
+  padding-left: 35px;
+  height: 30px;
+  display: block;
 }

@@ -3,8 +3,8 @@
   = tab.questions 'Questions', account_survey_questions_path(@survey)
   = tab.export 'Export', export_account_survey_path(@survey)
   = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
-.row
+.row.f32
   .col-sm-12
     = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
       - @survey.locales.each do |locale|
-        = tab.send(locale, I18nData.languages[locale.upcase.to_s], url_for({locale: locale}))
+        = tab.send(locale, country_flag(locale, false) + I18nData.countries[locale.upcase], url_for({locale: locale}))
