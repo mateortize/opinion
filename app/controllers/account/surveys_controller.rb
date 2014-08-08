@@ -36,7 +36,7 @@ class Account::SurveysController < Account::BaseController
       if @survey.questions.count > 0
         redirect_to edit_account_survey_path(@survey), flash: { success: "Successfully updated" }
       else
-        redirect_to admin_survey_questions_path(@survey)
+        redirect_to account_survey_questions_path(@survey)
       end
     else
       render :edit
@@ -45,7 +45,7 @@ class Account::SurveysController < Account::BaseController
 
   def destroy
     @survey.destroy
-    redirect_to admin_surveys_path
+    redirect_to account_surveys_path
   end
 
   def export
