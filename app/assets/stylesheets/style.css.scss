@@ -80,12 +80,12 @@
   margin: 0;
   padding: 0;
 }
-html
+
 body, html{
   width: 100%;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 body{
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
   background: asset-url('bodybg.jpg') no-repeat center center fixed;
   background-size:cover;
   padding-top: 50px;
