@@ -1,21 +1,18 @@
 = render 'tabs'
 
-%h3 Embeded HTML
+%h3 Embedded HTML
 
 %pre
   %code
     = "<iframe src='#{embedded_html_survey_url(@survey, style: 1)}' width='100%' height='400px'></iframe>"
 
 
-%h3 Embeded Script
+%h3 Embedded Script
 
 %pre
   %code
     :escaped
       <script language="text/javascript">
-        var s7JsHost = (("https:" == document.location.protocol) ? "https://www." : "http://www.");
-        document.write(unescape("%3Cscript src='#{embedded_script_survey_url}.js' type='text/javascript'%3E%3C/script%3E"));
+        var opinion7SurveyScriptUrl= (("https:" == document.location.protocol) ? '#{embedded_script_survey_url(protocol: 'https')}.js' : '#{embedded_script_survey_url(protocol: 'http')}.js');
+        document.write(unescape("%3Cscript src='" + opinion7SurveyScriptUrl + "' type='text/javascript'%3E%3C/script%3E"));
       </script>
-
-:javascript
-  //document.write(unescape("%3Cscript src='#{embedded_script_survey_url}.js' type='text/javascript'%3E%3C/script%3E"));
