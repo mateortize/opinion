@@ -33,11 +33,7 @@ class Account::SurveysController < Account::BaseController
 
   def update
     if @survey.update_attributes(survey_params)
-      if @survey.questions.count > 0
-        redirect_to edit_account_survey_path(@survey), flash: { success: "Successfully updated" }
-      else
-        redirect_to account_survey_questions_path(@survey)
-      end
+      redirect_to edit_account_survey_path(@survey), flash: { success: "Successfully updated" }
     else
       render :edit
     end
