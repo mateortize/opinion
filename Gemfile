@@ -35,6 +35,9 @@ gem 'omniauth-bonofa', '~> 0.0.5'
 gem 'globalize'
 gem 'globalize-versioning', '~> 0.1.0.alpha.1'
 gem 'i18n_data'
+gem 'http_accept_language'
+gem 'countries_and_languages', :require => 'countries_and_languages/rails'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',      group: :development
 

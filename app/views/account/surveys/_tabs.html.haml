@@ -7,4 +7,4 @@
   .col-sm-12
     = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
       - @survey.locales.each do |locale|
-        = tab.send(locale, country_flag(locale, false) + I18nData.countries[locale.upcase], url_for({locale: locale}))
+        = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
