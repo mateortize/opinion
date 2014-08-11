@@ -15,7 +15,7 @@
       - 4.times do |n|
         .col-md-3
           = f.collection_check_boxes :locales, 
-              Rails.application.config.i18n.available_locales.sort[count*n..count*(n+1)].collect{|code| [code.to_s, country_flag(code)]}, 
+              Rails.application.config.i18n.available_locales.sort[count*n..(count*(n+1)-1)].collect{|code| [code.to_s, country_flag(code)]}, 
               :first, 
               :last,
               hide_label: :true,
