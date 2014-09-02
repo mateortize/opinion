@@ -1,3 +1,5 @@
+%p.text-right 
+  = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 %h2 Question
 = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
   = f.error_summary
@@ -13,6 +15,7 @@
 
   = f.select :question_type, Question::TYPES
   = f.hidden_field :survey_id
+
   - if @question.question_type == 3 # if 2d matrix
     = f.select :rows, 1..20
     = f.label :Answers
@@ -40,5 +43,5 @@
 
   .btn-footer.text-right
     = f.form_group do
-      = f.submit "Save Question", class: 'btn btn-primary'
+      = f.submit "Save question", class: 'btn btn-primary'
       = link_to 'Back', :back, class: 'btn btn-default'

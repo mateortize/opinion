@@ -3,6 +3,16 @@
   = tab.questions 'Questions', account_survey_questions_path(@survey)
   = tab.export 'Export', export_account_survey_path(@survey)
   = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
+
+.bread-crumb
+  - if !@survey.blank? and !@survey.new_record?
+    = link_to @survey.title, edit_account_survey_path(@survey)
+  - if !@question.blank? and !@question.new_record?
+    &gt;
+    = link_to @question.text, edit_account_survey_question_path(@survey, @question)
+  - if !@answer.blank? and !@answer.new_record?
+    &gt;
+    = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
 .row.f32
   .col-sm-12
     = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
