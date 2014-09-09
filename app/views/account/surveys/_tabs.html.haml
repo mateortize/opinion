@@ -5,6 +5,7 @@
   = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
 
 .bread-crumb
+  %span Breadcrumb:
   - if !@survey.blank? and !@survey.new_record?
     = link_to @survey.title, edit_account_survey_path(@survey)
   - if !@question.blank? and !@question.new_record?
@@ -15,6 +16,8 @@
     = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
 .row.f32
   .col-sm-12
+    %hr
     = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
       - @survey.locales.each do |locale|
         = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
+    %hr

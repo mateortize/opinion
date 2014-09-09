@@ -431,6 +431,11 @@ a.btn-danger:hover, a.btn-danger:active{
 	display: block;
 	background: #faf7f2;
 	overflow: hidden;
+  background-color: $grey3!important;
+
+  > .progress-type {
+    text-shadow: none!important;
+  }
 }
 .progress-bar{
   	background: #f4ede3;

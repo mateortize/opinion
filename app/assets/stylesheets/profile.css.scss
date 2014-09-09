@@ -1,0 +1,11 @@
+#profile {
+
+  table {
+
+    tr {
+      &:hover {
+        background-color: rgba($light, .2);
+      }
+    }
+  }
+}
