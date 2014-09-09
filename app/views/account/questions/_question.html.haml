@@ -1,18 +1,19 @@
 %tr
   %td
     - if !question.image.blank?
-      = image_tag question.image_url
+      = question.text
     - else
       = question.text
   %td
-    - question.answers.each do |answer|
-      %li
-        - if !answer.image.blank?
-          = image_tag answer.image_url
-        - else
-          = answer.text
-        %strong
-          = "(#{answer.submission_count} submissions)"
+    %ul.nolist.admin_answers
+      - question.answers.each do |answer|
+        %li
+          - if !answer.image.blank?
+            = answer.text
+          - else
+            = answer.text
+          %strong
+            = "(#{answer.submission_count} submissions)"
   %td= Question::TYPES.key(question.question_type)
   %td
     = question.created_at

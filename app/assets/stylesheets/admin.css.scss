@@ -26,3 +26,12 @@
   height: 30px;
   display: block;
 }
+.admin_answers li {
+  padding: 5px;
+  border: 1px solid $grey1;
+  margin: 10px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

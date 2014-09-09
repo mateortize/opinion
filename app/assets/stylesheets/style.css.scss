@@ -130,6 +130,9 @@ a.lead{
 .nomargin {
   margin: 0!important;
 }
+.nolist {
+  list-style: none;
+}
 .well {
   background: lighten($grey1, 10);
   border: 1px solid $grey1;
