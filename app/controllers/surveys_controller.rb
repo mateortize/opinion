@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   skip_before_action :authenticate_account!
   before_filter :allow_iframe
 
-  layout 'embedded'
+  layout :resolve_layout
 
   def show
     @survey = Survey.find(params[:id])
@@ -66,4 +66,11 @@ class SurveysController < ApplicationController
       response.headers.except! 'X-Frame-Options'
     end
 
+    def resolve_layout
+      if action_name == 'show'
+        return 'application'
+      else
+        return 'embedded'
+      end
+    end
 end
