@@ -1,20 +1,21 @@
 %h3
   - if !question.image.blank?
+    %a{:rel => 'lightbox', :href => question.image_url}
+      = image_tag question.image_url, class: 'img-circle pull-right'
     = question.text
-    = image_tag question.image_url
   - else
     = question.text
 
 
 .row.answers
   - question.answers.each do |answer|
-    .col-sm-4.answer
+    .col-sm-2.answer
       .customcheckbox
         = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
-        .inlay
         %label{for: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"}
           - if !answer.image.blank?
             = answer.text
-            = image_tag answer.image_url
+            %a{:rel => 'lightbox', :href => answer.image_url}
+              = image_tag answer.image_url
           - else
             = answer.text

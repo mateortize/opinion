@@ -13,8 +13,7 @@
     h3 {
 
       img {
-        float: right;
-        max-width: 100px;
+        max-width: 40px;
       }
     }
     border-bottom: 1px solid $grey1;
@@ -29,6 +28,14 @@
       img {
         max-width: 100%;
       }
+    }
+  }
+
+  label {
+    display: inline;
+
+    img {
+      margin-top: 10px;
     }
   }
 }

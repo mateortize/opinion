@@ -1,7 +1,9 @@
 %h3
   - if !question.image.blank?
+    %a{:rel => 'lightbox', :href => question.image_url}
+      = image_tag question.image_url, class: 'img-circle pull-right'
     = question.text
-    = image_tag question.image_url
+    %span.clearfix
   - else
     = question.text
 
@@ -15,6 +17,7 @@
             %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
               - if !answer.image.blank?
                 = answer.text
-                = image_tag answer.image_url
+                %a{:rel => 'lightbox', :href => answer.image_url}
+                  = image_tag answer.image_url
               - else
                 = answer.text
