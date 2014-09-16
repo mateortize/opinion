@@ -3,10 +3,10 @@
     .row
       .col-md-12
         .panel
-          %h2= @survey.title
+          %h2.showhl= @survey.title
           .row
-            .col-md-6
-              - if !@survey.logo.blank?
+            - if !@survey.logo.blank?
+              .col-md-6
                 = image_tag(@survey.logo_url, :class => 'img-responsive')
             .col-md-6
               = @survey.description

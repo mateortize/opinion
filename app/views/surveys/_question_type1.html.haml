@@ -1,15 +1,20 @@
 %h3
   - if !question.image.blank?
+    = question.text
     = image_tag question.image_url
   - else
     = question.text
 
 
-- question.answers.each do |answer|
-  .col-sm-12
-    = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
-    %label{for: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"}
-      - if !answer.image.blank?
-        = image_tag answer.image_url
-      - else
-        = answer.text
+.row.answers
+  - question.answers.each do |answer|
+    .col-sm-4.answer
+      .customcheckbox
+        = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
+        .inlay
+        %label{for: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"}
+          - if !answer.image.blank?
+            = answer.text
+            = image_tag answer.image_url
+          - else
+            = answer.text

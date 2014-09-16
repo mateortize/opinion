@@ -1,5 +1,6 @@
 %h3
   - if !question.image.blank?
+    = question.text
     = image_tag question.image_url
   - else
     = question.text
@@ -7,11 +8,13 @@
 %div
   - question.rows.times do |n|
     .clearfix
-      - question.send("answers_#{n}").each do |answer|
-        .col-sm-2
-          = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
-          %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
-            - if !answer.image.blank?
-              = image_tag answer.image_url
-            - else
-              = answer.text
+      .row
+        - question.send("answers_#{n}").each do |answer|
+          .col-sm-2
+            = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
+            %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
+              - if !answer.image.blank?
+                = answer.text
+                = image_tag answer.image_url
+              - else
+                = answer.text
