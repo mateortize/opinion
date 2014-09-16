@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140805091334) do
 
   create_table "survey_logs", force: true do |t|
     t.string   "ip_address"
-    t.text     "answers"
+    t.string   "answers"
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"

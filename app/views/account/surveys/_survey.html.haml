@@ -8,7 +8,7 @@
   %td
     = survey.updated_at
   %td.text-right
-    = link_to survey_path(survey) do
+    = link_to survey_path(survey), target: '_blank' do
       %span.glyphicon.glyphicon-eye-open
     = link_to edit_account_survey_path(survey) do
       %span.glyphicon.glyphicon-pencil
