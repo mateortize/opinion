@@ -1,47 +1,74 @@
 %p.text-right 
   = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 %h2 Question
-= bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+= bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-8") do |f|
   = f.error_summary
-  = f.text_field :text, label: 'Question'
-  = f.text_area :description, rows: 10
-  
-  - if !@question.image.blank?
-    = f.form_group do
-      = image_tag(@question.image_url, :class => 'img-responsive')
-      = f.check_box :remove_image
-  - else
-    = f.file_field :image, accept: "image/*"
+  .row
+    .col-lg-6
+      = f.text_field :text, label: 'Question'
+      = f.text_area :description, rows: 10
+    .col-lg-6
+      = f.select :question_type, Question::TYPES
+      = f.hidden_field :survey_id
 
-  = f.select :question_type, Question::TYPES
-  = f.hidden_field :survey_id
+      - if @question.question_type == 3 # if 2d matrix
+        = f.select :rows, 1..20
+      
+
+      - if !@question.image.blank?
+        = f.form_group do
+          = image_tag(@question.image_url, :class => 'img-responsive img-thumbnail')
+          = f.check_box :remove_image
+      - else
+        = f.file_field :image, accept: "image/*"
+  %hr
 
   - if @question.question_type == 3 # if 2d matrix
-    = f.select :rows, 1..20
-    = f.label :Answers
+    %h2 Answers 
     
     - @question.rows.to_i.times do |n|
       .well
-        %h3 Row #{n+1}
-        = f.fields_for "answers", @question.send("answers_#{n}") do |builder|
-          = render 'answer_fields', f: builder, row: n
+        .row
+          .col-lg-12
+            %h3.col-lg-2 Row #{n+1}
+            .col-lg-10
+              = f.form_group do
+                = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning pull-right ", :"data-association-insertion-node" => "#new-answers-#{n}", render_options: {locals: {row: n}}
 
-        %div{id: "new-answers-#{n}"}
 
-        = f.form_group do
-          = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning", :"data-association-insertion-node" => "#new-answers-#{n}", render_options: {locals: {row: n}}
+
+        
+        .row
+          .col-lg-12
+            
+            = f.fields_for "answers", @question.send("answers_#{n}") do |builder|
+              = render 'answer_fields', f: builder, row: n
+            %div{id: "new-answers-#{n}"}
+
+            
+
+        
   - else
     - unless @question.new_record?
-      = f.label :Answers, class: 'labelbig'
-      = f.fields_for "answers" do |builder|
-        = render 'answer_fields', f: builder, row: 0
+      .row
+        %h2.col-lg-2 Answers
+        .col-lg-10
+          = f.form_group do
+            = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-warning pull-right", :"data-association-insertion-node" => "#new-answers", render_options: {locals: {row: 0}}
 
-      %div{id: "new-answers"}
+      .row
+        .col-lg-12
+            
 
-      = f.form_group do
-        = link_to_add_association 'Add Answer', f, :answers, class: "btn btn-default", :"data-association-insertion-node" => "#new-answers", render_options: {locals: {row: 0}}
+          = f.fields_for "answers" do |builder|
+            = render 'answer_fields', f: builder, row: 0
+          %div{id: "new-answers"}
+
+      
+
+      
 
   .btn-footer.text-right
     = f.form_group do
       = f.submit "Save question", class: 'btn btn-primary'
-      = link_to 'Back', :back, class: 'btn btn-default'
+      = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
