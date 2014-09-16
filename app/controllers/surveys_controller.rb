@@ -67,7 +67,7 @@ class SurveysController < ApplicationController
     end
 
     def resolve_layout
-      if action_name == 'show'
+      if action_name == 'show' or action_name == 'submit'
         return 'application'
       else
         return 'embedded'
