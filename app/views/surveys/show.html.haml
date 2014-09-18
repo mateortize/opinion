@@ -7,7 +7,7 @@
           .row
             - if !@survey.logo.blank?
               .col-md-6
-                = image_tag(@survey.logo_url, :class => 'img-responsive')
+                = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
             .col-md-6
               = @survey.description
 

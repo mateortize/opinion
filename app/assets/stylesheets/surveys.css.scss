@@ -25,8 +25,9 @@
   }
 }
 
-.answer_block {
-
-    height :300px;
-
+.row {
+  .answer_block {
+    min-height: 300px;
+  }
 }
+

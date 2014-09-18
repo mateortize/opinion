@@ -32,7 +32,7 @@
               = @latest_survey.title
           .col-xs-12.col-sm-8
             %p= @latest_survey.description
-          .col-xs-4.col-sm-2.infodata.pull-right
+          .col-xs-12.col-sm-2.infodata.pull-right
             %span.value= @latest_survey.submission_count
             Submissions
         - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|

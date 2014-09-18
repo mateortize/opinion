@@ -2,17 +2,21 @@
 %br
 %p.text-right
   = link_to 'Add New Question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
-%table.table
-  %thead
-    %th.col-sm-4
-      Text
-    %th.col-sm-3
-      Answers
-    %th
-      Type
-    %th
-      Created At
-    %th
-      Updated At
-    %th
-  = render @questions
+#tab1.tab-pane
+  .row
+    .col-xs-12
+      .table-responsive
+        %table#list-table.table
+          %thead
+            %th.col-sm-4
+              Text
+            %th.col-sm-3
+              Answers
+            %th
+              Type
+            %th
+              Created At
+            %th
+              Updated At
+            %th
+            = render @questions
