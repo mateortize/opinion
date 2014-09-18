@@ -1,13 +1,13 @@
-%div.alert.alert-danger
-  %p
-    %strong
-      Sorry, we couldn't accept your submission.
+%div.alert.alert-danger.show
+  %h2
+    Sorry, we couldn't accept your submission.
 
 
   - @survey_log.errors.full_messages.each do |message|
     %p
       = message
 
+  %br
   %p
-    = link_to "Go back and try again", :back
+    = link_to "Go back and try again", :back, class: 'btn btn-primary'
 

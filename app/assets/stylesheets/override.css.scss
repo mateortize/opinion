@@ -330,6 +330,8 @@ a.btn-warning:hover, a.btn-warning:active{
 }
 a.btn-danger:link, a.btn-danger:visited{
   background: #fc4d4d;
+  color: $light;
+  text-decoration: none;
 }
 a.btn-danger:hover, a.btn-danger:active{
   background: #eb1f1f;
