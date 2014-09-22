@@ -69,6 +69,9 @@ Rails.application.routes.draw do
         resources :answers
       end
     end
+
+    resources :plans, only: [:index]
+    resources :subscriptions
     
     get '/', to: 'surveys#index'
   end
@@ -86,5 +89,20 @@ Rails.application.routes.draw do
     get :termsofuse, on: :collection
   end
 
+  namespace :admin do
+    resources :dashboard, only: [:index]
+    resources :plans
+    resources :accounts do
+      collection do
+        get :autocomplete
+      end
+    end
+    resources :videos
+    resources :subscriptions, only: [:index, :destroy]
+    resources :contact_messages, only: [:index, :destroy]
+  end
+  get '/admin', to: 'admin/dashboard#index', as: 'admin_root'
+
   root to: 'account/surveys#index'
+
 end

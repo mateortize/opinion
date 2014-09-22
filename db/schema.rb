@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916071113) do
+ActiveRecord::Schema.define(version: 20140918142833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -31,10 +31,34 @@ ActiveRecord::Schema.define(version: 20140916071113) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.boolean  "admin"
+    t.integer  "plan_id",                default: 1
+    t.string   "promotion_code",         default: "f"
+    t.string   "language",               default: "en"
+    t.text     "info"
+    t.integer  "status",                 default: 1
+    t.string   "avatar_image"
   end
 
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
+  add_index "accounts", ["plan_id"], name: "index_accounts_on_plan_id", using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+
+  create_table "addresses", force: true do |t|
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "addressable_type"
+    t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["addressable_id"], name: "index_addresses_on_addressable_id", using: :btree
+  add_index "addresses", ["addressable_type"], name: "index_addresses_on_addressable_type", using: :btree
 
   create_table "answer_translations", force: true do |t|
     t.integer  "answer_id",  null: false
@@ -71,6 +95,18 @@ ActiveRecord::Schema.define(version: 20140916071113) do
 
   add_index "authentications", ["account_id"], name: "index_authentications_on_account_id", using: :btree
 
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.integer  "price_cents", default: 0
+    t.integer  "status",      default: 1
+    t.integer  "duration",    default: 1
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plans", ["status"], name: "index_plans_on_status", using: :btree
+
   create_table "question_translations", force: true do |t|
     t.integer  "question_id", null: false
     t.string   "locale",      null: false
@@ -96,9 +132,35 @@ ActiveRecord::Schema.define(version: 20140916071113) do
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
+  create_table "subscriptions", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "plan_id"
+    t.string   "payment_method", default: "inatec"
+    t.string   "token"
+    t.text     "info"
+    t.integer  "tax_cents",      default: 0
+    t.integer  "total_cents",    default: 0
+    t.integer  "subtotal_cents", default: 0
+    t.string   "transaction_id"
+    t.string   "invoice_file"
+    t.string   "card_brand"
+    t.string   "last_4_digits"
+    t.date     "expired_at"
+    t.integer  "status",         default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "paid",           default: false
+  end
+
+  add_index "subscriptions", ["account_id"], name: "index_subscriptions_on_account_id", using: :btree
+  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_method", using: :btree
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+  add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
+  add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", using: :btree
+
   create_table "survey_logs", force: true do |t|
     t.string   "ip_address"
-    t.string   "answers"
+    t.text     "answers"
     t.integer  "survey_id"
     t.datetime "created_at"
     t.datetime "updated_at"

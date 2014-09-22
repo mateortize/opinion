@@ -1,0 +1,15 @@
+.col-md-6
+  = simple_form_for [:admin, @account], wrapper: 'bootstrap3_horizontal', defaults: {right_column_html: {class: "col-lg-8 col-md-8"}, label_html: {class: "col-lg-4 col-md-4"} }, html: {class: "form-horizontal", role: "form"} do |f|
+    .form_inputs
+      = f.input :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :password
+      = f.input :password_confirmation
+      = f.input :admin
+      = f.association :plan, include_blank: false
+
+    %br
+    .pull-right
+      = f.button :submit, class: 'btn btn-sm btn-primary'
+      = link_to "Back", :back, class: 'btn btn-sm btn-default'

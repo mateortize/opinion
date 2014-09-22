@@ -1,0 +1,61 @@
+%legend Accounts
+%p
+  = form_tag admin_accounts_path, method: :get, class: 'form-horizontal' do
+    .col-md-3
+      .form-group
+        %label.control-label.col-md-2 
+          Email:
+        .col-md-10
+          = text_field_tag :email, params[:email], class: 'form-control'
+    .col-md-3
+      .form-group
+        %label.control-label.col-md-2 
+          Name:
+        .col-md-10
+          = text_field_tag :name, params[:name], class: 'form-control'
+    .col-md-3
+      .form-group
+        %label.control-label.col-md-2 
+          Plan:
+        .col-md-10
+          = select_tag :plan_id, options_from_collection_for_select(Plan.all, 'id', 'name', params[:plan_id]), include_blank: true, class: 'form-control'
+    = submit_tag 'Search', class: 'btn btn-primary'
+%p
+  .pull-right
+    Total: #{@accounts.total_count}
+    
+  .clearfix
+
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th ID
+    %th Email
+    %th Name
+    %th Plan
+    %th Promocode
+    %th Videos #
+    %th Created at
+    %th
+  - if @accounts.count > 0
+    - @accounts.each do |account|
+      %tr
+        %td= account.id
+        %td= link_to account.email, admin_account_path(account)
+        %td= account.full_name
+        %td
+          - if account.plan.id != 1 and !account.has_active_subscription?
+            %span.label.label-default= account.plan
+          - else
+            %span.label.label-success= account.plan
+        %td= account.promotion_code
+        %td= account.videos_count
+        %td= account.created_at
+        %td
+          = link_to 'Edit', edit_admin_account_path(account), class: 'btn btn-xs btn-info'
+          = link_to 'Delete', admin_account_path(account), method: :delete, class: 'btn btn-xs btn-danger', data: {confirm: 'Are you sure to delete this Account?'}
+  - else
+    %tr
+      %td{colspan: 7} There are no accounts.
+
+.text-center
+  = paginate @accounts

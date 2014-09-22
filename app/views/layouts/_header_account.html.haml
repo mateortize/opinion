@@ -54,7 +54,7 @@
           %span.icon-user>
           Profile Setting
       .col-xs-6
-        %a{:href => "#"}
+        = link_to account_subscriptions_path do
           %span.icon-credit-card>
           Payment
     %table.table.table-condensed
@@ -63,14 +63,14 @@
         %td - none -
       %tr
         %td Account:
-        %td FREE user
+        %td= current_account.plan.name
       %tr
         %td e-Mail:
-        %td=current_account.email
+        %td= current_account.email
       %tr
         %td
           %strong Your promolink:
         %td
-          %strong -
+          %strong= current_account.promotion_code
 / Profile End
 %hr.pless.mless/

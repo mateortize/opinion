@@ -7,6 +7,9 @@
 //= require raphael-min
 //= require cocoon
 
+//= require jquery-ui/autocomplete
+//= require autocomplete-rails
+
 $(function(){
     setTimeout(function(){
         $('.alert').fadeOut();

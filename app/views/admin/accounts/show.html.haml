@@ -1,0 +1,54 @@
+%legend Account
+
+.col-md-6
+  %h4 Main Info
+  %table.table.table-bordered
+    %tr
+      %td Email
+      %td= @account.email
+    %tr
+      %td Name
+      %td= @account.full_name
+    %tr
+      %td Plan
+      %td= @account.plan
+    %tr
+      %td Role
+      %td
+        - if @account.admin?
+          %span.label.label-primary Admin
+        - else
+          %span.label.label-default Default
+    %tr
+      %td Created at
+      %td= @account.created_at
+    %tr
+      %td Promotion code
+      %td= @account.promotion_code
+    %tr
+      %td Videos #
+      %td= link_to @account.videos_count, admin_videos_path(account_id: @account.id)
+
+.col-md-6
+  %h4 Active Subscription
+  %table.table.table-bordered
+    - if @account.has_active_subscription?
+      %tr
+        %td Method
+        %td= @account.active_subscription.method
+      %tr
+        %td Amount
+        %td= money_with_cents_and_with_symbol @account.active_subscription.total
+      %tr
+        %td Paid at
+        %td= @account.active_subscription.created_at
+      %tr
+        %td Expired at
+        %td= @account.active_subscription.expired_at
+    
+  .clearfix
+
+.clearfix
+.pull-right
+  = link_to 'Edit', edit_admin_account_path(@account), class: 'btn btn-sm btn-info'
+  = link_to "Back", :back, class: 'btn btn-sm btn-default'

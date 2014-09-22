@@ -10,3 +10,6 @@
 account1 = Account.create(email: 'a1@email.com', password: 'defaultpw')
 account2 = Account.create(email: 'a2@email.com', password: 'defaultpw')
 account3 = Account.create(email: 'a3@email.com', password: 'defaultpw')
+
+plan1 = Plan.create(name: "Free", price_cents: 0, status: 1, duration: 1, description: "This is free plan")
+plan2 = Plan.create(name: "Pro", price_cents: 10 * 1000, status: 1, duration: 1, description: "This is pro plan")

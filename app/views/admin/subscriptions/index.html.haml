@@ -1,0 +1,71 @@
+%legend Subscriptions
+
+%p
+  = form_tag admin_subscriptions_path, method: :get, class: 'form-horizontal' do
+    .col-md-3
+      .form-group
+        %label.control-label.col-md-3 Account:
+        .col-md-9
+          = autocomplete_field_tag :account, params[:account], autocomplete_admin_accounts_path, id_element: '#account_id', class: 'form-control'
+          = hidden_field_tag :account_id, params[:account_id]
+    = submit_tag 'Search', class: 'btn btn-primary'
+%p
+  .pull-right
+    Total: #{@subscriptions.total_count}
+    Total amount: #{ money_with_cents_and_with_symbol Subscription.total_amount/100 }
+  .clearfix
+  
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th ID
+      %th Method
+      %th Account
+      %th Plan
+      %th Sub total
+      %th Tax
+      %th Total
+      %th Expired at
+      %th Status
+      %th Paid
+      %th Created at
+      %th Actions
+  %tbody
+    - if @subscriptions.count > 0
+      - @subscriptions.each do |subscription|
+        %tr
+          %td= subscription.id
+          %td= subscription.payment_method
+          %td= link_to subscription.account, admin_account_path(subscription.account)
+          %td= subscription.plan
+          %td= money_with_cents_and_with_symbol subscription.subtotal
+          %td= money_with_cents_and_with_symbol subscription.tax
+          %td= money_with_cents_and_with_symbol subscription.total
+          %td= subscription.expired_at
+          %td
+            - if subscription.is_inactive?
+              %span.label.label-default Inactive
+            - elsif subscription.is_canceled?
+              %span.label.label-warning Canceled 
+            - else
+              %span.label.label-success Active
+          %td
+            - if subscription.paid
+              %span.label.label-success Yes
+            - else
+              %span.label.label-default No
+          %td= subscription.created_at
+          %td
+            - if subscription.invoice_file.file
+              = link_to 'Download Invoice', subscription.invoice_file.url, :class => 'btn btn-default btn-xs btn-action'
+            
+            - if subscription.is_active?
+              = link_to admin_subscription_path(subscription), method: :delete, data: { confirm: 'Are you sure to cancel this subscription?' }, :class => 'btn btn-default btn-xs btn-action' do
+                %i.glyphicon.glyphicon-remove.small
+                Cancel
+    - else
+      %tr
+        %td{colspan: 12} There are no subscriptions
+
+.text-center
+  = paginate @subscriptions

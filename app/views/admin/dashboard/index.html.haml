@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title Accounts
+  .panel-body
+    %table.table.table-striped
+      %tr
+        %td Total #
+        %td
+          = Account.count
+      %tr
+        %td Signup Today #
+        %td
+          = Account.where("created_at > ?", Date.today.beginning_of_day).count
+      %tr
+        %td Login Today #
+        %td
+          = Account.where("current_sign_in_at > ?", Date.today.beginning_of_day).count
+      %tr
+        %td Free plan #
+        %td
+          = link_to Plan.free.accounts.count, admin_accounts_path(plan_id: Plan.free.id)
+      %tr
+        %td Pro plan #
+        %td
+          = link_to Plan.pro.accounts.count, admin_accounts_path(plan_id: Plan.pro.id)

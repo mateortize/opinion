@@ -1,0 +1,26 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title Opinion7
+    = stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = render "layouts/header_admin"
+    .container
+      = render "/shared/flashes"
+      .row
+        .col-xs-12
+          %p.pull-right.visible-xs
+            %button.btn.btn-primary.btn-xs{"data-toggle" => "offcanvas", :type => "button"} Toggle nav
+          = yield
+          
+      %hr
+        %footer
+          %p &copy; Company 2014
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %script{:src => "//cdn.pandastream.com/u/2.0/panda-uploader.min.js"}
+    = yield :javascript

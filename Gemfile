@@ -19,6 +19,15 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+gem "devise"
+gem "haml", ">= 3.0.0"
+gem "haml-rails"
+
+gem 'non-stupid-digest-assets'
+gem "jquery-rails"
+gem 'jquery-ui-rails', '~> 5.0.0'
+gem 'rails3-jquery-autocomplete'
+
 gem "fog"
 gem 'carrierwave'
 gem 'mini_magick'
@@ -27,6 +36,8 @@ gem 'sidekiq'
 gem 'kaminari'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bootstrap_form'
+gem 'simple_form'
+gem 'country_select'
 gem 'tabs_on_rails'
 gem 'cocoon'
 gem 'active_link_to'
@@ -38,8 +49,17 @@ gem 'i18n_data'
 gem 'http_accept_language'
 gem 'countries_and_languages', :require => 'countries_and_languages/rails'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',      group: :development
+gem 'rolify'
+gem 'cancancan'
+
+gem 'money-rails'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'mechanize'
+
+gem 'activemerchant'
+gem 'active_merchant_inatec', '~> 0.0.9', git: 'https://github.com/c7devteam/inatec_cc.git'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -54,12 +74,9 @@ gem 'spring',      group: :development
 # gem 'debugger', group: [:development, :test]
 
 
+gem 'spring', group: :development
 gem "capybara", group: [:development, :test]
 gem "cucumber-rails", group: [:development, :test]
-gem "devise"
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "jquery-rails"
 gem "rspec-rails", ">= 2.0.1", group: [:development, :test]
 
 group :development, :test do

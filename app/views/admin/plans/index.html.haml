@@ -1,0 +1,39 @@
+%legend Plans
+
+%p
+  .pull-right
+    = link_to 'New Plan', new_admin_plan_path, class: 'btn btn-primary btn-sm'
+    Total: #{@plans.total_count}
+    
+  .clearfix
+
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th ID
+    %th Name
+    %th Price
+    %th Users #
+    %th Status
+    %th
+  - if @plans.count > 0
+    - @plans.each do |plan|
+      %tr
+        %td= plan.id
+        %td= plan.name
+        %td= money_with_cents_and_with_symbol plan.price
+        %td= link_to plan.accounts.count, admin_accounts_path(plan_id: plan.id)
+        %td
+          - if plan.is_active?
+            %span.label.label-primary Active
+          - else
+            %span.label.label-default Inactive
+        %td
+          = link_to 'Edit', edit_admin_plan_path(plan), class: 'btn btn-xs btn-info'
+          = link_to 'Delete', admin_plan_path(plan), method: :delete, class: 'btn btn-xs btn-danger', data: {confirm: 'Are you sure to delete this plan?'}
+  - else
+    %tr
+      %td{colspan: 6} There are no any plans.
+
+.text-center
+  = paginate @plans
+

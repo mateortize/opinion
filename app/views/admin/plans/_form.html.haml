@@ -1,0 +1,9 @@
+= bootstrap_form_for([:admin, @plan], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+  = f.text_field :name, autofocus: true
+  = f.text_field :description
+  = f.text_field :price, label: "Price"
+  = f.text_field :duration, label: "Duration(months)"
+  = f.select :status, Plan::STATUSES
+
+  = f.submit "Submit", class: 'btn btn-sm btn-primary'
+  = link_to "Back", :back, class: 'btn btn-sm btn-default'

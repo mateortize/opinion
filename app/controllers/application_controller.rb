@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || http_accept_language.compatible_language_from(I18n.available_locales) || I18n.default_locale
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_account)
+  end
+
 end

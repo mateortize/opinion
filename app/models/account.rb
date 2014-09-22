@@ -1,35 +1,36 @@
 class Account < ActiveRecord::Base
+  include Account::BonofaBaio
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  serialize :info, Hash
+  mount_uploader :avatar_image, ImageUploader
+
   has_many :surveys
+  has_many :subscriptions
 
-  has_many :authentications, dependent: :destroy
+  belongs_to :plan
 
-  def self.from_omniauth(auth)
-    Authentication.where(auth.slice("provider", "uid")).first.try(:account) || create_from_omniauth(auth)
+  def to_s
+    full_name.blank? ? email : full_name
   end
 
-  def self.create_from_omniauth(auth)
-    unless account = Account.find_by_email(auth["info"]["email"])
-      password = Devise.friendly_token[0,20]
-      account = Account.create(
-        email:                  auth.info.email,
-        first_name:             auth.info.first_name,
-        last_name:              auth.info.last_name,
-        password:               password,
-        password_confirmation:  password,
-      )
-    end
+  def full_name
+    "#{first_name} #{last_name}".strip
+  end
 
-    account.authentications.build(
-      provider: auth["provider"],
-      uid:  auth["uid"],
-      token: auth["credentials"]["token"]
-    )
-    account.save
-    account
+  def has_active_subscription?
+    subscriptions.active.any?
+  end
+
+  def active_subscription
+    @active_subscription ||= subscriptions.active.last
+  end
+
+  def has_pro_plan?
+    plan_id == Plan.pro.id and has_active_subscription? 
   end
 
 end
