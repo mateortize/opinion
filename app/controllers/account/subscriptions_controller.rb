@@ -1,6 +1,7 @@
 class Account::SubscriptionsController < Account::BaseController
   def index
     @subscriptions = current_account.subscriptions.order("created_at desc")
+    redirect_to account_plans_path unless current_account.has_pro_plan?
   end
 
   def new
