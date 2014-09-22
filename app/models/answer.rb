@@ -9,9 +9,6 @@ class Answer < ActiveRecord::Base
   validates :text, length: { maximum: 255 }
   validate :image_file_size
 
-  #fix for nested form image deletion
-  after_save :clean_remove_image
-
   def image_file_size
     unless !image.blank?
       unless image.file.blank?
@@ -20,14 +17,6 @@ class Answer < ActiveRecord::Base
         end
       end
     end
-  end
-
-  def changed?
-    !!(super or remove_image)
-  end
-
-  def clean_remove_image
-    self.remove_image = nil
   end
 
   def increase_submission_count

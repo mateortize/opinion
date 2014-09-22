@@ -14,6 +14,10 @@
   - if !@answer.blank? and !@answer.new_record?
     &gt;
     = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
+
+  .pull-right
+    - if !@question.blank?
+      = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 .row.f32
   .col-sm-12
     %hr

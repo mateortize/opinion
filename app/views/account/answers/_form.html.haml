@@ -1,0 +1,29 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %button.close{"data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} &times;
+        %span.sr-only Close
+      %h4#myModalLabel.modal-title Answer
+    .modal-body
+      = bootstrap_form_for([:account, @survey, @question, answer], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-8") do |f|
+        .answer_block
+          = f.text_field :text, label: "Answer"
+          - if f.object.question.question_type == 3 # if 2d matrix
+            = f.hidden_field :row
+
+          - if !f.object.image.blank?
+            = f.form_group do
+              = image_tag(f.object.image_url, :class => 'img-responsive img-thumbnail')
+              = f.check_box :remove_image
+          - else
+            = f.file_field :image
+
+          - if @question.question_type == 3 # if 2d matrix
+            = f.select :row, (0..@question.rows-1).to_a.map{|n| [n+1, n]}
+
+        %hr.visible-xs
+
+        =f.form_group do
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          = f.submit "Save", class: 'btn btn-primary'

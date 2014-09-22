@@ -1,0 +1,28 @@
+- @question.rows.times do |n|
+  .well
+    %p.text-right
+      %a.btn.btn-primary{"data-target" => "#newAnswer#{n}", "data-toggle" => "modal"}
+        Add New Answer
+
+    %div.modal.fade{:id=>"newAnswer#{n}", :role => "dialog"}
+      = render "account/answers/form", answer: Answer.new(question_id: @question.id, row: n)
+
+    %table.table.answers
+      - @question.send("answers_#{n}").each do |answer|
+        %tr
+          %td
+            = radio_button_tag "answers[]", answer.id
+            %label
+              = answer.text
+          %td
+            - if !answer.image.blank?
+              %a{:rel => 'lightbox', :href => answer.image_url}
+                = image_tag answer.image_url, class: 'img-thumbnail img-responsive', style: "max-width: 120px"
+          %td
+            .text-right
+              %a.btn.btn-primary{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
+                Edit
+              = link_to account_survey_question_answer_path(@survey, @question, answer), data: { confirm: 'Are you sure to delete?' }, method: :delete do
+                DELETE
+            %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
+              = render "account/answers/form", answer: answer

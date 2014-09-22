@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap/modal
 //= require morris
 //= require lightbox.min
 //= require profile

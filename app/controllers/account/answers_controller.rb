@@ -14,6 +14,9 @@ class Account::AnswersController < Account::BaseController
     @question = Question.new
   end
 
+  def show
+  end
+  
   def create
     @answer = Answer.create(answer_params)
     @answer.question = @question
@@ -28,7 +31,7 @@ class Account::AnswersController < Account::BaseController
   end
 
   def update
-    @answer = Answer.find(params[id])
+    @answer = Answer.find(params[:id])
     if @answer.update_attributes(answer_params)
       redirect_to edit_account_survey_question_path(@survey, @question)
     else
@@ -59,7 +62,7 @@ class Account::AnswersController < Account::BaseController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :row)
+    params.require(:answer).permit(:text, :row, :image, :remove_image, )
   end
 
 end
