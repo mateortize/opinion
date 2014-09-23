@@ -16,3 +16,16 @@ $(function(){
         $('.alert').fadeOut();
     }, 2500);
 });
+
+$(document).ready(function(){
+
+    $('#profiletoggle').click(function(){
+
+        if($(window).width() <= 690 ){
+            $('.navbar-collapse').collapse('hide');
+            $(window).scrollTop(0);
+        }
+    });
+
+});
+
