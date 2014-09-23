@@ -22,7 +22,7 @@ class CreateSubscriptions < ActiveRecord::Migration
     add_index :subscriptions, :account_id
     add_index :subscriptions, :plan_id
     add_index :subscriptions, :status
-    add_index :subscriptions, :method
+    add_index :subscriptions, :payment_method
     add_index :subscriptions, :token
   end
 end
