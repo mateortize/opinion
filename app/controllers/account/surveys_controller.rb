@@ -10,14 +10,14 @@ class Account::SurveysController < Account::BaseController
   end
 
   def create
-    @survey = Survey.create(survey_params)
-    if @survey
+    @survey = Survey.new(survey_params)
+    if @survey.save
       @survey.account = current_account
       @survey.save
 
       render :edit, flash: { success: 'Survey created successfully.'}
     else
-      render :edit
+      render :new
     end
   end
 

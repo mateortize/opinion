@@ -1,26 +1,30 @@
 .panel-heading
   = render "navigations"
 .panel-body
-  #tab1.tab-pane
-    .row
-      .col-xs-12
-        .table-responsive
-          %table#list-table.table.table-striped.table-bordered.table-condensed
-            %thead
-              %th
-                Title
-              %th
-                Enabled
-              %th
-                Questions
-              %th
-                Submissions
-              %th.col-sm-2
-                Created At
-              %th.col-sm-2
-                Updated At
-              %th
-            = render @surveys
+  - if @surveys.blank?
+    %p.alert-info
+      There is no Survey Made yet on this account , To add new one Click right on the right corner a Create Survey Button to begin 
+  - else
+    #tab1.tab-pane
+      .row
+        .col-xs-12
+          .table-responsive
+            %table#list-table.table.table-striped.table-bordered.table-condensed
+              %thead
+                %th
+                  Title
+                %th
+                  Enabled
+                %th
+                  Questions
+                %th
+                  Submissions
+                %th.col-sm-2
+                  Created At
+                %th.col-sm-2
+                  Updated At
+                %th
+              = render @surveys
 
     .divider
     - if !@latest_survey.blank?
@@ -35,6 +39,7 @@
           .col-xs-12.col-sm-2.infodata.pull-right
             %span.value= @latest_survey.submission_count
             Submissions
+
         - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
           .row
             .col-xs-12
@@ -46,5 +51,4 @@
                     %span.sr-only= answer.text
                   %span.progress-type
                     = answer.text
-
     .divider
