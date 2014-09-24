@@ -25,6 +25,7 @@
     = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
 
-%h2 Answers
-#answers
-  = render "answers_type#{@question.question_type}"
+- if !@question.new_record?
+  %h2 Answers
+  #answers
+    = render "answers_type#{@question.question_type}"
