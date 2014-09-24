@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918142833) do
+ActiveRecord::Schema.define(version: 20140923114814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,18 +83,6 @@ ActiveRecord::Schema.define(version: 20140918142833) do
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
-  create_table "authentications", force: true do |t|
-    t.integer  "account_id"
-    t.string   "provider"
-    t.integer  "uid"
-    t.string   "token"
-    t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "authentications", ["account_id"], name: "index_authentications_on_account_id", using: :btree
-
   create_table "plans", force: true do |t|
     t.string   "name"
     t.integer  "price_cents", default: 0
@@ -132,6 +120,20 @@ ActiveRecord::Schema.define(version: 20140918142833) do
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
+  create_table "submission_logs", force: true do |t|
+    t.integer  "submission_id"
+    t.integer  "answer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "submissions", force: true do |t|
+    t.string   "ip_address"
+    t.integer  "survey_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subscriptions", force: true do |t|
     t.integer  "account_id"
     t.integer  "plan_id"
@@ -157,14 +159,6 @@ ActiveRecord::Schema.define(version: 20140918142833) do
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
   add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
   add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", using: :btree
-
-  create_table "survey_logs", force: true do |t|
-    t.string   "ip_address"
-    t.text     "answers"
-    t.integer  "survey_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "survey_translations", force: true do |t|
     t.integer  "survey_id",   null: false

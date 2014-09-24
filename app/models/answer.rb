@@ -4,6 +4,7 @@ class Answer < ActiveRecord::Base
 
   scope :row, ->(number){ where(row: number) }
 
+  has_many :submissions, class_name: "SubmissionLog"
   belongs_to :question
   validates_uniqueness_of :text, scope: :question_id
   validates :text, length: { maximum: 255 }
@@ -17,12 +18,6 @@ class Answer < ActiveRecord::Base
         end
       end
     end
-  end
-
-  def increase_submission_count
-    self.submission_count ||= 0
-    self.submission_count = self.submission_count + 1
-    self.save
   end
 
   def survey

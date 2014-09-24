@@ -4,9 +4,9 @@ class Survey < ActiveRecord::Base
   serialize :locales
   
   has_many :questions, :dependent => :destroy
-  has_many :logs, class_name: 'SurveyLog', :dependent => :destroy
 
   has_many :answers, through: :questions
+  has_many :submissions
 
   belongs_to :account
 
@@ -15,19 +15,6 @@ class Survey < ActiveRecord::Base
   validates :title, length: { maximum: 255 }
   validates :description, length: { maximum: 2000 }
   validate :validate_locales
-
-  def submit(answer_ids)
-    self.answers.where(id: answer_ids).each do |answer|
-      answer.increase_submission_count
-    end
-
-    self.increase_submission_count
-  end
-
-  def increase_submission_count
-    self.submission_count = self.submission_count + 1
-    self.save
-  end
 
   private
 

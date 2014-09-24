@@ -41,20 +41,18 @@ class Question < ActiveRecord::Base
   # graph data related methods
   def graph_total_data
     self.answers.collect do |answer|
-      {label: answer.text, value: answer.submission_count}
+      {label: answer.text, value: answer.submissions.count}
     end
   end
 
   def graph_historical_data(month_count)
     data = []
     month_count.times do |n|
-      submissions = submitted_answer_ids_on(n.months.ago)
-
       month_data = Hash.new
       month_data[:month] = "#{n.months.ago.year}-#{n.months.ago.month}"
 
       self.answers.each do |answer|
-        month_data[answer.text] = submissions.count(answer.id.to_s)
+        month_data[answer.text] = answer.submissions.where("created_at > ? and created_at < ?", n.months.ago.beginning_of_month, n.months.ago.end_of_month).count
       end
      
       data << month_data
@@ -62,13 +60,6 @@ class Question < ActiveRecord::Base
     data
   end
 
-  def submitted_answer_ids_on(month)
-    submissions = []
-    self.survey.logs.where("created_at > ? and created_at < ?", month.beginning_of_month, month.end_of_month).inject(submissions) do |h, v|
-      submissions << v.answers & self.answers.map(&:id).map(&:to_s)
-    end
-    submissions.flatten
-  end
 
 
   def answer_names

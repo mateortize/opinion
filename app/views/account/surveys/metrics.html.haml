@@ -8,7 +8,7 @@
       .col-sm-2
         = answer.text
       .col-sm-2
-        = answer.submission_count
+        = answer.submissions.count
         
   .row
     - Question::GRAPH_TYPES.each do |graph_type|
