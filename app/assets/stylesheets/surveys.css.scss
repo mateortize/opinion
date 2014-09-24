@@ -31,9 +31,29 @@
   }
 }
 
+
+.languages .checkbox input[type=checkbox] {
+  display:none;
+}
+
+.languages .checkbox input[type=checkbox] + span
+{
+  vertical-align: text-bottom;
+}
+.languages .checkbox input[type=checkbox]:checked + span
+{
+  font-weight: bold;
+  font-style: italic;
+  color:$primarybg;
+
+}
+
+
 //
 //.panel {
 //  .checkbox label {
 //    padding-left: 0px;
 //  }
 //}
+
+
