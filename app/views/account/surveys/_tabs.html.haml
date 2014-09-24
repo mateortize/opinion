@@ -4,7 +4,7 @@
   = tab.export 'Export', export_account_survey_path(@survey)
   = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
 
-.bread-crumb
+.bread-crumb.pull-left
   %span Breadcrumb:
   - if !@survey.blank? and !@survey.new_record?
     = link_to @survey.title, edit_account_survey_path(@survey)
@@ -15,9 +15,11 @@
     &gt;
     = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
 
-  .pull-right
-    - if !@question.blank?
-      = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
+.pull-right
+  - if !@question.blank?
+    = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
+
+%span.clearFix
 .row.f32
   .col-sm-12
     %hr

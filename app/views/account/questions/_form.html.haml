@@ -24,8 +24,8 @@
     = f.submit "Save question", class: 'btn btn-primary'
     = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
-
+%hr
 - if !@question.new_record?
   %h2 Answers
-  #answers
+  .row
     = render "answers_type#{@question.question_type}"

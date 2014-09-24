@@ -133,10 +133,13 @@ a.lead{
 .nolist {
   list-style: none;
 }
+.curdef {
+  cursor: default;
+}
 .well {
   background: lighten($grey1, 10);
   border: 1px solid $grey1;
-  @include box-shadow(0 1px 1px $grey3);
+  @include box-shadow(0 1px 1px $grey1);
   position: relative;
 }
 .lead {
