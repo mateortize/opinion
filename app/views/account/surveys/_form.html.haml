@@ -29,7 +29,7 @@
   
   %hr
   = f.form_group do
-    = f.submit "Save Survey", class: 'btn btn-primary'
+    = f.submit "Next", class: 'btn btn-primary'
     - unless @survey.new_record?
       = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
     = link_to 'Cancel', :back, class: 'btn btn-default'

@@ -2,7 +2,7 @@
   %h4.modal-title Subscriptions
   
 .modal-body
-  %p
+  .table-responsive
     %table.table.table-striped.table-bordered.table-condensed
       %thead
         %tr
@@ -30,7 +30,7 @@
                 - if subscription.is_inactive?
                   %span.label.label-default Inactive
                 - elsif subscription.is_canceled?
-                  %span.label.label-warning Canceled 
+                  %span.label.label-warning Canceled
                 - else
                   %span.label.label-success Active
               %td
@@ -42,7 +42,7 @@
               %td
                 - if subscription.invoice_file.file
                   = link_to 'Download Invoice', subscription.invoice_file.url, :class => 'btn btn-default btn-xs btn-action'
-                
+
         - else
           %tr
             %td{colspan: 10} You have no subscriptions
