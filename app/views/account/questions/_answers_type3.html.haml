@@ -16,7 +16,7 @@
         - @question.send("answers_#{n}").each do |answer|
           %tr
             %td
-              %h4.checkbox
+              %h4.radio
                 %label
                   = radio_button_tag "answers[]", answer.id
                   = answer.text

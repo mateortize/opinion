@@ -36,7 +36,7 @@
 .col-lg-12
   - @question.answers.each do |answer|
     .col-lg-4.panel
-      %h4.checkbox
+      %h4.radio
         %label
           = radio_button_tag "answer[]", answer.id
           = answer.text
