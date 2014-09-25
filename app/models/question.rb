@@ -13,8 +13,11 @@ class Question < ActiveRecord::Base
   ]
 
   belongs_to :survey
+  acts_as_list scope: :survey
+
   has_many :answers, dependent: :destroy
   before_save :set_rows
+  after_save :set_position
 
   validates :text, length: { maximum: 255 }, presence: true
   validates :description, length: { maximum: 2000 }
@@ -69,6 +72,10 @@ class Question < ActiveRecord::Base
   private
     def set_rows
       self.rows = 1 if self.question_type != 3 
+    end
+
+    def set_position
+      self.set_list_position(0) if self.position.blank?
     end
 
 end

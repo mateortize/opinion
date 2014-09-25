@@ -47,6 +47,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_list (0.4.0)
+      activerecord (>= 3.0)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
@@ -377,6 +379,7 @@ DEPENDENCIES
   active_link_to
   active_merchant_inatec (~> 0.0.9)!
   activemerchant
+  acts_as_list
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
   cancancan

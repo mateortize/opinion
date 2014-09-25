@@ -3,7 +3,7 @@ class Survey < ActiveRecord::Base
   mount_uploader :logo, SurveyUploader
   serialize :locales
   
-  has_many :questions, :dependent => :destroy
+  has_many :questions, -> { order("position ASC") }, :dependent => :destroy
 
   has_many :answers, through: :questions
   has_many :submissions
