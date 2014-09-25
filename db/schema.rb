@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 20140925065214) do
   end
 
   add_index "subscriptions", ["account_id"], name: "index_subscriptions_on_account_id", using: :btree
-  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_method", using: :btree
+  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_payment_method", using: :btree
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
   add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
   add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", using: :btree

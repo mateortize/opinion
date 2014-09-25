@@ -1,13 +1,15 @@
 %tr
   %td= survey.title
-  %td= survey.enabled
+  %td
+    %span.label.label-warning
+      = survey.enabled
   %td= survey.questions.count
   %td= survey.submission_count
   %td
     = survey.created_at
   %td
     = survey.updated_at
-  %td.text-right
+  %td.actions
     = link_to preview_survey_path(survey), target: '_blank' do
       %span.glyphicon.glyphicon-eye-open
     = link_to edit_account_survey_path(survey) do

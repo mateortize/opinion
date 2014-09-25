@@ -1,29 +1,30 @@
-= tabs_tag :open_tabs=>{ class: 'nav nav-tabs main-tabs' } do |tab|
-  = tab.survey 'Survey', edit_account_survey_path(@survey)
-  = tab.questions 'Questions', account_survey_questions_path(@survey)
-  = tab.export 'Export', export_account_survey_path(@survey)
-  = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
+.col-md-12.menu
+  = tabs_tag :open_tabs=>{ class: 'nav nav-tabs main-tabs' } do |tab|
+    = tab.survey 'Survey', edit_account_survey_path(@survey)
+    = tab.questions 'Questions', account_survey_questions_path(@survey)
+    = tab.export 'Export', export_account_survey_path(@survey)
+    = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
 
-.bread-crumb.pull-left
-  %span Breadcrumb:
-  - if !@survey.blank? and !@survey.new_record?
-    = link_to @survey.title, edit_account_survey_path(@survey)
-  - if !@question.blank? and !@question.new_record?
-    &gt;
-    = link_to @question.text, edit_account_survey_question_path(@survey, @question)
-  - if !@answer.blank? and !@answer.new_record?
-    &gt;
-    = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
+  .bread-crumb.pull-left
+    %span Breadcrumb:
+    - if !@survey.blank? and !@survey.new_record?
+      = link_to @survey.title, edit_account_survey_path(@survey)
+    - if !@question.blank? and !@question.new_record?
+      &gt;
+      = link_to @question.text, edit_account_survey_question_path(@survey, @question)
+    - if !@answer.blank? and !@answer.new_record?
+      &gt;
+      = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
 
-.pull-right
-  - if !@question.blank?
-    = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
+  .pull-right
+    - if !@question.blank?
+      = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 
-%span.clearFix
-.row.f32
-  .col-sm-12
-    %hr
-    = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
-      - @survey.locales.each do |locale|
-        = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
-    %hr
+  %span.clearFix
+  .row.f32
+    .col-sm-12
+      %hr
+      = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
+        - @survey.locales.each do |locale|
+          = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
+      %hr
