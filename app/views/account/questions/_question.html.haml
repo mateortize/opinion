@@ -21,4 +21,4 @@
     = question.updated_at
   %td.col-sm-2
     = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
-    = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash text-danger', data: { confirm: "Are you sure to delete?" }, method: :delete
+    = link_to '', accountpi_survey_question_path(@survey, question), class: 'icon icon-trash text-danger', data: { confirm: "Are you sure to delete?" }, method: :delete
