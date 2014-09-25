@@ -2,20 +2,20 @@ class SurveysController < ApplicationController
   skip_before_filter :verify_authenticity_token
   skip_before_action :authenticate_account!
   before_filter :allow_iframe
+  before_filter :load_survey, only: [:show, :submit, :embedded_html, :embedded_script]
 
   layout :resolve_layout
 
   def show
-    @survey = Survey.find(params[:id])
   end
 
-  def update
+  def preview
     @survey = Survey.find(params[:id])
-    redirect_to survey_path(@survey)
+    raise ActiveRecord::RecordNotFound if current_account.blank?
+    render :show
   end
 
   def submit
-    @survey = Survey.find(params[:id])
     answer_ids = prepare_answers
     @submission = @survey.submissions.create(ip_address: request.remote_addr)
     
@@ -28,11 +28,9 @@ class SurveysController < ApplicationController
   end
 
   def embedded_html
-    @survey = Survey.find(params[:id])
   end
 
   def embedded_script
-    @survey = Survey.find(params[:id])
   end
 
   private
@@ -67,10 +65,16 @@ class SurveysController < ApplicationController
     end
 
     def resolve_layout
-      if action_name == 'show' or action_name == 'submit'
+      actions = ["show", "submit", "preview"]
+      if actions.include?(action_name)
         return 'application'
       else
         return 'embedded'
       end
+    end
+
+    def load_survey
+      @survey = Survey.find(params[:id])
+      raise ActiveRecord::RecordNotFound if !@survey.enabled?
     end
 end

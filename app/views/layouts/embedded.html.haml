@@ -1,9 +1,15 @@
-- if !params[:style].blank?
-  = stylesheet_link_tag    'application', media: 'all'
-- if notice
-  %p.alert.alert-info.notice= notice
-- if alert
-  %p.alert.alert-danger= alert
+!!!
+%html
+  %head
+    %title Opinion7
+    = stylesheet_link_tag    'embedded', media: 'all'
+    = javascript_include_tag 'embedded'
+    = csrf_meta_tags
+  %body
+    - if notice
+      %p.alert.alert-info.notice= notice
+    - if alert
+      %p.alert.alert-danger= alert
 
-= render "/shared/flashes"
-= yield
+    = render "/shared/flashes"
+    = yield

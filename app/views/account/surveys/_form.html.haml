@@ -4,7 +4,7 @@
       = f.text_field :title
       = f.text_area :description, rows: 10
     .col-lg-6
-      = f.select :enabled, [true, false]
+      = f.select :enabled, [false, true]
       - if !@survey.logo.blank?
         = f.form_group do
           = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')

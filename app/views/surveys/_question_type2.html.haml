@@ -1,10 +1,9 @@
 %h3
-  - if !question.image.blank?
-    %a{:rel => 'lightbox', :href => question.image_url}
-      = image_tag question.image_url, class: 'img-circle pull-right img-thumbnail'
-    = question.text
-  - else
-    = question.text
+  = question.text
+  
+- if !question.image.blank?
+  %a{:rel => 'lightbox', :href => question.image_url}
+    = image_tag question.image_url, class: 'img-circle pull-right img-thumbnail'
 
 .row
   - question.answers.each do |answer|
