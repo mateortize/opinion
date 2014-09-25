@@ -2,8 +2,13 @@
   = render "navigations"
 .panel-body
   - if @surveys.blank?
-    %p.alert-info
-      There is no Survey Made yet on this account , To add new one Click right on the right corner a Create Survey Button to begin 
+    %blockquote
+      %h4
+        No Data
+      %p
+        There is no Survey Made yet on this account , To add new one Click on the right corner
+        %mark.bgcolor Create Survey
+        Button to begin
   - else
     #tab1.tab-pane
       .row
