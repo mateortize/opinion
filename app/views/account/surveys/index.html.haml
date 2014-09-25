@@ -11,49 +11,72 @@
         Button to begin
   - else
     #tab1.tab-pane
+      .row.intro
+        %h1
+          Dashboard
+          .small Your current Opinion7 analytics and status at a glance
+        .col-xs-12.col-sm-8
+          %p
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+          %p
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+        .col-xs-4.col-sm-2.infodata
+          Surveies
+          %span.value 5
+        .col-xs-4.col-sm-2.infodata
+          Submissions
+          %span.value 12
+      .row
+        .col-xs-12.table-responsive
+
+          %table#list-table.table.table-striped.table-condensed.table-hover
+            %thead
+              %th
+                %i.icon.icon-tag
+                Title
+              %th
+                %i.icon.icon-info-circled
+                Enabled
+              %th
+                %i.icon.icon-help-circled
+                Questions
+              %th
+                %i.icon.icon-ok-circled
+                Submissions
+              %th.col-sm-2
+                %i.icon.icon-calendar
+                Created At
+              %th.col-sm-2
+                %i.icon.icon-calendar
+                Updated At
+              %th
+                %i.icon.icon-cog-alt
+                Actions
+            = render @surveys
+
+  .divider
+  - if !@latest_survey.blank?
+    #eval1
       .row
         .col-xs-12
-          .table-responsive
-            %table#list-table.table.table-striped.table-bordered.table-condensed
-              %thead
-                %th
-                  Title
-                %th
-                  Enabled
-                %th
-                  Questions
-                %th
-                  Submissions
-                %th.col-sm-2
-                  Created At
-                %th.col-sm-2
-                  Updated At
-                %th
-              = render @surveys
+          %h1
+            %small Your current evaluation
+            = @latest_survey.title
+        .col-xs-12.col-sm-8
+          %p= @latest_survey.description
+        .col-xs-12.col-sm-2.infodata.pull-right
+          %span.value= @latest_survey.submission_count
+          Submissions
 
-    .divider
-    - if !@latest_survey.blank?
-      #eval1
+      - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
         .row
           .col-xs-12
-            %h1
-              %small Your current evaluation
-              = @latest_survey.title
-          .col-xs-12.col-sm-8
-            %p= @latest_survey.description
-          .col-xs-12.col-sm-2.infodata.pull-right
-            %span.value= @latest_survey.submission_count
-            Submissions
-
-        - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
-          .row
-            .col-xs-12
-              %h3= question.text
-              %p.help-text= question.description
-              - question.answers.each do |answer|
-                .progress
-                  .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
-                    %span.sr-only= answer.text
-                  %span.progress-type
-                    = answer.text
-    .divider
+            %h3= question.text
+            %p.help-text= question.description
+            - question.answers.each do |answer|
+              .progress
+                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
+                  %span.sr-only= answer.text
+                %span.progress-type
+                  = answer.text
+  .divider

@@ -1,22 +1,29 @@
 = render 'account/surveys/tabs'
-%br
-%p.text-right
-  = link_to 'Add New Question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
+
 #tab1.tab-pane
+
+  %p.text-right
+    = link_to 'Add New Question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
   .row
-    .col-xs-12
-      .table-responsive
-        %table#list-table.table
-          %thead
-            %th.col-sm-4
-              Text
-            %th.col-sm-3
-              Answers
-            %th
-              Type
-            %th
-              Created At
-            %th
-              Updated At
-            %th
-            = render @questions
+    .col-xs-12.table-responsive
+      %table#list-table.table
+        %thead
+          %th.col-md-2
+            %i.icon.icon-tag
+            Text
+          %th.col-md-2
+            %i.icon.icon-list-numbered
+            Answers
+          %th
+            %i.icon.icon-tags
+            Type
+          %th
+            %i.icon.icon-calendar
+            Created At
+          %th
+            %i.icon.icon-calendar
+            Updated At
+          %th.actions
+            %i.icon.icon-cog-alt
+            Actions
+          = render @questions
