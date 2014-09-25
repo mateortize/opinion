@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923114814) do
+ActiveRecord::Schema.define(version: 20140925065214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20140923114814) do
     t.datetime "updated_at"
     t.integer  "row",              default: 0
     t.string   "image"
+    t.integer  "position"
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140923114814) do
     t.integer  "question_type"
     t.integer  "rows",          default: 1
     t.string   "image"
+    t.integer  "position"
   end
 
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
@@ -155,7 +157,7 @@ ActiveRecord::Schema.define(version: 20140923114814) do
   end
 
   add_index "subscriptions", ["account_id"], name: "index_subscriptions_on_account_id", using: :btree
-  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_method", using: :btree
+  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_payment_method", using: :btree
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
   add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
   add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", using: :btree

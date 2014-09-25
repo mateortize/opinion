@@ -1,9 +1,9 @@
 %ul.nav.panel-tabs
-  %li.bor.w75.pull-left
+  %li.bor.w75.active.pull-left
     = active_link_to account_surveys_path, :active=>:exclusive do
       %span.icon-list-numbered
       Surveys / Overview
-  %li.pull-right.createtab
+  %li.pull-right
     = active_link_to new_account_survey_path, :active=>:exclusive do
       %span.icon-plus>
       Create survey

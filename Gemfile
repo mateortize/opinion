@@ -60,6 +60,7 @@ gem 'mechanize'
 gem 'activemerchant'
 gem 'active_merchant_inatec', '~> 0.0.9', git: 'https://github.com/c7devteam/inatec_cc.git'
 
+gem 'acts_as_list'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

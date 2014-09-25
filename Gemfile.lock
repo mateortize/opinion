@@ -47,6 +47,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_list (0.4.0)
+      activerecord (>= 3.0)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
@@ -145,7 +147,6 @@ GEM
       activerecord (>= 4.0.0, < 5)
     globalize-versioning (0.1.0.alpha.1)
       globalize (>= 3, < 5)
-      paper_trail (~> 3.0.0)
     guard (2.6.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -254,7 +255,6 @@ GEM
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    paper_trail (3.0.3)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
@@ -379,6 +379,7 @@ DEPENDENCIES
   active_link_to
   active_merchant_inatec (~> 0.0.9)!
   activemerchant
+  acts_as_list
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
   cancancan

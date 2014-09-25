@@ -1,17 +1,19 @@
 %h2 Question
-= bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-8") do |f|
-  = f.error_summary
-  .row
-    .col-lg-6
+.row
+  .col-md-12
+    = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-5") do |f|
+      = f.error_summary
+
+      %legend Basic Information
       = f.text_field :text, label: 'Question'
       = f.text_area :description, rows: 10
-    .col-lg-6
+      %legend Setting
       = f.select :question_type, Question::TYPES
       = f.hidden_field :survey_id
 
       - if @question.question_type == 3 # if 2d matrix
         = f.select :rows, 2..20
-      
+
 
       - if !@question.image.blank?
         = f.form_group do
@@ -20,12 +22,14 @@
       - else
         = f.file_field :image, accept: "image/*"
 
-  .text-right
-    = f.submit "Save question", class: 'btn btn-primary'
-    = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
+      = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
 
-%hr
-- if !@question.new_record?
-  %h2 Answers
-  .row
-    = render "answers_type#{@question.question_type}"
+      .text-right
+        = f.submit "Save question", class: 'btn btn-primary'
+        = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
+
+    -#%hr
+    -#- if !@question.new_record?
+    -#  %h2 Answers
+    -#  .row
+    -#    = render "answers_type#{@question.question_type}"

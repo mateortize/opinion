@@ -1,7 +1,7 @@
 class Account::QuestionsController < Account::BaseController
   
   before_filter :load_survey
-  before_filter :load_question, only: [:edit, :update, :destroy, :show]
+  before_filter :load_question, only: [:edit, :update, :destroy, :show, :sort]
 
   set_tab :questions
 
@@ -41,7 +41,12 @@ class Account::QuestionsController < Account::BaseController
 
   def destroy
     @question.destroy
-    redirect_to admin_survey_questions_path(@survey)
+    redirect_to account_survey_questions_path(@survey)
+  end
+
+  def sort
+    @question.send("move_#{params[:move]}")
+    redirect_to account_survey_questions_path(@survey)
   end
 
   private
@@ -55,7 +60,7 @@ class Account::QuestionsController < Account::BaseController
   end
 
   def question_params
-    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, :image, :remove_image, answers_attributes:[:id, :text, :row, :image, :remove_image, :_destroy] )
+    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, :image, :remove_image, :position, answers_attributes:[:id, :text, :row, :image, :remove_image, :_destroy] )
   end
 
 end

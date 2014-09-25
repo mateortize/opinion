@@ -1,6 +1,11 @@
-- content_for :heading do
+.panel-heading
+
   = render "navigations"
 
-
-%h2.uebg New Survey
-= render 'form'
+.panel-body
+  .tab-pane.active#tab2
+    .row.intro
+      .col-xs-12
+        %h1 New Survey
+        %p.lead Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+    = render 'form'
