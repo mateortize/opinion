@@ -1,17 +1,17 @@
 = render 'tabs'
+.tab-pane.active
+  %h2= "Total submissions: #{@survey.submission_count}"
+  - @survey.questions.each do |question|
+    %h3=question.text
+    - question.answers.each do |answer|
+      .row
+        .col-sm-2
+          = answer.text
+        .col-sm-2
+          = answer.submissions.count
 
-%h2= "Total submissions: #{@survey.submission_count}"
-- @survey.questions.each do |question|
-  %h3=question.text
-  - question.answers.each do |answer|
     .row
-      .col-sm-2
-        = answer.text
-      .col-sm-2
-        = answer.submissions.count
-        
-  .row
-    - Question::GRAPH_TYPES.each do |graph_type|
-      .col-sm-6
-        = render "/account/questions/graph_#{graph_type}", question: question
-        %br/
+      - Question::GRAPH_TYPES.each do |graph_type|
+        .col-sm-6
+          = render "/account/questions/graph_#{graph_type}", question: question
+          %br/

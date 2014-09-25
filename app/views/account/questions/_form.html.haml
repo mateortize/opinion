@@ -1,35 +1,38 @@
-%h2 Question
-.row
-  .col-md-12
-    = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-5") do |f|
-      = f.error_summary
 
-      %legend Basic Information
-      = f.text_field :text, label: 'Question'
-      = f.text_area :description, rows: 10
-      %legend Setting
-      = f.select :question_type, Question::TYPES
-      = f.hidden_field :survey_id
+.tab-pane.active
+  %h2
+    Question
+  .row
+    .col-md-12
+      = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-5") do |f|
+        = f.error_summary
 
-      - if @question.question_type == 3 # if 2d matrix
-        = f.select :rows, 2..20
+        %legend Basic Information
+        = f.text_field :text, label: 'Question'
+        = f.text_area :description, rows: 10
+        %legend Setting
+        = f.select :question_type, Question::TYPES
+        = f.hidden_field :survey_id
+
+        - if @question.question_type == 3 # if 2d matrix
+          = f.select :rows, 2..20
 
 
-      - if !@question.image.blank?
-        = f.form_group do
-          = image_tag(@question.image_url, :class => 'img-responsive img-thumbnail')
-          = f.check_box :remove_image
-      - else
-        = f.file_field :image, accept: "image/*"
+        - if !@question.image.blank?
+          = f.form_group do
+            = image_tag(@question.image_url, :class => 'img-responsive img-thumbnail')
+            = f.check_box :remove_image
+        - else
+          = f.file_field :image, accept: "image/*"
 
-      = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
+        = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
 
-      .text-right
-        = f.submit "Save question", class: 'btn btn-primary'
-        = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
+        .text-right
+          = f.submit "Save question", class: 'btn btn-primary'
+          = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
-    -#%hr
-    -#- if !@question.new_record?
-    -#  %h2 Answers
-    -#  .row
-    -#    = render "answers_type#{@question.question_type}"
+      %hr
+      - if !@question.new_record?
+        %h2 Answers
+        .row
+          = render "answers_type#{@question.question_type}"
