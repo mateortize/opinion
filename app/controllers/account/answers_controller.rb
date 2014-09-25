@@ -22,7 +22,7 @@ class Account::AnswersController < Account::BaseController
     @answer.question = @question
     
     if @answer.save
-      flash[:succcess] = "Sucessfully created."
+      flash[:success] = "Sucessfully created."
     else
       flash[:danger] = "Sorry, failed to create."
     end

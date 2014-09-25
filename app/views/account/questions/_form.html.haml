@@ -1,6 +1,7 @@
 
 .tab-pane.active
-  %h2 Question
+  %h2
+    Question
   .row
     .col-md-12
       = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-5") do |f|
@@ -30,8 +31,8 @@
           = f.submit "Save question", class: 'btn btn-primary'
           = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
-    -#%hr
-    -#- if !@question.new_record?
-    -#  %h2 Answers
-    -#  .row
-    -#    = render "answers_type#{@question.question_type}"
+      %hr
+      - if !@question.new_record?
+        %h2 Answers
+        .row
+          = render "answers_type#{@question.question_type}"
