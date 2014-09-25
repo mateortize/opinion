@@ -6,14 +6,14 @@
     = tab.metrics 'Metrics', metrics_account_survey_path(@survey)
 
   .bread-crumb.pull-left
-    %span Breadcrumb:
+    %span.label.bgcolor  Breadcrumb:
     - if !@survey.blank? and !@survey.new_record?
       = link_to @survey.title, edit_account_survey_path(@survey)
     - if !@question.blank? and !@question.new_record?
-      &gt;
-      = link_to @question.text, edit_account_survey_question_path(@survey, @question)
+      %i.icon.icon-angle-circled-right
+      = link_to @question.text, edit_account_survey_question_path(@survey, @question) , class: ''
     - if !@answer.blank? and !@answer.new_record?
-      &gt;
+      %i.icon.icon-angle-circled-right
       = link_to @answer.text, edit_account_survey_question_answer_path(@survey, @question, @answer)
 
   .pull-right
