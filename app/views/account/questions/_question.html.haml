@@ -19,6 +19,11 @@
     = question.created_at
   %td
     = question.updated_at
+  %td
+    = question.position
   %td.text-right.col-sm-2
     = link_to 'Edit', edit_account_survey_question_path(@survey, question), class: 'btn btn-primary'
     = link_to 'Delete', account_survey_question_path(@survey, question), class: 'btn btn-danger', data: { confirm: "Are you sure to delete?" }, method: :delete
+
+    = link_to "Up", sort_account_survey_question_path(@survey, question, { move: 'higher' })
+    = link_to "Down", sort_account_survey_question_path(@survey, question, { move: 'lower' })

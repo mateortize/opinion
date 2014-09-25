@@ -20,6 +20,8 @@
       - else
         = f.file_field :image, accept: "image/*"
 
+      = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
+
   .text-right
     = f.submit "Save question", class: 'btn btn-primary'
     = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
