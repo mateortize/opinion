@@ -23,14 +23,13 @@
             %td
               .text-right
                 - if !answer.image.blank?
-                  %a.btn.btn-primary{:rel => 'lightbox', :href => answer.image_url}
+                  %a{:rel => 'lightbox', :href => answer.image_url}
                     %span.glyphicon.glyphicon-eye-open
-                    -#= image_tag answer.image_url, class: 'img-thumbnail img-responsive', style: "max-width: 120px"
 
-                %a.btn.btn-primary{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
-                  %span.glyphicon.glyphicon-edit
-                = link_to account_survey_question_answer_path(@survey, @question, answer),:class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-                  %span.glyphicon.glyphicon-trash
+                %a{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
+                  %span.glyphicon.glyphicon-pencil
+                = link_to account_survey_question_answer_path(@survey, @question, answer),:class => '', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+                  %span.glyphicon.glyphicon-trash.text-danger
               %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
                 = render "account/answers/form", answer: answer
 
