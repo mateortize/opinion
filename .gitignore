@@ -19,5 +19,5 @@
 /config/secrets.yml
 /public/uploads/
 
-/.idea
+/.idea/*
 .DS_Store
