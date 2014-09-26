@@ -27,6 +27,8 @@
 
         = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
 
+        = f.date_field :created_at, disabled: true
+        = f.date_field :updated_at, disabled: true
         .text-right
           = f.submit "Save question", class: 'btn btn-primary'
           = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'

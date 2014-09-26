@@ -31,6 +31,7 @@
                   %span.glyphicon.glyphicon-edit
                 = link_to account_survey_question_answer_path(@survey, @question, answer),:class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
                   %span.glyphicon.glyphicon-trash
+            
               %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
                 = render "account/answers/form", answer: answer
 

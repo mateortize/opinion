@@ -1,32 +1,47 @@
-%tr
-  %td
-    - if !question.image.blank?
-      = question.text
-    - else
-      = question.text
-  %td
-    %ul.nolist.admin_answers
-      - question.answers.each do |answer|
-        %li
-          - if !answer.image.blank?
-            = answer.text
-          - else
-            = answer.text
-          %strong
-            = "(#{answer.submission_count} submissions)"
-  %td= Question::TYPES.key(question.question_type)
-  %td
-    = question.created_at
-  %td
-    = question.updated_at
-  %td
-    = question.position
-  %td.actions
-    = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
-    = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
+.panel.panel-default
+  .panel-heading
+    .row
+      .col-sm-6
+        %h4.panel-title
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#question#{question.id}"}
+            - if !question.image.blank?
+              = question.text
+            - else
+              = question.text
+      .col-sm-2
+        = question.answers.count
+      .col-sm-1
+        = Question::TYPES.key(question.question_type)
+      .col-sm-1
+        = question.position
+      .col-sm-2.actions
+        = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
+        = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
 
-    = link_to "", sort_account_survey_question_path(@survey, question, { move: 'higher' }) , class:'icon icon-level-up'
-    = link_to "", sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) , class:'icon icon-level-down'
+        = link_to "", sort_account_survey_question_path(@survey, question, { move: 'higher' }) , class:'icon icon-level-up'
+        = link_to "", sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) , class:'icon icon-level-down'
 
-    -# class:'icon icon-level-up'
-    -# class:'icon icon-level-down'
+      
+        
+  .panel-collapse.collapse{id: "question#{question.id}"}
+    .panel-body
+      %p
+        %strong Created at:
+        = question.created_at
+      %p
+        %strong Updated at:
+        = question.updated_at
+
+      - if !question.image.blank?
+        %p
+          %strong Question Image:
+          = image_tag question.image_url, class: 'img-circle img-thumbnail'
+
+      - if !question.description.blank?
+        %p
+          %strong Description:
+          = question.description
+      %p
+        %strong Answers
+
+      = render 'answers', question: question

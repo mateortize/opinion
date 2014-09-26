@@ -1,1 +1,1 @@
-Rails.application.config.assets.precompile += %w( admin.css account.css embedded.css embedded.js )
+Rails.application.config.assets.precompile += %w( admin.css account.css embedded.css embedded.js accounts.js )
