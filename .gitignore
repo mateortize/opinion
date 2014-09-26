@@ -19,4 +19,5 @@
 /config/secrets.yml
 /public/uploads/
 
+/.idea/
 .DS_Store

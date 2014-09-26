@@ -75,7 +75,7 @@ gem 'acts_as_list'
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'spring', group: :development
+# gem 'spring', group: :development
 gem "capybara", group: [:development, :test]
 gem "cucumber-rails", group: [:development, :test]
 gem "rspec-rails", ">= 2.0.1", group: [:development, :test]

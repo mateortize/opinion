@@ -11,7 +11,7 @@
         = f.text_field :text, label: 'Question'
         = f.text_area :description, rows: 10
         %legend Setting
-        = f.select :question_type, Question::TYPES
+        = f.select :question_type, Question::TYPES, {}, { disabled: !@question.new_record? }
         = f.hidden_field :survey_id
 
         - if @question.question_type == 3 # if 2d matrix

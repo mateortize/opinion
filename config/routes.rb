@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :surveys do
       get :export, on: :member
       get :metrics, on: :member
+      put :publish, on: :member
+      put :unpublish, on: :member
+
       resources :questions do
         get :sort, on: :member
         resources :answers

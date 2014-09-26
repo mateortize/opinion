@@ -22,6 +22,7 @@ class Question < ActiveRecord::Base
   validates :text, length: { maximum: 255 }, presence: true
   validates :description, length: { maximum: 2000 }
   validate :image_file_size
+  validate :validate_question_type
 
   def image_file_size
     if !image.blank?
@@ -76,6 +77,12 @@ class Question < ActiveRecord::Base
 
     def set_position
       self.set_list_position(0) if self.position.blank?
+    end
+
+    def validate_question_type
+      if !self.question_type_was.blank? and self.question_type_changed?
+        errors.add(:question_type, "can not change")
+      end
     end
 
 end

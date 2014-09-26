@@ -1,12 +1,13 @@
 .row
   .col-md-12
-    = bootstrap_form_for([:account, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6") do |f|
+    = bootstrap_form_for([:account, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", inline_errors: false) do |f|
       %legend Basic Information
+      = f.error_summary
+
       = f.text_field :title , size: 50
       = f.text_area :description, rows: 5 , class: "text optional redactor"
 
       %legend Settings
-      = f.select :enabled, [false, true]
       - if !@survey.logo.blank?
         = f.form_group do
           = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
@@ -31,4 +32,11 @@
           = f.submit "Next", class: 'btn btn-primary'
           - unless @survey.new_record?
             = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
+
+          - if !@survey.new_record?
+            - if !@survey.enabled?
+              = link_to 'Publish', publish_account_survey_path(@survey), class: 'btn btn-primary', method: :put
+            - else
+              = link_to 'Unpublish', unpublish_account_survey_path(@survey), class: 'btn btn-danger', method: :put
+
           = link_to 'Cancel', :back, class: 'btn btn-default'

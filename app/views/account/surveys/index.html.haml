@@ -22,10 +22,10 @@
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
         .col-xs-4.col-sm-2.infodata
           Surveies
-          %span.value 5
+          %span.value= @surveys.count
         .col-xs-4.col-sm-2.infodata
           Submissions
-          %span.value 12
+          %span.value= current_account.submission_count
       .row
         .col-xs-12.table-responsive
 
