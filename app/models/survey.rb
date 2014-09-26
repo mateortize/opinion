@@ -17,8 +17,17 @@ class Survey < ActiveRecord::Base
   validate :validate_locales
   validate :validate_enabled
 
-  private
+  def do_publish
+    self.enabled = true
+    self.save
+  end
 
+  def unpublish
+    self.enabled = false
+    self.save
+  end
+  
+  private
   def validate_locales
     errors.add(:locales, "couldn't be empty.") if self.locales.blank?
   end

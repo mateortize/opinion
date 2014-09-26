@@ -6,7 +6,6 @@
       = f.text_area :description, rows: 5 , class: "text optional redactor"
 
       %legend Settings
-      = f.select :enabled, [false, true]
       - if !@survey.logo.blank?
         = f.form_group do
           = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
@@ -31,4 +30,10 @@
           = f.submit "Next", class: 'btn btn-primary'
           - unless @survey.new_record?
             = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
+
+          - unless @survey.enabled?
+            = link_to 'Publish', publish_account_survey_path(@survey), class: 'btn btn-primary', method: :put
+          - else
+            = link_to 'Unpublish', unpublish_account_survey_path(@survey), class: 'btn btn-danger', method: :put
+
           = link_to 'Cancel', :back, class: 'btn btn-default'

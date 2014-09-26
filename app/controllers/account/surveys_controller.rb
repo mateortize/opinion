@@ -1,5 +1,5 @@
 class Account::SurveysController < Account::BaseController
-  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :metrics]
+  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :metrics, :publish, :unpublish]
 
   set_tab :survey
 
@@ -30,7 +30,7 @@ class Account::SurveysController < Account::BaseController
 
   def update
     if @survey.update_attributes(survey_params)
-      redirect_to edit_account_survey_path(@survey), flash: { success: "Successfully updated" }
+      redirect_to account_survey_questions_path(@survey), flash: { success: "Successfully updated" }
     else
       render :edit
     end
@@ -47,6 +47,16 @@ class Account::SurveysController < Account::BaseController
 
   def metrics
     set_tab :metrics
+  end
+
+  def publish
+    @survey.do_publish
+    redirect_to account_surveys_path, flash: { success: "Successfully published" }
+  end
+
+  def unpublish
+    @survey.unpublish
+    redirect_to account_surveys_path, flash: { success: "Successfully unpublished" }    
   end
 
   private
