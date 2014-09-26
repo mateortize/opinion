@@ -1,23 +1,45 @@
+-##content
+-#  #showsurvey.container
+-#    .row
+-#      .col-md-12
+-#        .panel
+-#          %h2.showhl= @survey.title
+-#          .row
+-#            - if !@survey.logo.blank?
+-#              .col-md-6
+-#                = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
+-#            .col-md-6
+-#              = @survey.description
+-#
+-#          %hr
+-#          = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
+-#            - @survey.questions.each do |question|
+-#              .question
+-#                = render 'questions', question: question
+-#
+-#            = submit_tag 'Submit', class: 'btn btn-primary'
+-#
+-#
+
 #content
   #showsurvey.container
-    .row
-      .col-md-12
-        .panel
-          %h2.showhl= @survey.title
-          .row
-            - if !@survey.logo.blank?
-              .col-md-6
-                = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
-            .col-md-6
-              = @survey.description
+    #content.col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.panel.nopadding
+      %h2.showhl
+        %i.icon.icon-list-numbered
+        = @survey.title
 
-          %hr
-          = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
-            - @survey.questions.each do |question|
-              .question
-                = render 'questions', question: question
+      - if !@survey.logo.blank?
+        = image_tag(@survey.logo_url, :class => '' ,:style => 'width:100%' )
+      %p.bg-primary.addpadding= @survey.description
+    .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.nopadding
+      = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
+        - @survey.questions.each do |question|
+          .question.panel
+            = render 'questions', question: question
 
-            = submit_tag 'Submit', class: 'btn btn-primary'
+      .pull-right.panel.col-md-12.text-right
+        = submit_tag 'Submit', class: 'btn btn-primary'
+
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

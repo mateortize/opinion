@@ -1,20 +1,20 @@
 %h3
+  %i.icon.icon-help-circled
   = question.text
 
 - if !question.image.blank?
   %a{:rel => 'lightbox', :href => question.image_url}
-    = image_tag question.image_url, class: 'img-circle pull-right img-thumbnail'
+    = image_tag question.image_url, class: '',style: 'width:100%'
 
 
 .row.answers
   - question.answers.each do |answer|
-    .col-sm-2.answer
+    .col-sm-6.answer
       .customcheckbox
-        = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
         %label{for: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"}
           - if !answer.image.blank?
-            = answer.text
             %a{:rel => 'lightbox', :href => answer.image_url}
-              = image_tag answer.image_url, class: 'img-thumbnail'
-          - else
-            = answer.text
+              = image_tag answer.image_url, class: ''
+          = check_box_tag "survey[questions][#{question.id}][rows][0][answers][]", answer.id, false, id: "survey_questions_#{question.id}_rows_0_answers_#{answer.id}"
+          %i.icon.icon-tag
+          = answer.text

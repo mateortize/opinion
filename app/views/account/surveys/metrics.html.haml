@@ -1,17 +1,20 @@
 = render 'tabs'
 .tab-pane.active
-  %h2= "Total submissions: #{@survey.submission_count}"
+  %h2.text-right= "Total submissions : #{@survey.submission_count}"
   - @survey.questions.each do |question|
-    %h3=question.text
+    %h3
+      %i.icon.icon-help-circled
+      =question.text
     - question.answers.each do |answer|
       .row
         .col-sm-2
+          %i.icon.icon-tag
           = answer.text
-        .col-sm-2
+        .col-sm-1.badge.bgcolor
           = answer.submissions.count
-
+    %hr
     .row
       - Question::GRAPH_TYPES.each do |graph_type|
-        .col-sm-6
+        .col-md-4.well
           = render "/account/questions/graph_#{graph_type}", question: question
           %br/
