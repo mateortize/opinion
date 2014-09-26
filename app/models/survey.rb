@@ -17,6 +17,9 @@ class Survey < ActiveRecord::Base
   validate :validate_locales
   validate :validate_enabled
 
+  validate :validate_creation, on: :create
+  validate :validate_user_locales
+
   def do_publish
     self.enabled = true
     self.save
@@ -26,7 +29,7 @@ class Survey < ActiveRecord::Base
     self.enabled = false
     self.save
   end
-  
+
   private
   def validate_locales
     errors.add(:locales, "couldn't be empty.") if self.locales.blank?
@@ -34,6 +37,18 @@ class Survey < ActiveRecord::Base
 
   def validate_enabled
     errors.add(:enabled, "couldn't be enabled if questions are empty.") if self.enabled == true and self.questions.count == 0
+  end
+
+  def validate_creation
+    if !self.account.has_pro_plan?
+      errors.add(:survey, "couldn't create more than 3 surveys. Please upgrade your plan") if self.account.surveys.count > 3
+    end
+  end
+
+  def validate_user_locales
+    if !self.account.has_pro_plan?
+      errors.add(:current_user, "couldn't use more than 1 locale. Please upgrade your plan") if self.locales and self.locales.count > 1
+    end
   end
 
 end

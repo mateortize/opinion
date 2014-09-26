@@ -33,4 +33,11 @@ class Account < ActiveRecord::Base
     plan_id == Plan.pro.id and has_active_subscription? 
   end
 
+  def submission_count
+    total = 0
+    self.surveys.inject(total) do |total, survey|
+      total = total + survey.submissions.count
+    end
+  end
+
 end

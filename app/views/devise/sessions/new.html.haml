@@ -26,6 +26,11 @@
             %section.row
               .col-sm-12
                 = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
+                  = f.email_field :email
+                  = f.password_field :password, class: 'form-control'
+
+                  = f.form_group do
+                    = f.submit "Sign in", class: 'btn btn-primary btn-block'
                   = f.form_group do
                     %p.baio-login
                       = link_to "/auth/bonofa" do
