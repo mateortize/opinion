@@ -31,8 +31,6 @@
 
                   = f.form_group do
                     = f.submit "Sign in", class: 'btn btn-primary btn-block'
-                  = f.form_group do
-                    %p.baio-login
-                      = link_to "/auth/bonofa" do
-                        %span Sign in with
-                        %span.baio-logo
+                    
+                .shared_links_extern
+                  = render "devise/shared/links"
