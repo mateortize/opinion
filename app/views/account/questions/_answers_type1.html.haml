@@ -14,36 +14,13 @@
           = answer.text
       %hr
       - if !answer.image.blank?
-        %a.btn.btn-primary{:rel => 'lightbox', :href => answer.image_url}
+        %a{:rel => 'lightbox', :href => answer.image_url}
           %span.glyphicon.glyphicon-eye-open
-          -#= image_tag answer.image_url, class: 'img-responsive img-thumbnail'
 
       %a.btn.btn-primary{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
         %span.glyphicon.glyphicon-edit
       = link_to account_survey_question_answer_path(@survey, @question, answer), :class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-        %span.glyphicon.glyphicon-trash
-      
+        %span.glyphicon.glyphicon-trash   
+
       %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
         = render "account/answers/form", answer: answer
-
-  -#%table.table.table-responsive
-  -#  - @question.answers.each do |answer|
-  -#    %tr
-  -#      %td
-  -#        = check_box_tag "answers[]", answer.id, false
-  -#        %span
-  -#          - if !answer.image.blank?
-  -#            = answer.text
-  -#            %a{:rel => 'lightbox', :href => answer.image_url}
-  -#              .col-sm-3.col-xs-6.col-4-lg
-  -#                = image_tag answer.image_url, class: 'img-responsive img-thumbnail'
-  -#          - else
-  -#            = answer.text
-  -#      %td
-  -#        .text-right
-  -#          %a.btn.btn-primary{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
-  -#            Edit
-  -#          = link_to account_survey_question_answer_path(@survey, @question, answer), :class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-  -#            DELETE
-  -#        %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
-  -#          = render "account/answers/form", answer: answer
