@@ -23,7 +23,7 @@
                 Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
               %p
                 Have fun!
-            %section.row
+            %section.row.addpadding
               .col-sm-12
                 = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
                   = f.email_field :email

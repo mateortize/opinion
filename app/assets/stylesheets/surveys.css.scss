@@ -54,12 +54,34 @@
   text-decoration: underline;
 
 }
+.newrow{
+  margin: 10px 0px 10px 0px;
+  padding: 5px 0 5px 0;
+  border-bottom: 1px dotted $grey2 ;
+  }
 
+.customcheckbox:hover {
+  background-color: #3ea7d9 ;
+  color:$light ;
+  i {
+    color:$light!important;
+  }
+  img {
+    outline: 0;
+  }
+}
 .customcheckbox {
 
+  margin: 5px;
   cursor: pointer;
-  padding: 20px;
-  border-bottom: 1px solid $grey1;
+  padding: 10px;
+  border:1px dotted $grey1;
+  border-radius: 5px;
+  -moz-border-radius: 5px ;
+  -webkit-border-radius: 5px;
+
+
+//  border-bottom: 1px solid $grey1;
   img {
     clear: both;
     display: block;
@@ -117,7 +139,6 @@
 
 
 }
-
 
 .menu {
   padding: 20px;

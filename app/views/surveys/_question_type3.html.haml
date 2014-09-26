@@ -1,22 +1,25 @@
 %h3
+  %i.icon.icon-help-circled
   = question.text
   
 - if !question.image.blank?
   %a{:rel => 'lightbox', :href => question.image_url}
-    = image_tag question.image_url, class: 'img-circle pull-right img-thumbnail'
+    = image_tag question.image_url, class: '',style: 'width:100%'
     
 
-%div
+.row.answers
   - question.rows.times do |n|
-    .clearfix
-      .row
+    .col-md-12
+      .row.newrow
         - question.send("answers_#{n}").each do |answer|
-          .col-sm-2
-            = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
-            %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
-              - if !answer.image.blank?
+          .col-md-4
+            .customcheckbox
+              %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
+                = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
+                %i.radios
                 = answer.text
-                %a{:rel => 'lightbox', :href => answer.image_url}
-                  = image_tag answer.image_url, class: 'img-thumbnail'
-              - else
-                = answer.text
+                - if !answer.image.blank?
+                  %a{:rel => 'lightbox', :href => answer.image_url}
+                    = image_tag answer.image_url, class: ''
+
+
