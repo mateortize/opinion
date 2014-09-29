@@ -94,12 +94,15 @@
   label {
     cursor: pointer ;
     font-weight: normal ;
+    width: 100%;
+    display: inline-block;
     input[type=checkbox] {
       display:none;
     }
 
-    input[type=checkbox] + i {
+    input[type=checkbox] + i + label {
       color:$grey2;
+
     }
 
     input[type=checkbox]:checked + i {
@@ -149,5 +152,19 @@
 //    padding-left: 0px;
 //  }
 //}
+
+
+#accordion{
+  .panel-heading{
+
+
+
+    a{
+      display: block;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}
 
 

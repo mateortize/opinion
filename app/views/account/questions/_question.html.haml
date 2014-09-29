@@ -1,25 +1,23 @@
-.panel.panel-default
-  .panel-heading
-    .row
-      .col-sm-6
-        %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#panel-question#{question.id}"}
-            - if !question.image.blank?
-              = question.text
-            - else
-              = question.text
-      .col-sm-2
-        = question.answers.count
-      .col-sm-1
-        = Question::TYPES.key(question.question_type)
-      .col-sm-1
-        = question.position
-      .col-sm-2.actions
-        = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
-        = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
+%tr
+  %td
+    %h4.panel-title
+      %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#panel-question#{question.id}"}
+        - if !question.image.blank?
+          = question.text
+        - else
+          = question.text
+  %td
+    = question.answers.count
+  %td
+    = Question::TYPES.key(question.question_type)
+  %td
+    = question.position
+  %td.actions
+    = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
+    = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
 
-        = link_to "", sort_account_survey_question_path(@survey, question, { move: 'higher' }) , class:'icon icon-level-up'
-        = link_to "", sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) , class:'icon icon-level-down'
+    = link_to "", sort_account_survey_question_path(@survey, question, { move: 'higher' }) , class:'icon icon-level-up'
+    = link_to "", sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) , class:'icon icon-level-down'
 
 
 

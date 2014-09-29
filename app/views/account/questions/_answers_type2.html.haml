@@ -14,13 +14,13 @@
       - if !answer.image.blank?
         %a{:rel => 'lightbox', :href => answer.image_url}
 
-          %span.glyphicon.glyphicon-eye-open
+          %i.icon.icon-eye
 
       = link_to edit_account_survey_question_answer_path(survey, question, answer),  "data-target" => "#modal", "data-toggle" => "modal" do
-        %span.glyphicon.glyphicon-edit
+        %i.icon.icon-pencil
 
-      = link_to account_survey_question_answer_path(survey, question, answer), :class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-        %span.glyphicon.glyphicon-trash
-        
+      = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+        %i.icon.icon-trash
+
       %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
         = render "account/answers/form", answer: answer
