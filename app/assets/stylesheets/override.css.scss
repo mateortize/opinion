@@ -258,7 +258,6 @@ transition: all 400ms ease;
 	margin: 0;
 	font-size: 1.25em;
 	padding-top: 1em;
-	padding-bottom: 20px!important;
 	-webkit-transition: all 200ms linear;
 	-moz-transition: all 200ms linear;
 	-ms-transition: all 200ms linear;
@@ -281,9 +280,7 @@ transition: all 400ms ease;
 	background-position: center bottom;
 }
 .panel-actions .panel-tabs li.active a{
-  border-bottom: 10px solid #076fa1;
   color: #757575;
-  padding-bottom: 0;
 }
 
 .panel-actions .panel-tabs li.active a:hover{
