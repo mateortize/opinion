@@ -5,6 +5,7 @@ class Plan < ActiveRecord::Base
   }
 
   validates_presence_of :name, :price_cents, :duration, :description
+  validates_uniqueness_of :name
 
   monetize :price_cents
 
@@ -23,10 +24,15 @@ class Plan < ActiveRecord::Base
   end
 
   def self.free
-    Plan.find(1) rescue nil
+    Plan.find_by(name: 'free') rescue nil
   end
 
   def self.pro
-    Plan.find(2) rescue nil
+    Plan.find_by(name: 'pro') rescue nil
   end
+
+  def self.expert
+    Plan.find_by(name: 'expert') rescue nil
+  end
+
 end
