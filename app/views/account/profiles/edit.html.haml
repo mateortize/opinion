@@ -1,0 +1,13 @@
+%h2 Profile
+.row
+  .col-md-12
+    = bootstrap_form_for([:account, @account], url: account_profile_path, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", inline_errors: false) do |f|
+      = f.error_summary
+
+      = f.text_field :first_name , size: 50
+      = f.text_field :last_name , size: 50
+      = f.text_field :email, input_html: {disabled: true}
+
+      = f.form_group do
+        = f.submit "Save", class: 'btn btn-primary'
+        = link_to 'Cancel', :back, class: 'btn btn-default'
