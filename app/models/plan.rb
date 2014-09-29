@@ -24,15 +24,15 @@ class Plan < ActiveRecord::Base
   end
 
   def self.free
-    Plan.find_by(name: 'free') rescue nil
+    Plan.find_by(name: 'Free') rescue nil
   end
 
   def self.pro
-    Plan.find_by(name: 'pro') rescue nil
+    Plan.find_by(name: 'Pro') rescue nil
   end
 
   def self.expert
-    Plan.find_by(name: 'expert') rescue nil
+    Plan.find_by(name: 'Expert') rescue nil
   end
 
 end
