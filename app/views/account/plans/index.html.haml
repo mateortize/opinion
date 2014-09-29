@@ -49,7 +49,7 @@
       %li.yes
         oidjqwiodjqopidjpq
       %li.buy
-        = link_to 'Register', '#'
+        = link_to 'Register', new_account_subscription_path(plan_id: Plan.free.id)
 
     %ul.col-md-4
       %li.plan-head
@@ -68,7 +68,7 @@
       %li.yes
         oidjqwiodjqopidjpq
       %li.buy
-        = link_to 'Upgrade to PRO', '#'
+        = link_to 'Upgrade to PRO', new_account_subscription_path(plan_id: Plan.pro.id)
     %ul.col-md-4
       %li.plan-head
         %h3 Expert
@@ -86,7 +86,7 @@
       %li.yes
         oidjqwiodjqopidjpq
       %li.buy
-        = link_to 'Upgrade to EXPERT', '#'
+        = link_to 'Upgrade to EXPERT', new_account_subscription_path(plan_id: Plan.expert.id)
 
   .row.mt2
     .col-md-12.text-right
