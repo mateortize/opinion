@@ -16,15 +16,15 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to "Surveys", account_surveys_path
-        %li
-          = link_to destroy_account_session_path, :method => 'delete', :title => 'Sign out' do
-            %span.glyphicon.glyphicon-off
-            Logout
+
         %li.dropdown
           %a#profiletoggle{:href => "#"}
             %span.icon-user
             %span.toggle-title Open profile
             %span.toggle-icon.glyphicon.glyphicon-circle-arrow-down
+        %li
+          = link_to destroy_account_session_path, :method => 'delete', :title => 'Sign out' do
+            %span.glyphicon.glyphicon-off
     / /.navbar-collapse
   / /.container-fluid
 / Profile row
