@@ -15,9 +15,12 @@ $(function(){
     setTimeout(function(){
         $('.alert').fadeOut();
     }, 2500);
+
 });
 
 $(document).ready(function(){
+
+
 
     $('#profiletoggle').click(function(){
 
