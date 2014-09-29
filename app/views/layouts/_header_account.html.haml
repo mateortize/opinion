@@ -51,8 +51,8 @@
   .col-xs-12.col-sm-6.col-md-5.col-lg-5.bgcolor.profilesettings
     .actions
       .col-xs-6.bor
-        %a{:href => "#"}
-          %span.icon-user>
+        = link_to edit_account_profile_path do
+          %span.icon-user
           Profile Setting
       .col-xs-6
         = link_to account_subscriptions_path do

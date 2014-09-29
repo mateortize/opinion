@@ -23,6 +23,9 @@
       #order_form_panel.bgspace.bgwhite
         = simple_form_for [:account, @subscription], method: :post, wrapper: 'bootstrap3_horizontal', defaults: {right_column_html: {class: "col-lg-5 col-md-5"}, label_html: {class: "col-lg-2 col-md-2"} }, html: {class: "form-horizontal", role: "form"} do |f|
           %legend Card Information
+          %ul
+            - @subscription.errors.full_messages.each do |msg|
+              %li= msg
           = f.input :number, required: true, label: 'Card number'
           = f.input :year, required: true, as: :select, collection: (Date.today.year..(Date.today.year + 5)), prompt: false
           = f.input :month, required: true, as: :select, collection: (1..12), prompt: false

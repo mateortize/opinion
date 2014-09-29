@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :plans, only: [:index]
     resources :subscriptions
+    resource :profile
     
     get '/', to: 'surveys#index'
   end
