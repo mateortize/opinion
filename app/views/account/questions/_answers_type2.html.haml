@@ -1,13 +1,10 @@
-
 .col-lg-12
   %p.text-right
-    %a.btn.btn-primary{"data-target" => "#newAnswer", "data-toggle" => "modal"}
+    = link_to new_account_survey_question_answer_path(survey, question), class: "btn btn-primary", "data-target" => "#modal", "data-toggle" => "modal" do
       Add New Answer
 
-  #newAnswer.modal.fade{:role => "dialog"}
-    = render "account/answers/form", answer: Answer.new(question_id: @question.id)
 .col-lg-12
-  - @question.answers.each do |answer|
+  - question.answers.each do |answer|
     .col-lg-4.panel
       %h4.radio
         %label
@@ -16,11 +13,14 @@
       %hr
       - if !answer.image.blank?
         %a{:rel => 'lightbox', :href => answer.image_url}
+
           %span.glyphicon.glyphicon-eye-open
 
-      %a{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
-        %span.glyphicon.glyphicon-pencil
-      = link_to account_survey_question_answer_path(@survey, @question, answer), :class => '', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-        %span.glyphicon.glyphicon-trash.text-danger
+      = link_to edit_account_survey_question_answer_path(survey, question, answer),  "data-target" => "#modal", "data-toggle" => "modal" do
+        %span.glyphicon.glyphicon-edit
+
+      = link_to account_survey_question_answer_path(survey, question, answer), :class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+        %span.glyphicon.glyphicon-trash
+        
       %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
         = render "account/answers/form", answer: answer

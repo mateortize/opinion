@@ -27,12 +27,15 @@
 
         = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
 
+        = f.date_field :created_at, disabled: true
+        = f.date_field :updated_at, disabled: true
         .text-right
           = f.submit "Save question", class: 'btn btn-primary'
           = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
       %hr
-      - if !@question.new_record?
-        %h2 Answers
-        .row
-          = render "answers_type#{@question.question_type}"
+      = #render 'answers', survey: @survey, question: @question
+
+      %div.modal.fade{id: "modal", :role => "dialog"}
+        .modal-dialog
+          .modal-content

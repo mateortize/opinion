@@ -1,0 +1,6 @@
+- if !question.new_record?
+  %h3 Answers
+  .row
+    %div{id: "question#{question.id}"}
+      = render "answers_type#{question.question_type}", survey: survey, question: question
+

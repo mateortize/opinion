@@ -1,19 +1,20 @@
-- @question.rows.times do |n|
+- question.rows.times do |n|
 
   .col-lg-12
 
     %p.text-right
       %span.btn.btn-primary.pull-left.curdef
         = " #{n+1}"
-      %a.btn.btn-primary{"data-target" => "#newAnswer#{n}", "data-toggle" => "modal"}
+
+  .col-lg-12
+    %p.text-right
+      = link_to new_account_survey_question_answer_path(survey, question, row: n), class: "btn btn-primary", "data-target" => "#modal", "data-toggle" => "modal" do
         Add New Answer
 
-    %div.modal.fade{:id=>"newAnswer#{n}", :role => "dialog"}
-      = render "account/answers/form", answer: Answer.new(question_id: @question.id, row: n)
     .well
       %table.table.table-condensed.table-striped
 
-        - @question.send("answers_#{n}").each do |answer|
+        - question.send("answers_#{n}").each do |answer|
           %tr
             %td
               %h4.radio
@@ -26,10 +27,9 @@
                   %a{:rel => 'lightbox', :href => answer.image_url}
                     %span.glyphicon.glyphicon-eye-open
 
-                %a{"data-target" => "#modal-#{answer.id}", "data-toggle" => "modal"}
-                  %span.glyphicon.glyphicon-pencil
-                = link_to account_survey_question_answer_path(@survey, @question, answer),:class => '', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-                  %span.glyphicon.glyphicon-trash.text-danger
-              %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
-                = render "account/answers/form", answer: answer
+                = link_to edit_account_survey_question_answer_path(survey, question, answer),  "data-target" => "#modal", "data-toggle" => "modal" do
+                  %span.glyphicon.glyphicon-edit
+                = link_to account_survey_question_answer_path(survey, question, answer),:class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+                  %span.glyphicon.glyphicon-trash
+            
 

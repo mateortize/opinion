@@ -10,7 +10,7 @@ class Account::QuestionsController < Account::BaseController
   end
 
   def show
-    render :edit
+    render 'manage_answers', layout: false
   end
 
   def new

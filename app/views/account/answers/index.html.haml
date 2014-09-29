@@ -1,0 +1,20 @@
+- if @question.answers.count > 0
+  - @question.rows.times do |n|
+    .row
+      - @question.send("answers_#{n}").each do |answer|
+        .col-sm-3
+          %label
+            - if @question.question_type == 2
+              = check_box_tag "answers[]", answer.id, false
+            - else
+              = radio_button_tag "answers[]", answer.id
+            = answer.text
+
+          = link_to edit_account_survey_question_answer_path(answer.question.survey, answer.question, answer), class: "btn btn-primary", "data-target" => "#modal", "data-toggle" => "modal" do
+            %span.glyphicon.glyphicon-edit
+          = link_to account_survey_question_answer_path(@survey, @question, answer), :class => 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+            %span.glyphicon.glyphicon-trash
+
+- else
+  .help.text-danger
+    There is no answers yet

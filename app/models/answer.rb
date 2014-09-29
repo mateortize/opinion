@@ -6,6 +6,7 @@ class Answer < ActiveRecord::Base
 
   has_many :submissions, class_name: "SubmissionLog"
   belongs_to :question
+  validates_presence_of :text
   validates_uniqueness_of :text, scope: :question_id
   validates :text, length: { maximum: 255 }
   validate :image_file_size

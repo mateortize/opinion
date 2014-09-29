@@ -2,16 +2,18 @@ class Account::AnswersController < Account::BaseController
   
   before_filter :load_survey
   before_filter :load_question
-  before_filter :load_answer, except: [:create]
+  before_filter :load_answer, except: [:create, :new, :index]
 
   set_tab :questions
+  layout false
 
   def index
     @questions = @survey.questions
   end
 
   def new
-    @question = Question.new
+    @answer = @question.answers.new
+    @answer.row = params[:row]
   end
 
   def show
@@ -22,12 +24,11 @@ class Account::AnswersController < Account::BaseController
     @answer.question = @question
     
     if @answer.save
-      flash[:success] = "Sucessfully created."
+      render :text => "Sucessfully created."
     else
-      flash[:danger] = "Sorry, failed to create."
+      render partial: "errors", status: 403, locals:{ errors: @answer.errors.full_messages }
     end
 
-    redirect_to edit_account_survey_question_path(@survey, @question)
   end
 
   def update
@@ -62,7 +63,7 @@ class Account::AnswersController < Account::BaseController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :row, :image, :remove_image, )
+    params.require(:answer).permit(:text, :row, :image, :remove_image)
   end
 
 end
