@@ -34,7 +34,8 @@
           = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
       %hr
-      - if !@question.new_record?
-        %h2 Answers
-        .row
-          = render "answers_type#{@question.question_type}"
+      = #render 'answers', survey: @survey, question: @question
+
+      %div.modal.fade{id: "modal", :role => "dialog"}
+        .modal-dialog
+          .modal-content

@@ -3,7 +3,7 @@
     .row
       .col-sm-6
         %h4.panel-title
-          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#question#{question.id}"}
+          %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#panel-question#{question.id}"}
             - if !question.image.blank?
               = question.text
             - else
@@ -23,7 +23,7 @@
 
       
         
-  .panel-collapse.collapse{id: "question#{question.id}"}
+  .panel-collapse.collapse{id: "panel-question#{question.id}"}
     .panel-body
       %p
         %strong Created at:
@@ -44,4 +44,4 @@
       %p
         %strong Answers
 
-      = render 'answers', question: question
+      = render 'answers', survey: @survey, question: question

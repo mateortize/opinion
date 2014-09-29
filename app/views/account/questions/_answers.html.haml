@@ -1,15 +1,6 @@
-- if question.answers.count > 0
-  - question.rows.times do |n|
-    .row
-      - question.send("answers_#{n}").each do |answer|
-        .col-sm-3
-          %label
-            - if question.question_type == 2
-              = check_box_tag "answers[]", answer.id, false
-            - else
-              = radio_button_tag "answers[]", answer.id
-            = answer.text
+- if !question.new_record?
+  %h3 Answers
+  .row
+    %div{id: "question#{question.id}"}
+      = render "answers_type#{question.question_type}", survey: survey, question: question
 
-- else
-  .help.text-danger
-    There is no answers yet
