@@ -94,13 +94,11 @@
   label {
     cursor: pointer ;
     font-weight: normal ;
-    width: 100%;
-    display: inline-block;
     input[type=checkbox] {
       display:none;
     }
 
-    input[type=checkbox] + i + label {
+    input[type=checkbox] + i  {
       color:$grey2;
 
     }
