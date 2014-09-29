@@ -1,28 +1,93 @@
-.row
-  .col-sm-12
-    %h1 #{@plans.count} Plans
-    .row
-      - Plan.active.each_with_index do |plan, i|
-        .col-xs-12.col-sm-6{ class: "col-md-#{12/@plans.count}" }
-          .panel.pricing-big{class: "panel-#{plan_classes[i]}"}
-            .panel-heading
-              .panel-title.text-center
-                = plan.name
-            .panel-body.text-align-center
-              .the-price
-                %h3.text-center
-                  %strong
-                    = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
-                  %span.subscript
-                    - unless plan.price == 0
-                      = "/ #{pluralize(plan.duration, 'month')}"
-              .the-description
-                = plan.description
+-#.row
+-#  .col-sm-12
+-#    %h1 #{@plans.count} Plans
+-#    .row
+-#      - Plan.active.each_with_index do |plan, i|
+-#        .col-xs-12.col-sm-6{ class: "col-md-#{12/@plans.count}" }
+-#          .panel.pricing-big{class: "panel-#{plan_classes[i]}"}
+-#            .panel-heading
+-#              .panel-title.text-center
+-#                = plan.name
+-#            .panel-body.text-align-center
+-#              .the-price
+-#                %h3.text-center
+-#                  %strong
+-#                    = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
+-#                  %span.subscript
+-#                    - unless plan.price == 0
+-#                      = "/ #{pluralize(plan.duration, 'month')}"
+-#              .the-description
+-#                = plan.description
+-#
+-#            .panel-footer.text-align-center
+-#              - if account_signed_in?
+-#                - if plan.id != 1
+-#                  = link_to 'Use', new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+-#              - else
+-#                = link_to 'Use', new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+-#
 
-            .panel-footer.text-align-center
-              - if account_signed_in?
-                - if plan.id != 1
-                  = link_to 'Use', new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'  
-              - else
-                = link_to 'Use', new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+#plans.addpadding
+  %h2 Select Plan
+  .shortline.mb2
 
+  .row
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Free
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 0,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Register', '#'
+
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Pro
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 59,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Upgrade to PRO', '#'
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Expert
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 99,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Upgrade to EXPERT', '#'
+
+  .row.mt2
+    .col-md-12.text-right
+      = link_to 'Cancel', '#', class: 'btn btn-default'
