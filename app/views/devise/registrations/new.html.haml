@@ -35,18 +35,25 @@
           %header
             Sign up
           %fieldset
-
+            %section
+              %h2
+                Dear visitor/member,
+              %p
+                Apologies, opinion7 is currently only available in the Closed-Beta version for our members (and partners).
+                Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
+              %p
+                Have fun!
             %section.row.addpadding
               .col-sm-12
-                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, label_col: "col-lg-1" ,  control_col: "col-md-12 nopadding", url: session_path(resource_name)) do |f|
+                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, label_col: "col-lg-12" ,  control_col: "col-md-12 nopadding", url: session_path(resource_name)) do |f|
                   = devise_error_messages!
                   = f.email_field :email
                   = f.password_field :password, class: 'form-control'
                   = f.password_field :password_confirmation, class: 'form-control'
 
                   = f.form_group do
-                    = f.submit "Sign up", class: 'btn btn-primary btn-block'
+                    = f.submit "Register now", class: 'btn btn-primary btn-block'
 
 
-                .shared_links_extern
-                  = render "devise/shared/links"
+              .shared_links_extern
+                = render "devise/shared/links"
