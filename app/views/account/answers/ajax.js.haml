@@ -1,0 +1,8 @@
+= remotipart_response do
+  - unless @answer.errors.any?
+    $("#question#{@question.id}").load("#{account_survey_question_path(@survey, @question)}");
+    $('#close-button').trigger('click');
+  - else
+    $('form .alert').remove();
+    var messages = $('<div class="alert">#</div>');
+    $('form').append('<div class="alert">#{@answer.errors.full_messages.join(',')}</div>');

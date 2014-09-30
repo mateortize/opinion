@@ -1,4 +1,4 @@
-= bootstrap_form_for([:account, @survey, @question, @answer], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-8") do |f|
+= bootstrap_form_for([:account, @survey, @question, @answer], remote: true, layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-8") do |f|
   .answer_block
     = f.text_field :text, label: "Answer"
     - if @question.question_type == 3 # if 2d matrix
@@ -19,25 +19,3 @@
   =f.form_group do
     %button#close-button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
     = f.submit "Save", class: 'btn btn-primary'
-
-  :javascript
-    $('#new_answer, [id^="edit_answer"]').submit(function(e){
-      var postData = $(this).serializeArray();
-      var formURL = $(this).attr("action");
-      $.ajax(
-      {
-          url : formURL,
-          type: "POST",
-          data : postData,
-          success:function(data, textStatus, jqXHR) 
-          {
-              $("#question#{@question.id}").load("#{account_survey_question_path(@survey, @question)}");
-              $('#close-button').trigger('click');
-          },
-          error: function(jqXHR, textStatus, errorThrown) 
-          {
-              $('form').append(jqXHR.responseText);
-          }
-      });
-      e.preventDefault(); //STOP default action
-    });
