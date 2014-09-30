@@ -36,7 +36,9 @@
         %tr
           %td= subscription.id
           %td= subscription.payment_method
-          %td= link_to subscription.account, admin_account_path(subscription.account)
+          %td
+            - if subscription.account
+              = link_to subscription.account, admin_account_path(subscription.account)
           %td= subscription.plan
           %td= money_with_cents_and_with_symbol subscription.subtotal
           %td= money_with_cents_and_with_symbol subscription.tax

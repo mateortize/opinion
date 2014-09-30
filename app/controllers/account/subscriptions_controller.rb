@@ -32,6 +32,11 @@ class Account::SubscriptionsController < Account::BaseController
       render :new, alert: "Sorry, Payment is failed. Please try it again"
     end
   end
+
+  def show
+    @subscription = Subscription.find(params[:id])
+    render 'invoice', layout: 'pdf', locals: { subscription: @subscription, account: current_account, billing_address: @subscription.billing_address, plan: @subscription.plan }
+  end
   
   private
 

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :plans, only: [:index]
+    resource :plan, only: [:show]
     resources :subscriptions
     resource :profile
     
