@@ -1,0 +1,37 @@
+%table.body
+  %tbody
+    %tr
+      %td.center{ :align => 'center', :valign => 'top', :style => 'color: #cccccc;'}
+        %center
+          = render 'shared/mail_header'
+          %table.container
+            %tbody
+              %tr
+                %td
+                  %table.row
+                    %tbody
+                      %tr
+                        %td.wrapper.last
+                          %table.twelve.columns
+                            %tbody
+                              %tr
+                                %td
+                                  %h3 Hi, #{@account.to_s}
+                                  %p.lead
+                                    Your payment has been completed successfully.
+                                  %p 
+                                    %b Payment information:
+                                    %br
+                                    Sub Total:
+                                    = money_with_cents_and_with_symbol(@subscription.subtotal)
+                                    %br
+                                    Tax (#{"#{Rails.application.secrets[:tax_percentage]}"}%):
+                                    = money_with_cents_and_with_symbol(@subscription.tax)
+                                    %br
+                                    Total: 
+                                    = money_with_cents_and_with_symbol(@subscription.total)
+                                    %br
+                                    Expired at:
+                                    = @subscription.expired_at
+
+                  = render "shared/mail_footer"
