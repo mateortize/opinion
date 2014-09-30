@@ -1,0 +1,52 @@
+-#%h2 Sign up
+-#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+-#  = devise_error_messages!
+-#  %div
+-#    = f.label :email
+-#    %br/
+-#    = f.email_field :email, autofocus: true
+-#  %div
+-#    = f.label :password
+-#    %br/
+-#    = f.password_field :password, autocomplete: "off"
+-#  %div
+-#    = f.label :password_confirmation
+-#    %br/
+-#    = f.password_field :password_confirmation, autocomplete: "off"
+-#  %div= f.submit "Sign up"
+-#= render "devise/shared/links"
+
+
+
+.row.nomargin
+  .hidden-xs.col-sm-1.col-md-2
+    = image_tag('spacer_200.gif')
+#sign-in
+  .signin-content.container
+    .row
+      .col-xs-12.col-sm-12.col-md-7.col-lg-8
+        = image_tag('screens.png', class: 'img-responsive')
+        %p.lead
+          Create user polls and questionnaires on a whole new level! An advanced online tool that simplifies time management, event planning and meeting coordination!
+          An internet tool for time management and coordinating meetings. Create user polls, questionnaires or schedule meetings and events easier. Strengthen your customer
+          loyalty by receiving feedback and evaluations. Read at a glance graphics, allow you to see results quickly.
+      .col-xs-12.col-sm-12.col-md-5.col-lg-4
+        .well.nopadding
+          %header
+            Sign up
+          %fieldset
+
+            %section.row.addpadding
+              .col-sm-12
+                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, label_col: "col-lg-1" ,  control_col: "col-md-12 nopadding", url: session_path(resource_name)) do |f|
+                  = devise_error_messages!
+                  = f.email_field :email
+                  = f.password_field :password, class: 'form-control'
+                  = f.password_field :password_confirmation, class: 'form-control'
+
+                  = f.form_group do
+                    = f.submit "Sign up", class: 'btn btn-primary btn-block'
+
+
+                .shared_links_extern
+                  = render "devise/shared/links"
