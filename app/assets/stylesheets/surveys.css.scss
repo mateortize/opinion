@@ -44,14 +44,18 @@
 {
   vertical-align: text-bottom;
   padding-top: 5px;
+  padding-right: 5px;
+
 }
 .languages .checkbox input[type=checkbox]:checked + span
 {
   @include transition(all 300ms ease);
   font-weight: bold;
   font-style: italic;
-  color:$primarybg;
-  text-decoration: underline;
+  background-color: $primary;
+  color: $light;
+  border-radius: 5px;
+
 
 }
 .newrow{

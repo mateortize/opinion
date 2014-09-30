@@ -33,7 +33,6 @@
     %th Name
     %th Plan
     %th Promocode
-    %th Videos #
     %th Created at
     %th
   - if @accounts.count > 0
@@ -48,7 +47,6 @@
           - else
             %span.label.label-success= account.plan
         %td= account.promotion_code
-        %td= account.videos_count
         %td= account.created_at
         %td
           = link_to 'Edit', edit_admin_account_path(account), class: 'btn btn-xs btn-info'
