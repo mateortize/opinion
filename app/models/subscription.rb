@@ -157,7 +157,7 @@ class Subscription < ActiveRecord::Base
       ip:           ip,
       first_name:   account.first_name,
       last_name:    account.last_name,
-      description:  'Presentation7 plan purchase',
+      description:  'Opinion7 plan purchase',
       email:        account.email,
       currency:     Rails.application.secrets[:currency_code],
       address: {
