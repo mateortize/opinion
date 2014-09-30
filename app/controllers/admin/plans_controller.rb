@@ -48,6 +48,6 @@ class Admin::PlansController < AdminController
   private
 
   def plan_params
-    params.require(:plan).permit(:name, :description, :price, :duration, :status)
+    params.require(:plan).permit(:name, :description, :price, :duration, :status, :position, :maximum_surveys_count, :maximum_languages_count)
   end
 end

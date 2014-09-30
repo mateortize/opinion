@@ -27,7 +27,7 @@ class Account::SubscriptionsController < Account::BaseController
       current_account.plan_id = @subscription.plan_id
       current_account.save
       
-      redirect_to account_surveys_path, notice: "Your subscription is created."
+      redirect_to account_subscriptions_path, notice: "Your subscription is created."
     else
       render :new, alert: "Sorry, Payment is failed. Please try it again"
     end

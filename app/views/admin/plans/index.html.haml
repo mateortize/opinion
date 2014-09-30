@@ -13,6 +13,7 @@
     %th Name
     %th Price
     %th Users #
+    %th Position
     %th Status
     %th
   - if @plans.count > 0
@@ -22,6 +23,7 @@
         %td= plan.name
         %td= money_with_cents_and_with_symbol plan.price
         %td= link_to plan.accounts.count, admin_accounts_path(plan_id: plan.id)
+        %td= plan.position
         %td
           - if plan.is_active?
             %span.label.label-primary Active
