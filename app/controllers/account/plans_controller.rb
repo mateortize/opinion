@@ -1,7 +1,10 @@
 class Account::PlansController < Account::BaseController
-  skip_filter :authenticate_account!
-  
   def index
+    
+  end
+
+  def show
+    @plan = current_account.plan
     @plans = Plan.active
   end
 end

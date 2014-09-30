@@ -24,9 +24,9 @@ pro1.plan = Plan.pro
 pro1.save
 
 expert1 = Account.create(email: 'e1@email.com', password: 'defaultpw')
-expert1.plan = Plan.pro
+expert1.plan = Plan.expert
 expert1.save
 
 free1 = Account.create(email: 'f1@email.com', password: 'defaultpw')
-free1.plan = Plan.pro
+free1.plan = Plan.expert
 free1.save
