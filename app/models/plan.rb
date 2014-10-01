@@ -4,14 +4,16 @@ class Plan < ActiveRecord::Base
     'inactive' => 2,
   }
 
-  validates_presence_of :name, :price_cents, :duration, :description
-  validates_uniqueness_of :name
-
+  acts_as_list scope: [:status]
   monetize :price_cents
-
-  has_many :accounts
+  mount_uploader :image, ImageUploader
 
   scope :active, -> { where(status: 1) }
+  has_many :accounts
+
+  validates_presence_of :name, :price_cents, :duration, :description
+  validates_uniqueness_of :name
+  
   
   STATUSES.each do |n, v|
     define_method :"is_#{n}?" do

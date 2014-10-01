@@ -1,0 +1,10 @@
+%ul.nav
+  %li.pull-left
+    = active_link_to edit_account_profile_path, :active=>:exclusive do
+      Profile
+  %li.pull-left
+    = active_link_to account_plan_path, :active=>:exclusive do
+      Plan
+  %li.pull-left
+    = active_link_to account_subscriptions_path, :active=>:exclusive do
+      Subscriptions

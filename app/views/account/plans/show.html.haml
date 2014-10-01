@@ -1,23 +1,10 @@
-%h2 Current Plan
-%p
-  %strong Name:
-  = @plan.name
-%p
-  %strong Price:
-  = money_with_cents_and_with_symbol(@plan.price)
-%p
-  %strong Since:
-  = @plan.created_at
-%p
-  %strong Expire at:
-  = @plan.expire_at
-
+= render 'account/shared/navigations_profile'
 
 .row
   .col-sm-12
     %h1 #{@plans.count} Plans
     .row
-      - Plan.active.each_with_index do |plan, i|
+      - @plans.each_with_index do |plan, i|
         .col-xs-12.col-sm-6{ class: "col-md-#{12/@plans.count}" }
           .panel.pricing-big{class: "panel-#{plan_classes[i]}"}
             .panel-heading
@@ -31,78 +18,14 @@
                   %span.subscript
                     - unless plan.price == 0
                       = "/ #{pluralize(plan.duration, 'month')}"
+              .the-image
+                = image_tag plan.image_url, class: 'img-responsive'
+
               .the-description
                 = plan.description
 
             .panel-footer.text-align-center
-              - if account_signed_in?
-                - if plan.id != 1
-                  = link_to 'Use', new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+              - if plan.id != @plan.id
+                = link_to "#{((plan.position.to_i>@plan.position)? 'Upgrade': 'Downgrade')} to #{plan.name}", new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
               - else
-                = link_to 'Use', new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
-
-
-#plans.addpadding
-  %h2 Select Plan
-  .shortline.mb2
-
-  .row
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Free
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 0,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Register', new_account_subscription_path(plan_id: Plan.free.id)
-
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Pro
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 59,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Upgrade to PRO', new_account_subscription_path(plan_id: Plan.pro.id)
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Expert
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 99,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Upgrade to EXPERT', new_account_subscription_path(plan_id: Plan.expert.id)
-
-  .row.mt2
-    .col-md-12.text-right
-      = link_to 'Cancel', '#', class: 'btn btn-default'
+                = link_to "Current Plan", '#', class: 'btn btn-default btn-block'

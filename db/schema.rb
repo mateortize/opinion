@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930135519) do
+ActiveRecord::Schema.define(version: 20141001013448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140930135519) do
     t.integer  "maximum_surveys_count"
     t.integer  "maximum_languages_count"
     t.integer  "position"
+    t.string   "image"
   end
 
   add_index "plans", ["status"], name: "index_plans_on_status", using: :btree
@@ -160,7 +161,7 @@ ActiveRecord::Schema.define(version: 20140930135519) do
   end
 
   add_index "subscriptions", ["account_id"], name: "index_subscriptions_on_account_id", using: :btree
-  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_payment_method", using: :btree
+  add_index "subscriptions", ["payment_method"], name: "index_subscriptions_on_method", using: :btree
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
   add_index "subscriptions", ["status"], name: "index_subscriptions_on_status", using: :btree
   add_index "subscriptions", ["token"], name: "index_subscriptions_on_token", using: :btree

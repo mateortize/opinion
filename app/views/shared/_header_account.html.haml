@@ -33,7 +33,10 @@
     / profileimage
     .col-xs-5.col-sm-5.ccol-md-5.col-lg-4
       .profileimg
-        = image_tag('nouserimage.jpg', class: 'img-responsive img-circle')
+        - if current_account.avatar_image
+          = image_tag current_account.avatar_image_url, class: 'img-responsive img-circle'
+        - else
+          = image_tag 'nouserimage.jpg', class: 'img-responsive img-circle'
         -#%a{:alt => "change profile image", :href => "#"}
         -#  %span.icon-picture
         -#  %span.txt Change Image

@@ -8,9 +8,9 @@
     = stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    = render "layouts/header_admin"
+    = render "shared/header_admin"
     .container
-      = render "/shared/flashes"
+      = render "shared/flashes"
       .row
         .col-xs-12
           %p.pull-right.visible-xs

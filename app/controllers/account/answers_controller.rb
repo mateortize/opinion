@@ -22,22 +22,14 @@ class Account::AnswersController < Account::BaseController
   def create
     @answer = Answer.create(answer_params)
     @answer.question = @question
-    
-    if @answer.save
-      render :text => "Sucessfully created."
-    else
-      render partial: "errors", status: 403, locals:{ errors: @answer.errors.full_messages }
-    end
-
+    @answer.save
+    render :layout => false, :template => 'account/answers/ajax', :status => (@answer.errors.any? ? :unprocessable_entity : :ok)
   end
 
   def update
     @answer = Answer.find(params[:id])
-    if @answer.update_attributes(answer_params)
-      redirect_to edit_account_survey_question_path(@survey, @question)
-    else
-      render :edit
-    end
+    @answer.update_attributes(answer_params)
+    render :layout => false, :template => 'account/answers/ajax', :status => (@answer.errors.any? ? :unprocessable_entity : :ok)
   end
 
   def edit

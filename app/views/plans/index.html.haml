@@ -1,0 +1,60 @@
+#plans.addpadding
+  %h2 Select Plan
+  .shortline.mb2
+
+  .row
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Free
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 0,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Register', new_account_registration_path
+
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Pro
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 59,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Register', new_account_subscription_path(plan_id: Plan.pro.id)
+    %ul.col-md-4
+      %li.plan-head
+        %h3 Expert
+      %li.plan-image
+        = image_tag 'https://www.transmit7.com/assets/package_free.png'
+        %span.price
+          %span 99,-€
+          %span.price-small year
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.no
+        oidjqwiodjqopidjpq
+      %li.yes
+        oidjqwiodjqopidjpq
+      %li.buy
+        = link_to 'Register', new_account_subscription_path(plan_id: Plan.expert.id)
