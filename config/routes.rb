@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :accounts
+  devise_for :accounts, :controllers => { registrations: 'registrations' }
 
   get '/auth/:provider/callback', to: 'omniauth#create'
   post '/auth/:provider/callback', to: 'omniauth#create'
@@ -21,8 +21,6 @@ Rails.application.routes.draw do
     resource :plan, only: [:show]
     resources :subscriptions
     resource :profile
-    
-    get '/', to: 'surveys#index'
   end
 
   resources :plans, only: [:index]
@@ -53,6 +51,8 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index, :destroy]
     resources :contact_messages, only: [:index, :destroy]
   end
+
+  get '/account', to: 'account/surveys#index', as: 'account_root'
   get '/admin', to: 'admin/dashboard#index', as: 'admin_root'
 
   root to: 'account/surveys#index'
