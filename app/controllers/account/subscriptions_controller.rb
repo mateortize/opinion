@@ -9,7 +9,11 @@ class Account::SubscriptionsController < Account::BaseController
     @subscription.plan_id = params[:plan_id]
     @subscription.account_id = current_account.id
     @subscription.calculate_prices
-    @subscription.build_billing_address
+    if !current_account.billing_address.blank?
+      @subscription.build_billing_address(current_account.billing_address.attributes)
+    else
+      @subscription.build_billing_address
+    end
   end
 
   def create

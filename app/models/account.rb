@@ -11,6 +11,9 @@ class Account < ActiveRecord::Base
   has_many :surveys
   has_many :subscriptions
 
+  has_one :billing_address, as: :addressable, class_name: 'Address', dependent: :destroy
+  accepts_nested_attributes_for :billing_address
+
   belongs_to :plan
 
   def to_s
