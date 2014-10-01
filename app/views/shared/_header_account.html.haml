@@ -33,7 +33,7 @@
     / profileimage
     .col-xs-5.col-sm-5.ccol-md-5.col-lg-4
       .profileimg
-        - if current_account.avatar_image
+        - if !current_account.avatar_image.blank?
           = image_tag current_account.avatar_image_url, class: 'img-responsive img-circle'
         - else
           = image_tag 'nouserimage.jpg', class: 'img-responsive img-circle'

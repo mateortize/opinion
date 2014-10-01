@@ -39,7 +39,7 @@
             = a.input :city, required: true
             = a.input :state, required: true
             = a.input :postal_code, required: true
-            = a.input :country, as: :select, collection: Country.all, required: true, input_html: { class: 'form-control' }
+            = a.input :country, as: :select, collection: ActionView::Helpers::FormOptionsHelper::COUNTRIES, required: true, input_html: { class: 'form-control' }
             .agree.pull-right
             
           .clearfix

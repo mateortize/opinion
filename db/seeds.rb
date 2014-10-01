@@ -10,9 +10,9 @@
 admin1 = Account.create(email: 'admin1@email.com', password: 'defaultpw', admin: true)
 
 
-plan1 = Plan.create(name: "Free", price_cents: 0, status: 1, duration: 1, description: "This is free plan")
-plan2 = Plan.create(name: "Pro", price_cents: 10 * 1000, status: 1, duration: 1, description: "This is pro plan")
-plan3 = Plan.create(name: "Expert", price_cents: 20 * 1000, status: 1, duration: 1, description: "This is expert plan")
+plan1 = Plan.create(name: "Free", price_cents: 0, status: 1, duration: 1, description: "This is free plan", position:1, maximum_surveys_count: 5, maximum_languages_count: 1)
+plan2 = Plan.create(name: "Pro", price_cents: 10 * 1000, status: 1, duration: 1, description: "This is pro plan", position:2, maximum_surveys_count: 9999, maximum_languages_count: 3)
+plan3 = Plan.create(name: "Expert", price_cents: 20 * 1000, status: 1, duration: 1, description: "This is expert plan", position:3, maximum_surveys_count: 99999, maximum_languages_count: 99999)
 
 Account.create(email: 'a1@email.com', password: 'defaultpw')
 Account.create(email: 'a2@email.com', password: 'defaultpw')
