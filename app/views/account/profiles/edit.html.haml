@@ -10,7 +10,7 @@
       = f.text_field :last_name , size: 50
       = f.text_field :email, input_html: {disabled: true}
       
-      - if @account.avatar_image
+      - if !@account.avatar_image.blank?
         = f.form_group do
           .row
             .col-sm-6
