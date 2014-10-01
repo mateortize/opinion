@@ -48,7 +48,7 @@ class Survey < ActiveRecord::Base
 
   def validate_plan_locales_limit
     limit = self.account.plan.maximum_languages_count || 1
-    if self.locales and self.locales.count > limit
+    if self.locales and (self.locales.count > limit)
       errors.add(:current_user, "couldn't use more than #{limit} languages. Please upgrade your plan")
     end
   end

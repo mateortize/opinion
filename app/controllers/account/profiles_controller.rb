@@ -16,6 +16,6 @@ class Account::ProfilesController < Account::BaseController
 
   def account_params
     params.fetch(:account, {})
-          .permit(:first_name, :last_name, :avatar_image)
+          .permit(:first_name, :last_name, :avatar_image, :remove_avatar_image)
   end
 end
