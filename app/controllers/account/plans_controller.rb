@@ -5,6 +5,6 @@ class Account::PlansController < Account::BaseController
 
   def show
     @plan = current_account.plan
-    @plans = Plan.active
+    @plans = Plan.active.order("position asc")
   end
 end

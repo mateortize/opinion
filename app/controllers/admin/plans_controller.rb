@@ -2,7 +2,7 @@ class Admin::PlansController < AdminController
   load_resource :plan
 
   def index
-    @plans = Plan.order("created_at desc").page(params[:page]).per(18)
+    @plans = Plan.order("status asc, position asc").page(params[:page]).per(18)
   end
 
 
@@ -48,6 +48,6 @@ class Admin::PlansController < AdminController
   private
 
   def plan_params
-    params.require(:plan).permit(:name, :description, :price, :duration, :status, :position, :maximum_surveys_count, :maximum_languages_count)
+    params.require(:plan).permit(:name, :description, :price, :duration, :status, :position, :maximum_surveys_count, :maximum_languages_count, :image, :remove_image)
   end
 end
