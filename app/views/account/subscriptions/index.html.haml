@@ -2,8 +2,11 @@
 
 .modal-header
   %h4.modal-title Subscriptions
-  
+  - if current_account.has_active_subscription? and current_account.active_subscription.payment_method != 'baio'
+    %samll
+      %i Please contact admin if you want to cancel active subscription
 .modal-body
+
   .table-responsive
     %table.table.table-striped.table-bordered.table-condensed
       %thead
@@ -50,8 +53,5 @@
             %td{colspan: 10} You have no subscriptions
 
   .clearfix
-  - if current_account.has_active_subscription? and current_account.active_subscription.payment_method != 'baio'
-    %samll.pull-right
-      %i Please contact admin if you want to cancel active subscription
 
 .modal-footer

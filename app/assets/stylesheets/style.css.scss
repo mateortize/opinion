@@ -140,6 +140,17 @@ a.lead{
 .curdef {
   cursor: default;
 }
+#wrapper {
+
+  .alert {
+
+    &.alert-alert {
+
+      background-color: $primarybg;
+    }
+  }
+}
+
 .well {
   background: lighten($grey1, 10);
   border: 1px solid $grey1;
@@ -196,6 +207,7 @@ table {
 textarea {
   resize: none;
 }
+
 .panel {
 //  padding: 10px;
 //
