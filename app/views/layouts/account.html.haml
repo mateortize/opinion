@@ -7,8 +7,8 @@
     = csrf_meta_tags
   %body
     #wrapper
-      = render 'layouts/header_account'
-      = render "/shared/flashes"
+      = render 'shared/header_account'
+      = render "shared/flashes"
       / Seetings start
       #content
         / product actions
@@ -17,7 +17,7 @@
             / h1>wadd can i do</h1
             .panel.panel-actions.addpadding
               = yield
-      = render "layouts/footer"
+      = render "shared/footer"
       
       = javascript_include_tag 'application'
       = javascript_include_tag 'accounts'

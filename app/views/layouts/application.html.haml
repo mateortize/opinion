@@ -8,13 +8,13 @@
   %body
     #wrapper
       - if account_signed_in?
-        = render "layouts/header_account"
+        = render "shared/header_account"
       - else
-        = render "layouts/header"
+        = render "shared/header"
         
-      = render "/shared/flashes"
+      = render "shared/flashes"
       #page.container.nopadding
         .row
           .col-md-12
             = yield
-      = render "layouts/footer"
+      = render "shared/footer"
