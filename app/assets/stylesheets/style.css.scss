@@ -140,16 +140,10 @@ a.lead{
 .curdef {
   cursor: default;
 }
-#wrapper {
 
-  .alert {
 
-    &.alert-alert {
 
-      background-color: $primarybg;
-    }
-  }
-}
+
 
 .well {
   background: lighten($grey1, 10);
