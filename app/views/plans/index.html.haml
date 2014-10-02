@@ -1,60 +1,26 @@
-#plans.addpadding
-  %h2 Select Plan
-  .shortline.mb2
+.modal-body
 
-  .row
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Free
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 0,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Register', new_account_registration_path
+  #plans.addpadding
+    %h2 Select Plan
+    .shortline.mb2
 
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Pro
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 59,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Register', new_account_subscription_path(plan_id: Plan.pro.id)
-    %ul.col-md-4
-      %li.plan-head
-        %h3 Expert
-      %li.plan-image
-        = image_tag 'https://www.transmit7.com/assets/package_free.png'
-        %span.price
-          %span 99,-€
-          %span.price-small year
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.no
-        oidjqwiodjqopidjpq
-      %li.yes
-        oidjqwiodjqopidjpq
-      %li.buy
-        = link_to 'Register', new_account_subscription_path(plan_id: Plan.expert.id)
+    .row
+      - @plans.each_with_index do |plan, i|
+        %ul.col-md-4
+          %li.plan-head
+            %h3
+              = plan.name
+          %li.plan-image
+            = image_tag plan.image_url, class: 'img-responsive'
+            %span.price
+              %span
+                = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
+              %span.price-small
+              -#- unless plan.price == 0
+              -#  = "/ #{pluralize(plan.duration, 'month')}"
+          %li.yes
+            = plan.description
+          %li.buy
+            = link_to "Register to #{plan.name}", account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+
+.modal-footer
