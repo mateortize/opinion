@@ -2,7 +2,7 @@ class Account::AnswersController < Account::BaseController
   
   before_filter :load_survey
   before_filter :load_question
-  before_filter :load_answer, except: [:create, :new, :index]
+  before_filter :load_answer, except: [:create, :new, :index, :update]
 
   set_tab :questions
   layout false

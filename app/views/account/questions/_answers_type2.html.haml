@@ -21,6 +21,3 @@
 
       = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
         %i.icon.icon-trash
-
-      %div.modal.fade{id: "modal-#{answer.id}", :role => "dialog"}
-        = render "account/answers/form", answer: answer
