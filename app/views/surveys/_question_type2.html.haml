@@ -16,5 +16,5 @@
             %a{:rel => 'lightbox', :href => answer.image_url}
               = image_tag answer.image_url, class: 'img-thumbnail'
           = radio_button_tag "survey[questions][#{question.id}][rows][0][answer]", answer.id
-          %i.radios
+          %i.glyphicon.glyphicon-unchecked
           = answer.text
