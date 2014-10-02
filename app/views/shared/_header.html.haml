@@ -10,7 +10,9 @@
       %a.navbar-brand{:href => "/"}
         = image_tag('logo.png')
         %span BETA
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          = link_to 'Pricing', plans_path
 
-    .collapse.navbar-collapse
-      %p.navbar-text.navbar-right
-        = link_to 'Pricing', plans_path
+

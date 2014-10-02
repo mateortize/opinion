@@ -1,26 +1,27 @@
-.modal-body
+.panel
+  .modal-body
 
-  #plans.addpadding
-    %h2 Select Plan
-    .shortline.mb2
+    #plans.addpadding
+      %h2 Select Plan
+      .shortline.mb2
 
-    .row
-      - @plans.each_with_index do |plan, i|
-        %ul.col-md-4
-          %li.plan-head
-            %h3
-              = plan.name
-          %li.plan-image
-            = image_tag plan.image_url, class: 'img-responsive'
-            %span.price
-              %span
-                = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
-              %span.price-small
-              -#- unless plan.price == 0
-              -#  = "/ #{pluralize(plan.duration, 'month')}"
-          %li.yes
-            = plan.description
-          %li.buy
-            = link_to "Register to #{plan.name}", new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+      .row
+        - @plans.each_with_index do |plan, i|
+          %ul.col-md-4
+            %li.plan-head
+              %h3
+                = plan.name
+            %li.plan-image
+              = image_tag plan.image_url, class: 'img-responsive'
+              %span.price
+                %span
+                  = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
+                %span.price-small
+                -#- unless plan.price == 0
+                -#  = "/ #{pluralize(plan.duration, 'month')}"
+            %li.yes
+              = plan.description
+            %li.buy
+              = link_to "Register to #{plan.name}", new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
 
-.modal-footer
+  .modal-footer
