@@ -97,45 +97,28 @@
   label {
     cursor: pointer ;
     font-weight: normal ;
-    input[type=checkbox] {
-      display:none;
-    }
-
-    input[type=checkbox] + i  {
-      color:$grey2;
-
-    }
-
-    input[type=checkbox]:checked + i {
-      @extend .icon-tags;
-      color:#0769a1;
-    }
-
 
     input[type=radio] {
       display:none;
     }
+    input[type=checkbox] {
+      display:none;
+    }
 
-    input[type=radio] + i {
-      width: 10px;
-      height: 10px;
-      display: inline-block;
-      border:1px solid #0769a1;
+    input[type=checkbox] + i , input[type=radio] + i  {
       color:$grey2;
-      padding: 5px;
-      margin-right: 5px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-//      box-shadow: 0px 0px 0px 2pt $primary;
 
     }
 
-    input[type=radio]:checked + i {
-      background-color: #0769a1;
-      color:#076fa1 ;
-      border-color: #444444;
+    input[type=checkbox]:checked + i  , input[type=radio]:checked + i {
+      @extend .glyphicon-check;
+      color:#0769a1;
     }
+
+
+
+
+
 
 
   }

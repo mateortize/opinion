@@ -16,7 +16,7 @@
             .customcheckbox
               %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
                 = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
-                %i.radios
+                %i.glyphicon.glyphicon-unchecked
                 = answer.text
                 - if !answer.image.blank?
                   %a{:rel => 'lightbox', :href => answer.image_url}
