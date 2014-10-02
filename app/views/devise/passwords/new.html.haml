@@ -1,0 +1,52 @@
+-#<h2></h2>
+-#
+-#<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+-#  <%= devise_error_messages! %>
+-#
+-#  <div><%= f.label :email %><br />
+-#  <%= f.email_field :email, autofocus: true %></div>
+-#
+-#  <div><%= f.submit "Send me reset password instructions" %></div>
+-#<% end %>
+-#
+-#<%= render "devise/shared/links" %>
+
+
+
+.row.nomargin
+  .hidden-xs.col-sm-1.col-md-2
+    = image_tag('spacer_200.gif')
+#sign-in
+  .signin-content.container
+    .row
+      .col-xs-12.col-sm-12.col-md-7.col-lg-8
+        = image_tag('screens.png', class: 'img-responsive')
+        %p.lead
+          Create user polls and questionnaires on a whole new level! An advanced online tool that simplifies time management, event planning and meeting coordination!
+          An internet tool for time management and coordinating meetings. Create user polls, questionnaires or schedule meetings and events easier. Strengthen your customer
+          loyalty by receiving feedback and evaluations. Read at a glance graphics, allow you to see results quickly.
+      .col-xs-12.col-sm-12.col-md-5.col-lg-4
+        .well.nopadding
+          %header
+            Forgot your password ?
+          %fieldset
+            %section
+              %h2
+                Dear visitor/member,
+              %p
+                Apologies, opinion7 is currently only available in the Closed-Beta version for our members (and partners).
+                Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
+              %p
+                Have fun!
+            %section.row.addpadding
+              .col-sm-12
+                = bootstrap_form_for(resource, as: resource_name, layout: :vertical, label_col: "col-lg-12" ,  control_col: "col-md-12 nopadding", url: password_path(resource_name)) do |f|
+                  = devise_error_messages!
+                  = f.email_field :email
+
+                  = f.form_group do
+                    = f.submit "Send me reset password instructions", class: 'btn btn-primary btn-block'
+
+                    %p
+                      .shared_links_extern
+                        = render "devise/shared/links"
