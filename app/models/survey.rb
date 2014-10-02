@@ -57,7 +57,7 @@ class Survey < ActiveRecord::Base
   end
 
   def remove_blank_locales
-    self.locales = self.locales.reject! { |l| l.empty? }
+    self.locales = self.locales.delete_if(&:blank?)
   end
 
 end
