@@ -61,6 +61,7 @@ gem 'active_merchant_inatec', '~> 0.0.9', git: 'https://github.com/c7devteam/ina
 
 gem 'acts_as_list'
 gem 'remotipart', '~> 1.2'
+gem 'rest-client'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

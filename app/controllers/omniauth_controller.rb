@@ -8,6 +8,10 @@ class OmniauthController < ApplicationController
 
     if omniauth
       account = Account.find_with_bonofa_oauth(omniauth)
+      if account.persisted? && session[:referrer_code].present?
+        account.apply_referrer_code!(session[:referrer_code])
+        session[:referrer_code] = nil
+      end
       sign_in(:account, account)
       flash[:success] = "Signed in."
       redirect_to account_surveys_path

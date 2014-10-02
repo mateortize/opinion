@@ -11,9 +11,11 @@ module Account::BonofaBaio
 
       if account
         account.promotion_code = oauth.info.promotion_code
+        account.baio_account_id = oauth.uid
       else
         password = Devise.friendly_token[0,20]
         account = Account.new(
+          baio_account_id:        oauth.uid,
           email:                  oauth.info.email,
           first_name:             oauth.info.first_name,
           last_name:              oauth.info.last_name,

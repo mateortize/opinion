@@ -55,6 +55,10 @@ Rails.application.routes.draw do
   get '/account', to: 'account/surveys#index', as: 'account_root'
   get '/admin', to: 'admin/dashboard#index', as: 'admin_root'
 
+  devise_scope :account do
+    get '/p/:referrer_code', to: 'registrations#promolink', as: 'promolink'
+  end
+
   root to: 'account/surveys#index'
 
 end

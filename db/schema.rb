@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001013448) do
+ActiveRecord::Schema.define(version: 20141002151148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: true do |t|
-    t.string   "email",                  default: "",   null: false
-    t.string   "encrypted_password",     default: "",   null: false
+    t.string   "email",                    default: "",   null: false
+    t.string   "encrypted_password",       default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,    null: false
+    t.integer  "sign_in_count",            default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -32,16 +32,21 @@ ActiveRecord::Schema.define(version: 20141001013448) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin"
-    t.integer  "plan_id",                default: 1
-    t.string   "promotion_code",         default: "f"
-    t.string   "language",               default: "en"
+    t.integer  "plan_id",                  default: 1
+    t.string   "promotion_code",           default: "f"
+    t.string   "language",                 default: "en"
     t.text     "info"
-    t.integer  "status",                 default: 1
+    t.integer  "status",                   default: 1
     t.string   "avatar_image"
+    t.integer  "biao_account_id"
+    t.integer  "referrer_baio_account_id"
+    t.string   "referrer_code"
   end
 
+  add_index "accounts", ["biao_account_id"], name: "index_accounts_on_biao_account_id", using: :btree
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
   add_index "accounts", ["plan_id"], name: "index_accounts_on_plan_id", using: :btree
+  add_index "accounts", ["referrer_baio_account_id"], name: "index_accounts_on_referrer_baio_account_id", using: :btree
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
 
   create_table "addresses", force: true do |t|
