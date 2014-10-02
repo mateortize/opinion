@@ -9,7 +9,7 @@
         %span.icon-bar
       %a.navbar-brand{:href => "/"}
         = image_tag('logo.png')
-        %span BETA
+
 
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -34,9 +34,9 @@
     .col-xs-5.col-sm-5.ccol-md-5.col-lg-4
       .profileimg
         - if !current_account.avatar_image.blank?
-          = image_tag current_account.avatar_image_url, class: 'img-responsive img-circle'
+          = image_tag current_account.avatar_image_url, class: 'img-responsive img-rounded'
         - else
-          = image_tag 'nouserimage.jpg', class: 'img-responsive img-circle'
+          = image_tag 'nouserimage.jpg', class: 'img-responsive img-rounded'
         -#%a{:alt => "change profile image", :href => "#"}
         -#  %span.icon-picture
         -#  %span.txt Change Image
