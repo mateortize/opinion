@@ -1,7 +1,7 @@
 class Account::SubscriptionsController < Account::BaseController
   def index
     @subscriptions = current_account.subscriptions.order("created_at desc")
-    redirect_to account_plans_path if current_account.plan == Plan.free
+    redirect_to account_plan_path if current_account.plan == Plan.free
   end
 
   def new
