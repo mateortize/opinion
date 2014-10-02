@@ -27,8 +27,9 @@ $(document).ready(function(){
 
         if($(window).width() <= 690 ){
             $('.navbar-collapse').collapse('hide');
-            $(window).scrollTop(0);
+
         }
+        $(window).scrollTop(0);
     });
 
 });
