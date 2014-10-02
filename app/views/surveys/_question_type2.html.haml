@@ -4,7 +4,7 @@
   
 - if !question.image.blank?
   %a{:rel => 'lightbox', :href => question.image_url}
-    = image_tag question.image_url, class: ''
+    = image_tag question.image_url, class: '',style: 'width:100%'
 
 
 .row.answers
