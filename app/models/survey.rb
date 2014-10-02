@@ -20,6 +20,8 @@ class Survey < ActiveRecord::Base
   validate :validate_plan_surveys_limit, on: :create
   validate :validate_plan_locales_limit
 
+  before_validation :remove_blank_locales
+
   def do_publish
     self.enabled = true
     self.save
@@ -48,9 +50,14 @@ class Survey < ActiveRecord::Base
 
   def validate_plan_locales_limit
     limit = self.account.plan.maximum_languages_count || 1
+
     if self.locales and (self.locales.count > limit)
       errors.add(:current_user, "couldn't use more than #{limit} languages. Please upgrade your plan")
     end
+  end
+
+  def remove_blank_locales
+    self.locales = self.locales.reject! { |l| l.empty? }
   end
 
 end

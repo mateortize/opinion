@@ -24,12 +24,12 @@
               %p
                 Have fun!
             %section.row.addpadding
-              .col-sm-12
-                = bootstrap_form_for(resource, as: resource_name, layout: :horizontal, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
-                  = f.email_field :email
-                  = f.password_field :password, class: 'form-control'
+              = bootstrap_form_for(resource, as: resource_name, layout: :vertical, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
+                = f.email_field :email
+                = f.password_field :password, class: 'form-control'
 
-                  = f.form_group do
+                .row
+                  .col-sm-12
                     = f.submit "Sign in", class: 'btn btn-primary btn-block'
 
                     %p.baio-login
