@@ -21,6 +21,6 @@
           %li.yes
             = plan.description
           %li.buy
-            = link_to "Register to #{plan.name}", account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+            = link_to "Register to #{plan.name}", new_account_registration_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
 
 .modal-footer
