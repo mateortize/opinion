@@ -4,62 +4,119 @@
   %h4.modal-title Plans
 
 .modal-body
-  -#.row
-  -#  .col-sm-12
-  -#    %h1 #{@plans.count} Plans
-  -#    .row
-  -#      - @plans.each_with_index do |plan, i|
-  -#        .col-xs-12.col-sm-6{ class: "col-md-#{12/@plans.count}" }
-  -#          .panel.pricing-big{class: "panel-#{plan_classes[i]}"}
-  -#            .panel-heading
-  -#              .panel-title.text-center
-  -#                = plan.name
-  -#            .panel-body.text-align-center
-  -#              .the-price
-  -#                %h3.text-center
-  -#                  %strong
-  -#                    = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
-  -#                  %span.subscript
-  -#                    - unless plan.price == 0
-  -#                      = "/ #{pluralize(plan.duration, 'month')}"
-  -#              .the-image
-  -#                = image_tag plan.image_url, class: 'img-responsive'
-  -#
-  -#              .the-description
-  -#                = plan.description
-  -#
-  -#            .panel-footer.text-align-center
-  -#              - if plan.id != @plan.id
-  -#                = link_to "#{((plan.position.to_i>@plan.position.to_i)? 'Upgrade': 'Downgrade')} to #{plan.name}", new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
-  -#              - else
-  -#                = link_to "Current Plan", '#', class: 'btn btn-default btn-block'
 
 
-  #plans.addpadding
+  #plans
     %h2 Select Plan
     .shortline.mb2
 
     .row
-      - @plans.each_with_index do |plan, i|
-        %ul.col-md-4
-          %li.plan-head
-            %h3
-              = plan.name
-          %li.plan-image
-            = image_tag plan.image_url, class: 'img-responsive'
-            %span.price
-              %span
-                = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
-              %span.price-small
-              -#- unless plan.price == 0
-              -#  = "/ #{pluralize(plan.duration, 'month')}"
-          %li.yes
-            = plan.description
-          %li.buy
-            - if plan.id != @plan.id
-              = link_to "#{((plan.position.to_i>@plan.position.to_i)? 'Upgrade': 'Downgrade')} to #{plan.name}", new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
-            - else
-              = link_to "Current Plan", '#', class: 'btn btn-default btn-block'
+      %ul.col-md-4
+        %li.plan-head
+          %h3 Free
+        %li.plan-image
+          = image_tag 'package1.png'
+          %span.price.price-year
+            %span 0,-€
+            %span.price-small Free
+          %span.price.price-month
+            %span Create your account now!
+        %li.yes
+          Create 3 surveys
+        %li.yes
+          Use 1 language for your survey
+        %li.yes
+          Survey statistics
+        %li.yes
+          500MB space
+        %li.no
+          Embed your survey
+        %li.upgrade.noborder
+          Use opinion7 for free!
+        %li.buy.free
+          = link_to 'Register', '#'
+
+      %ul.col-md-4
+        %li.plan-head
+          %h3 Pro
+        %li.plan-image
+          = image_tag 'package2.png'
+          %span.price
+            %span 49,-€
+            %span.price-small 1 year
+          %span.price.price-month
+            %span or
+            %span 4.90,-€
+            %span.price-small / 1 month
+        %li.yes
+          Create unlimited surveys
+        %li.yes
+          Use unlimited languages for your survey
+        %li.yes
+          Survey statistics
+        %li.yes
+          5GB space
+        %li.yes
+          Embed your survey
+        %li.upgrade.noborder
+          Upgrade to PRO
+        %li.buy
+          = link_to '1 year', '#', class: 'pull-left'
+          = link_to '1 month', '#', class: 'pull-right'
+
+      %ul.col-md-4
+        %li.plan-head
+          %h3 Expert
+        %li.plan-image
+          = image_tag 'package3.png'
+          %span.price
+            %span 62,-€
+            %span.price-small 1 year
+          %span.price.price-month
+            %span or
+            %span 6.49,-€
+            %span.price-small / 1 month
+        %li.yes
+          Create unlimited surveys
+        %li.yes
+          Use unlimited languages for your survey
+        %li.yes
+          Survey statistics
+        %li.yes
+          10GB space
+        %li.yes
+          Embed your survey
+        %li.upgrade.noborder
+          Upgrade to EXPERT
+        %li.buy
+          = link_to '1 year', '#', class: 'pull-left'
+          = link_to '1 month', '#', class: 'pull-right'
+
+  -##plans.addpadding
+  -#  %h2 Select Plan
+  -#  .shortline.mb2
+  -#
+  -#  .row
+  -#    - @plans.each_with_index do |plan, i|
+  -#      %ul.col-md-4
+  -#        %li.plan-head
+  -#          %h3
+  -#            = plan.name
+  -#        %li.plan-image
+  -#          = image_tag plan.image_url, class: 'img-responsive'
+  -#          %span.price
+  -#            %span
+  -#              = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
+  -#            %span.price-small
+  -#            -#- unless plan.price == 0
+  -#            -#  = "/ #{pluralize(plan.duration, 'month')}"
+  -#        %li.yes
+  -#          = plan.description
+  -#        %li.buy
+  -#          - if plan.id != @plan.id
+  -#            = link_to "#{((plan.position.to_i>@plan.position.to_i)? 'Upgrade': 'Downgrade')} to #{plan.name}", new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
+  -#          - else
+  -#            = link_to "Current Plan", '#', class: 'btn btn-default btn-block'
 
 
 .modal-footer
