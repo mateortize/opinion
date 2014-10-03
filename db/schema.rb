@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 20141002151148) do
     t.text     "info"
     t.integer  "status",                   default: 1
     t.string   "avatar_image"
-    t.integer  "biao_account_id"
+    t.integer  "baio_account_id"
     t.integer  "referrer_baio_account_id"
     t.string   "referrer_code"
   end
 
-  add_index "accounts", ["biao_account_id"], name: "index_accounts_on_biao_account_id", using: :btree
+  add_index "accounts", ["baio_account_id"], name: "index_accounts_on_baio_account_id", using: :btree
   add_index "accounts", ["email"], name: "index_accounts_on_email", unique: true, using: :btree
   add_index "accounts", ["plan_id"], name: "index_accounts_on_plan_id", using: :btree
   add_index "accounts", ["referrer_baio_account_id"], name: "index_accounts_on_referrer_baio_account_id", using: :btree

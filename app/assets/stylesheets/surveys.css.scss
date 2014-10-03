@@ -1,5 +1,8 @@
 #showsurvey {
 
+  #content {
+    margin-top: 30px;
+  }
 }
 #new_survey {
 
@@ -143,5 +146,12 @@
     }
   }
 }
+.rails-bootstrap-forms-error-summary {
+  list-style: none;
+  margin-bottom: 20px;
 
-
+  li {
+    background-color: $grey1;
+    padding: 15px;
+  }
+}

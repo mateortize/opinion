@@ -21,8 +21,6 @@ $(function(){
 
 $(document).ready(function(){
 
-
-
     $('#profiletoggle').click(function(){
 
         if($(window).width() <= 690 ){
@@ -33,4 +31,6 @@ $(document).ready(function(){
     });
 
 });
+
+
 
