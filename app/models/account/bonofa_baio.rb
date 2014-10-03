@@ -29,8 +29,8 @@ module Account::BonofaBaio
       #account.remote_avatar_image_url = oauth.info.profile_image_url
       account.save
 
-      free_plan = Plan.free
-      pro_plan = Plan.pro
+      free_plan = Package.free.plans.first
+      pro_plan = Package.pro.plans.first
       
       if oauth.info.baio_package.blank? or ["no_package", "smart_package"].include?(oauth.info.baio_package)
         if account.has_active_subscription? 

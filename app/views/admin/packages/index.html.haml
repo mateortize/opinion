@@ -1,0 +1,26 @@
+%legend Packages
+
+%p
+  .pull-right
+    = link_to 'New Package', new_admin_package_path, class: 'btn btn-primary btn-sm'
+    
+  .clearfix
+
+%table.table.table-striped.table-bordered.table-condensed
+  %tr
+    %th ID
+    %th Name
+    %th Description
+    %th Position
+    %th Status
+    %th
+  - @packages.each do |package|
+    %tr
+      %td= package.id
+      %td= package.name
+      %td= package.description
+      %td= package.position
+      %td= package.status
+      %td
+        = link_to 'Edit', edit_admin_package_path(package), class: 'btn btn-xs btn-info'
+        = link_to 'Delete', admin_package_path(package), method: :delete, class: 'btn btn-xs btn-danger', data: {confirm: 'Are you sure to delete this package?'}

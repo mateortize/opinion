@@ -21,20 +21,18 @@
             %span.price-small Free
           %span.price.price-month
             %span Create your account now!
-        %li.yes
-          Create 3 surveys
-        %li.yes
-          Use 1 language for your survey
-        %li.yes
-          Survey statistics
-        %li.yes
-          500MB space
-        %li.no
-          Embed your survey
+
+        - Package.free.limitations.each do |limitation|
+          %li{ class: limitation.status==1?'yes':'no'}
+            = limitation.description
+
         %li.upgrade.noborder
           Use opinion7 for free!
         %li.buy.free
-          = link_to 'Register', '#'
+          - if !account_signed_in?
+            = link_to 'Register', new_account_registration_path
+          - else
+            = link_to 'Register', '#'
 
       %ul.col-md-4
         %li.plan-head
@@ -48,21 +46,16 @@
             %span or
             %span 4.90,-€
             %span.price-small / 1 month
-        %li.yes
-          Create unlimited surveys
-        %li.yes
-          Use unlimited languages for your survey
-        %li.yes
-          Survey statistics
-        %li.yes
-          5GB space
-        %li.yes
-          Embed your survey
+
+        - Package.pro.limitations.each do |limitation|
+          %li{ class: limitation.status==1?'yes':'no'}
+            = limitation.description
+
         %li.upgrade.noborder
           Upgrade to PRO
         %li.buy
-          = link_to '1 year', '#', class: 'pull-left'
-          = link_to '1 month', '#', class: 'pull-right'
+          - Package.pro.plans.each do |plan|
+            = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
 
       %ul.col-md-4
         %li.plan-head
@@ -76,21 +69,17 @@
             %span or
             %span 6.49,-€
             %span.price-small / 1 month
-        %li.yes
-          Create unlimited surveys
-        %li.yes
-          Use unlimited languages for your survey
-        %li.yes
-          Survey statistics
-        %li.yes
-          10GB space
-        %li.yes
-          Embed your survey
+        
+        - Package.expert.limitations.each do |limitation|
+          %li{ class: limitation.status==1?'yes':'no'}
+            = limitation.description
+
         %li.upgrade.noborder
           Upgrade to EXPERT
         %li.buy
-          = link_to '1 year', '#', class: 'pull-left'
-          = link_to '1 month', '#', class: 'pull-right'
+          - Package.expert.plans.each do |plan|
+            = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+
 
   -##plans.addpadding
   -#  %h2 Select Plan

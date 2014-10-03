@@ -33,7 +33,7 @@ class Account < ActiveRecord::Base
   end
 
   def has_pro_plan?
-    plan_id == Plan.pro.id and has_active_subscription? 
+    self.plan.is_pro? and has_active_subscription? 
   end
 
   def submission_count

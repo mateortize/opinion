@@ -67,7 +67,7 @@
         %td - none -
       %tr
         %td Account:
-        %td= current_account.plan.name
+        %td= current_account.plan.try(:name)
       %tr
         %td e-Mail:
         %td= current_account.email

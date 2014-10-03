@@ -3,6 +3,7 @@ class SurveysController < ApplicationController
   skip_before_action :authenticate_account!
   before_filter :allow_iframe
   before_filter :load_survey, only: [:show, :submit, :embedded_html, :embedded_script]
+  before_filter :restrict_embeded, only: [:embedded_html, :embedded_script]
 
   layout :resolve_layout
 
@@ -76,5 +77,12 @@ class SurveysController < ApplicationController
     def load_survey
       @survey = Survey.find(params[:id])
       raise ActiveRecord::RecordNotFound if !@survey.enabled?
+    end
+
+    def restrict_embeded
+      limitation = @survey.account.plan.limitations.find_by_key(:embed) rescue nil
+      if !limitation.blank? && limitation.value.to_i == 0
+        raise ActiveRecord::RecordNotFound
+      end
     end
 end

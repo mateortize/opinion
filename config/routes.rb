@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: [:index]
+    resources :packages do
+      resources :limitations
+    end
     resources :plans
     resources :accounts do
       collection do

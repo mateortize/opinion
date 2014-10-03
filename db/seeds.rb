@@ -8,25 +8,36 @@
 
 
 admin1 = Account.create(email: 'admin1@email.com', password: 'defaultpw', admin: true)
+account1 = Account.create(email: 'a1@email.com', password: 'defaultpw')
+account2 = Account.create(email: 'a2@email.com', password: 'defaultpw')
+account3 = Account.create(email: 'a3@email.com', password: 'defaultpw')
 
+package_free          = Package.create(name: "Free", description: "This is free package", position:1, status: 1)
+package_pro           = Package.create(name: "Pro", description: "This is Pro package", position:2, status: 1)
+package_expert        = Package.create(name: "Expert", description: "This is expert package", position:3, status: 1)
 
-plan1 = Plan.create(name: "Free", price_cents: 0, status: 1, duration: 1, description: "This is free plan", position:1, maximum_surveys_count: 5, maximum_languages_count: 1)
-plan2 = Plan.create(name: "Pro", price_cents: 10 * 1000, status: 1, duration: 1, description: "This is pro plan", position:2, maximum_surveys_count: 9999, maximum_languages_count: 3)
-plan3 = Plan.create(name: "Expert", price_cents: 20 * 1000, status: 1, duration: 1, description: "This is expert plan", position:3, maximum_surveys_count: 99999, maximum_languages_count: 99999)
+package_free.limitations.create(key: 'maximum_surveys_count', description: 'Create 3 surveys', position: 1, status: 1, value: 3)
+package_free.limitations.create(key: 'maximum_languages_count', description: 'Use 1 language for your survey', position: 2, status: 1, value: 1)
+package_free.limitations.create(key: 'statistics', description: 'Survey statistics', position: 3, status: 1, value: 1)
+package_free.limitations.create(key: 'maximum_space', description: '500MB space', position: 4, status: 1, value: 500)
+package_free.limitations.create(key: 'embed', description: 'Embed your survey', position: 5, status: 0, value: 0)
 
-Account.create(email: 'a1@email.com', password: 'defaultpw')
-Account.create(email: 'a2@email.com', password: 'defaultpw')
-Account.create(email: 'a3@email.com', password: 'defaultpw')
+package_pro.limitations.create(key: 'maximum_surveys_count', description: 'Create unlimited surveys', position: 1, status: 1, value: 0)
+package_pro.limitations.create(key: 'maximum_languages_count', description: 'Use unlimited languages for your survey', position: 2, status: 1, value: 0)
+package_pro.limitations.create(key: 'statistics', description: 'Survey statistics', position: 3, status: 1, value: 1)
+package_pro.limitations.create(key: 'maximum_space', description: '5GB space', position: 4, status: 1, value: 5000)
+package_pro.limitations.create(key: 'embed', description: 'Embed your survey', position: 5, status: 1, value: 1)
 
+package_expert.limitations.create(key: 'maximum_surveys_count', description: 'Create unlimited surveys', position: 1, status: 1, value: 0)
+package_expert.limitations.create(key: 'maximum_languages_count', description: 'Use unlimited languages for your survey', position: 2, status: 1, value: 0)
+package_expert.limitations.create(key: 'statistics', description: 'Survey statistics', position: 3, status: 1, value: 1)
+package_expert.limitations.create(key: 'maximum_space', description: '10GB space', position: 4, status: 1, value: 10000)
+package_expert.limitations.create(key: 'embed', description: 'Embed your survey', position: 5, status: 1, value: 1)
 
-pro1 = Account.create(email: 'p1@email.com', password: 'defaultpw')
-pro1.plan = Plan.pro
-pro1.save
+plan_free           = Plan.create(name: "Free", price_cents: 0, status: 1, duration: 1, description: "This is free plan", position:1, package_id: package_free.id)
 
-expert1 = Account.create(email: 'e1@email.com', password: 'defaultpw')
-expert1.plan = Plan.expert
-expert1.save
+plan_pro_yearly     = Plan.create(name: "Pro",  price_cents: 49 * 100, status: 1, duration: 12, description: "This is pro plan", position:2, package_id: package_pro.id)
+plan_pro_montly     = Plan.create(name: "Pro",  price_cents: 4.9 * 100, status: 1, duration: 1, description: "This is pro plan", position:3, package_id: package_pro.id)
 
-free1 = Account.create(email: 'f1@email.com', password: 'defaultpw')
-free1.plan = Plan.expert
-free1.save
+plan_expert_yearly  = Plan.create(name: "Expert", price_cents: 62 * 100, status: 1, duration: 12, description: "This is expert plan", position:4, package_id: package_expert.id)
+plan_expert_monthly = Plan.create(name: "Expert", price_cents: 6.49 * 100, status: 1, duration: 1, description: "This is expert plan", position:5, package_id: package_expert.id )

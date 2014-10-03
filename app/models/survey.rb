@@ -42,14 +42,14 @@ class Survey < ActiveRecord::Base
   end
 
   def validate_plan_surveys_limit
-    limit = self.account.plan.maximum_surveys_count || 1
+    limit = self.account.plan.limitations.find_by_key(:maximum_surveys_count).value.to_i rescue 9999999
     if self.account.surveys.count > limit
       errors.add(:survey, "couldn't create more than #{limit} surveys. Please upgrade your plan")
     end
   end
 
   def validate_plan_locales_limit
-    limit = self.account.plan.maximum_languages_count || 1
+    limit = self.account.plan.limitations.find_by_key(:maximum_languages_count).value.to_i rescue 500
 
     if self.locales and (self.locales.count > limit)
       errors.add(:current_user, "couldn't use more than #{limit} languages. Please upgrade your plan")

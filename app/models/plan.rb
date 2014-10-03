@@ -3,17 +3,21 @@ class Plan < ActiveRecord::Base
     'active'   => 1,
     'inactive' => 2,
   }
-
-  acts_as_list scope: [:status]
+  
   monetize :price_cents
   mount_uploader :image, ImageUploader
+  
+  acts_as_list scope: [:status, :package_id]
 
-  scope :active, -> { where(status: 1) }
+  belongs_to :package
+  
   has_many :accounts
+  has_many :limitations, through: :package
 
   validates_presence_of :name, :price_cents, :duration, :description
-  validates_uniqueness_of :name
-  
+  validates_uniqueness_of :name, scope: :duration
+
+  scope :active, -> { where(status: 1) }
   
   STATUSES.each do |n, v|
     define_method :"is_#{n}?" do
@@ -21,20 +25,26 @@ class Plan < ActiveRecord::Base
     end
   end
 
+  Limitation::KEYS.each do |n|
+    define_method :"limitation_#{n}" do
+      self.limitations.find_by_key(n).value rescue nil
+    end
+  end
+
   def to_s
     name
   end
 
-  def self.free
-    Plan.find_by(name: 'Free') rescue nil
+  def is_free?
+    self.package.id == Package.free.id
   end
 
-  def self.pro
-    Plan.find_by(name: 'Pro') rescue nil
+  def is_pro?
+    self.package.id == Package.pro.id
   end
 
-  def self.expert
-    Plan.find_by(name: 'Expert') rescue nil
+  def is_expert?
+    self.package.id == Package.expert.id
   end
 
 end

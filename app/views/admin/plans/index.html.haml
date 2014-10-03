@@ -11,6 +11,8 @@
   %tr
     %th ID
     %th Name
+    %th Package
+    %th Duration
     %th Price
     %th Users #
     %th Position
@@ -21,6 +23,9 @@
       %tr
         %td= plan.id
         %td= plan.name
+        %td= plan.package.name
+        %td
+          = pluralize(plan.duration, 'month')
         %td= money_with_cents_and_with_symbol plan.price
         %td= link_to plan.accounts.count, admin_accounts_path(plan_id: plan.id)
         %td= plan.position

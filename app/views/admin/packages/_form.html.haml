@@ -1,0 +1,29 @@
+%legend Package
+= bootstrap_form_for([:admin, @package], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9") do |f|
+  = f.text_field :name, autofocus: true
+  = f.text_field :description
+  = f.text_field :position
+  = f.select :status, Package::STATUSES
+
+  = f.form_group do
+    = f.submit "Submit", class: 'btn btn-sm btn-primary'
+    = link_to "Back", :back, class: 'btn btn-sm btn-default'
+
+- if !@package.new_record?
+  %p.text-right
+    = link_to "New limitation", new_admin_package_limitation_path(@package), class: 'btn btn-primary'
+  %legend Limitations
+  %table.table
+    %thead
+      %th Description
+      %th Value
+      %th Position
+      %th Actions
+    - @package.limitations.each do |limitation|
+      %tr
+        %td= limitation.description
+        %td= limitation.value
+        %td= limitation.position
+        %td
+          = link_to "Edit", edit_admin_package_limitation_path(@package, limitation), class: 'btn btn-primary'
+          = link_to "Delete", admin_package_limitation_path(@package, limitation), class: 'btn btn-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete

@@ -1,0 +1,10 @@
+= bootstrap_form_for([:admin, @package, @limitation], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-9") do |f|
+  %legend Limitation for #{@package.name}
+  = f.select :key, Limitation::KEYS
+  = f.text_field :description
+  = f.text_field :value
+  = f.text_field :position
+  = f.select :status, Limitation::STATUSES
+  = f.form_group do
+    = f.submit "Submit", class: 'btn btn-sm btn-primary'
+    = link_to "Back", :back, class: 'btn btn-sm btn-default'
