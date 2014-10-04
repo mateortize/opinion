@@ -14,5 +14,12 @@
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to 'Pricing', plans_path
+        %li
+          - if !account_signed_in?
+            = link_to 'Sign In', new_account_session_path
+          - else
+            = link_to 'Sign Out', destroy_account_session_path, method: :delete
+
+            
 
 
