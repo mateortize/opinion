@@ -3,7 +3,7 @@ class Package < ActiveRecord::Base
     'active'   => 1,
     'inactive' => 2,
   }
-  acts_as_list scope: :status
+  acts_as_list scope: [:status]
 
   has_many :plans
   has_many :limitations
