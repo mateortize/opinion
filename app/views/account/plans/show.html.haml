@@ -55,7 +55,10 @@
           Upgrade to PRO
         %li.buy
           - Package.pro.plans.each do |plan|
-            = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+            - if account_signed_in?
+              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+            - else
+              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
 
       %ul.col-md-4
         %li.plan-head
@@ -78,7 +81,10 @@
           Upgrade to EXPERT
         %li.buy
           - Package.expert.plans.each do |plan|
-            = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+            - if account_signed_in?
+              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+            - else
+              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
 
 
   -##plans.addpadding
