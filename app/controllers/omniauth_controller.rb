@@ -4,12 +4,10 @@ class OmniauthController < ApplicationController
 
   def create
     omniauth = request.env['omniauth.auth']
-    provider = params[:provider]
 
     if omniauth
       account = Account.find_with_bonofa_oauth(omniauth)
       if account.persisted? && session[:referrer_code].present?
-        account.apply_referrer_code!(session[:referrer_code])
         session[:referrer_code] = nil
       end
       sign_in(:account, account)
