@@ -6,7 +6,7 @@ class Package < ActiveRecord::Base
   acts_as_list scope: [:status]
 
   has_many :plans
-  has_many :limitations
+  has_many :limitations, -> { order('position ASC') }
 
   has_many :accounts, through: :plans
 
