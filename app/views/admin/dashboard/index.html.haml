@@ -18,8 +18,8 @@
       %tr
         %td Free plan #
         %td
-          = link_to Plan.free.accounts.count, admin_accounts_path(plan_id: Plan.free.id)
+          = Package.free.accounts.count
       %tr
         %td Pro plan #
         %td
-          = link_to Plan.pro.accounts.count, admin_accounts_path(plan_id: Plan.pro.id)
+          = Package.pro.accounts.count

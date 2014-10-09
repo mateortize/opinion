@@ -15,10 +15,6 @@
     = f.file_field :image
     
   = f.select :status, Plan::STATUSES
-
-  %hr
-  = f.text_field :maximum_surveys_count
-  = f.text_field :maximum_languages_count
   
   = f.form_group do
     = f.submit "Submit", class: 'btn btn-sm btn-primary'

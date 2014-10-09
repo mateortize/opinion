@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
-   # GET /p/:referrer_code
+  # GET /p/:referrer_code
   def promolink
     unless current_account
       session[:referrer_code] = params[:referrer_code]

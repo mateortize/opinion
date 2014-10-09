@@ -8,6 +8,8 @@ class Package < ActiveRecord::Base
   has_many :plans
   has_many :limitations
 
+  has_many :accounts, through: :plans
+
   validates_presence_of :name
   validates_uniqueness_of :name
 
