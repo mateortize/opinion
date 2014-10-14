@@ -15,7 +15,7 @@
         %li.plan-head
           %h3 Free
         %li.plan-image
-          = image_tag 'package1.png'
+          = image_tag 'opinion7_free.png'
           %span.price.price-year
             %span 0,-€
             %span.price-small Free
@@ -38,7 +38,7 @@
         %li.plan-head
           %h3 Pro
         %li.plan-image
-          = image_tag 'package2.png'
+          = image_tag 'opinion7_pro.png'
           %span.price
             %span 49,-€
             %span.price-small 1 year
@@ -64,7 +64,7 @@
         %li.plan-head
           %h3 Expert
         %li.plan-image
-          = image_tag 'package3.png'
+          = image_tag 'opinion7_expert.png'
           %span.price
             %span 62,-€
             %span.price-small 1 year
@@ -86,32 +86,6 @@
             - else
               = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
 
-
-  -##plans.addpadding
-  -#  %h2 Select Plan
-  -#  .shortline.mb2
-  -#
-  -#  .row
-  -#    - @plans.each_with_index do |plan, i|
-  -#      %ul.col-md-4
-  -#        %li.plan-head
-  -#          %h3
-  -#            = plan.name
-  -#        %li.plan-image
-  -#          = image_tag plan.image_url, class: 'img-responsive'
-  -#          %span.price
-  -#            %span
-  -#              = plan.price == 0 ? 'free' : money_with_cents_and_with_symbol(plan.price)
-  -#            %span.price-small
-  -#            -#- unless plan.price == 0
-  -#            -#  = "/ #{pluralize(plan.duration, 'month')}"
-  -#        %li.yes
-  -#          = plan.description
-  -#        %li.buy
-  -#          - if plan.id != @plan.id
-  -#            = link_to "#{((plan.position.to_i>@plan.position.to_i)? 'Upgrade': 'Downgrade')} to #{plan.name}", new_account_subscription_path(plan_id: plan.id), class: 'btn btn-primary btn-block'
-  -#          - else
-  -#            = link_to "Current Plan", '#', class: 'btn btn-default btn-block'
 
 
 .modal-footer
