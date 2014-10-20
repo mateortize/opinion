@@ -31,28 +31,28 @@ module Account::BonofaBaio
 
       free_plan = Package.free.plans.first
       pro_plan = Package.pro.plans.first
+      expert_plan = Package.expert.plans.first
       
-      if oauth.info.baio_package.blank? or ["no_package", "smart_package"].include?(oauth.info.baio_package)
+      if !["pro_package", "vip_package"].include?(oauth.info.baio_package)
         if account.has_active_subscription? 
           if account.active_subscription.payment_method == 'baio'
             account.active_subscription.cancel!
-          else
-            account.plan_id = pro_plan.id
+            account.plan_id = free_plan.id
           end
         else
           account.plan_id = free_plan.id
         end
+
       else
         unless account.has_active_subscription?
           account.subscriptions.create(
-            plan_id:    pro_plan.id,
+            plan_id:    expert_plan.id,
             payment_method: 'baio',
             expired_at: Time.now + 100.year,
             status:     1
           )
         end
-
-        account.plan_id = pro_plan.id
+        account.plan_id = expert_plan.id
       end
 
       account.save
