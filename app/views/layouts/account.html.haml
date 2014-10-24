@@ -4,18 +4,15 @@
     %title Opinion7
     = render 'shared/meta_tags'
     = stylesheet_link_tag    'application', media: 'all'
-    = stylesheet_link_tag    'account', media: 'all'
     = csrf_meta_tags
-  %body
+
+  %body{ :class => "#{controller_name}_#{action_name}"}
     #wrapper
       = render 'shared/header_account'
       = render "shared/flashes"
-      / Seetings start
       #content
-        / product actions
         #contentbody.container
           .row
-            / h1>wadd can i do</h1
             .panel.panel-actions
               = yield
       = render "shared/footer"

@@ -14,22 +14,27 @@
  */
 
 @import 'bootstrap';
-@import 'flags16';
 @import 'bootstrap-theme.min';
-@import 'colors';
-@import 'animation';
+
+//@import 'fplayer';
+@import 'flags16';
+@import 'flags32';
+@import 'morris';
+@import 'lightbox';
+
 @import 'fontello';
 @import 'fontello-ie7';
-@import 'fplayer';
-@import 'morris';
-@import 'surveys';
-@import 'session';
-@import 'header';
-@import 'footer';
-@import 'page';
-@import 'lightbox';
-@import 'profile';
-@import 'show';
-@import 'style';
-@import 'override';
+@import 'base';
+@import 'colors';
+@import 'system';
 @import 'mobile';
+
+//@import 'surveys';
+//@import 'session';
+//@import 'header';
+//@import 'footer';
+//@import 'page';
+//@import 'profile';
+//@import 'show';
+//@import 'style';
+//@import 'override';

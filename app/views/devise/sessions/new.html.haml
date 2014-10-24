@@ -1,40 +1,37 @@
 .row.nomargin
   .hidden-xs.col-sm-1.col-md-2
     = image_tag('spacer_200.gif')
-#sign-in
+
+#main
   .signin-content.container
     .row
       .col-xs-12.col-sm-12.col-md-7.col-lg-8
         = image_tag('screens.png', class: 'img-responsive')
         %p.lead
-          Create user polls and questionnaires on a whole new level! An advanced online tool that simplifies time management, event planning and meeting coordination!
-          An internet tool for time management and coordinating meetings. Create user polls, questionnaires or schedule meetings and events easier. Strengthen your customer
-          loyalty by receiving feedback and evaluations. Read at a glance graphics, allow you to see results quickly.
+          Create user polls and questionnaires on a whole new level! Strengthen your customer loyalty by receiving feedback and evaluations. Read at a glance graphics, allow you to see results quickly.
       .col-xs-12.col-sm-12.col-md-5.col-lg-4
-        .well.nopadding
-          %header
-            Sign in
-          %fieldset
-            %section
-              %h2
-                Dear visitor/member,
-              %p
-                Apologies, opinion7 is currently only available in the Closed-Beta version for our members (and partners).
-                Should you belong to this fortunate group please use your BAIO-Login to sign in to the software.
-              %p
-                Have fun!
-            %section.row.addpadding
-              = bootstrap_form_for(resource, as: resource_name, layout: :vertical, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
-                = f.email_field :email
-                = f.password_field :password, class: 'form-control'
-
-                .row
-                  .col-sm-12
-                    = f.submit "Sign in", class: 'btn btn-primary btn-block'
-
-                    %p.baio-login
-                      = link_to "/auth/bonofa" do
-                        %span Sign in with
-                        %span.baio-logo
-              .shared_links_extern
-                = render "devise/shared/links"
+        .well.no-padding
+          #pseudo-login
+            %header
+              Sign in
+            -#= bootstrap_form_for(resource, as: resource_name, layout: :vertical, control_col: "col-sm-12 nopadding", url: session_path(resource_name)) do |f|
+            = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "smart-form client-form", role: "form", multipart: true}) do |f|
+              %fieldset
+                = devise_error_messages!
+                %section
+                  %label.input
+                    = f.email_field :email, placeholder: 'Email', autofocus: true
+                %section
+                  %label.input
+                    = f.password_field :password, placeholder: 'Password'
+                %section.row
+                  .col-sm-6
+                    = link_to '/auth/bonofa', class: 'btn-omniauth btn-baio' do
+                      Sign in with
+                      %span
+                  .col-sm-6
+                    %button.btn-omniauth.btn-signin{ type: 'submit' }
+                      Sign in
+                      %span
+                %section.shared-links-extern
+                  = render "devise/shared/links"

@@ -1,9 +1,9 @@
 %ul.nav.panel-tabs
-  %li.bor.w75.active.pull-left
-    = active_link_to account_surveys_path, :active=>:exclusive do
-      %span.icon-list-numbered
-      Surveys / Overview
-  %li.pull-right
-    = active_link_to new_account_survey_path, :active=>:exclusive do
-      %span.icon-plus>
+  %li.bor.w75.pull-left{ :class => "#{'active' if controller_name == 'surveys' and action_name == 'index'}" }
+    = active_link_to account_surveys_path, active: :exclusive, class: 'smaller-icon' do
+      %i.icon.icon-list-numbered
+      Surveys
+  %li{ :class => "#{'active' if controller_name == 'surveys' and action_name == 'new'}" }
+    = active_link_to new_account_survey_path, active: :exclusive do
+      %i.icon.icon-plus
       Create survey
