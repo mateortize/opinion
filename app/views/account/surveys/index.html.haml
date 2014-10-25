@@ -1,83 +1,91 @@
 .panel-heading
   = render "navigations"
+
 .panel-body
-  - if @surveys.blank?
-    %blockquote
-      %h4
-        No Data
-      %p
-        There is no Survey Made yet on this account , To add new one Click on the right corner
-        %mark.bgcolor Create Survey
-        Button to begin
-  - else
-    #tab1.tab-pane
+  .tab-content
+    #tab1.tab-pane.active
       .row.intro
-        %h1
-          Dashboard
-          .small Your current Opinion7 analytics and status at a glance
-        .col-xs-12.col-sm-8
+        .col-sm-12
+          %h1
+            Dashboard
+            .small Your current Opinion7 analytics and status at a glance
+        .col-sm-8
           %p
             Use the analytics graphics to follow how many surveys you currently have and how many people have already submitted answers.
-
+          %p
             Follow each survey individually and run multiple surveys simultaneously even easier with the clear overview below.
-
-        .col-xs-4.col-sm-2.infodata
-          Surveies
-          %span.value= @surveys.count
-        .col-xs-4.col-sm-2.infodata
-          Submissions
-          %span.value= current_account.submission_count
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Surveys
+            %span.value= @surveys.count
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Submissions
+            %span.value= current_account.submission_count
       .row
-        .col-xs-12.table-responsive
+        .col-sm-12.table-responsive
+          - if @surveys.blank?
+            %blockquote
+              %h4
+                No Data
+              %p
+                There are no surveys yet.
+                = active_link_to new_account_survey_path, active: :exclusive do
+                  Create your first survey
+                now!
+          - else
+            %table#list-table.table.table-striped.table-condensed.table-hover
+              %thead
+                %th
+                  %i.icon.icon-tag
+                  Title
+                %th
+                  %i.icon.icon-info-circled
+                  Status
+                %th
+                  %i.icon.icon-help-circled
+                  Questions
+                %th
+                  %i.icon.icon-ok-circled
+                  Submissions
+                %th.col-sm-2
+                  %i.icon.icon-calendar
+                  Created At
+                %th.col-sm-2
+                  %i.icon.icon-calendar
+                  Updated At
+                %th
+                  %i.icon.icon-cog-alt
+                  Actions
+              = render @surveys
 
-          %table#list-table.table.table-striped.table-condensed.table-hover
-            %thead
-              %th
-                %i.icon.icon-tag
-                Title
-              %th
-                %i.icon.icon-info-circled
-                Enabled
-              %th
-                %i.icon.icon-help-circled
-                Questions
-              %th
-                %i.icon.icon-ok-circled
-                Submissions
-              %th.col-sm-2
-                %i.icon.icon-calendar
-                Created At
-              %th.col-sm-2
-                %i.icon.icon-calendar
-                Updated At
-              %th
-                %i.icon.icon-cog-alt
-                Actions
-            = render @surveys
-
-  .divider
-  - if !@latest_survey.blank?
-    #eval1
-      .row
-        .col-xs-12
-          %h1
-            %small Your current evaluation
-            = @latest_survey.title
-        .col-xs-12.col-sm-8
-          %p= @latest_survey.description
-        .col-xs-12.col-sm-2.infodata.pull-right
-          %span.value= @latest_survey.submission_count
-          Submissions
-
-      - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
+            .divider
+    - if !@latest_survey.blank?
+      #eval1.tab-pane.active
         .row
-          .col-xs-12
-            %h3= question.text
-            %p.help-text= question.description
-            - question.answers.each do |answer|
-              .progress
-                .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max}%;"}
-                  %span.sr-only= answer.text
-                %span.progress-type
-                  = answer.text
-  .divider
+          .col-sm-12
+            %h1
+              %small Your current evaluation
+              = @latest_survey.title
+          .col-sm-8
+            %p= @latest_survey.description
+          .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+            %div
+              Submissions
+              %span.value= @latest_survey.submission_count
+
+        - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
+          .row
+            .col-sm-12
+              %h3= question.text
+              %p.help-text= question.description
+              - question.answers.each do |answer|
+                .progress
+                  - summary = 100 * answer.submission_count/[1, question.answers.map(&:submission_count).max].max
+                  .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.answers.map(&:submission_count).max}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submission_count}", :role => "progressbar", :style => "width: #{summary}%;"}
+                    %span.sr-only
+                      = answer.text
+                  %span.progress-type
+                    = "#{summary}%"
+                    = answer.text
+      .divider

@@ -1,23 +1,31 @@
 @media screen and (max-width: 560px) {
+
   #content {
 
-  	#contentbody {
+    #contentbody {
 
-  		.panel {
+      .panel {
 
-  			ul {
+        ul {
 
-  				&.panel-tabs {
+          &.panel-tabs {
 
-  					li {
-  						clear: both;
-  						width: 100%;
-  						float: none;
-  						text-align: center;
-  					}
-  				}
-  			}
-  		}
-  	}
+            li {
+              clear: both;
+              width: 100%;
+              float: none;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  .carousel {
+    height: 70%;
   }
 }

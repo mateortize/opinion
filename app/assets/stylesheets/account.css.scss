@@ -3,13 +3,11 @@
 @import 'flags16';
 @import 'flags32';
 
+@import 'base';
 @import 'colors';
-@import 'session';
-@import 'header';
-@import 'footer';
-@import 'page';
+@import 'system';
+@import 'plans';
 @import 'profile';
-@import 'style';
 @import 'mobile';
 
 .nav-tabs{

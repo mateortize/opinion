@@ -1,15 +1,19 @@
 %tr
-  %td= survey.title
   %td
-    %span.label.label-warning
-      = survey.enabled
+    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(survey.description, length: 100, separator: ' ', omission: ' ...') }
+      = survey.title
+  %td
+    - if survey.enabled
+      %i.icon.icon-ok.text-success.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: 'published' }
+    - else
+      %i.icon.icon-cancel.text-danger.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: 'pending' }
   %td= survey.questions.count
   %td= survey.submissions.count
   %td
-    = survey.created_at
+    = survey.created_at.to_formatted_s(:long_ordinal)
   %td
-    = survey.updated_at
-  %td.actions
+    = survey.updated_at.to_formatted_s(:long_ordinal)
+  %td
     = link_to preview_survey_path(survey), target: '_blank' do
       %span.glyphicon.glyphicon-eye-open
     = link_to edit_account_survey_path(survey) do

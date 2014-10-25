@@ -103,6 +103,10 @@ form {
   label {
     font-weight: 400;
   }
+
+  textarea {
+    resize: none;
+  }
 }
 
 h1, h2, h3, h4, h5 {
@@ -177,6 +181,12 @@ a {
   }
 }
 
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 #contentbody {
   background: $light;
   @include box-shadow(0 0 8px 0 rgba($dark, 0.25));
@@ -186,9 +196,12 @@ a {
   }
 }
 
+.intro {
+  padding-bottom: 35px;
+}
+
 .infodata {
   padding: 0 20px 10px;
-  border-left: 2px dotted #3b4c54;
 
   .value {
     color: $primary;
@@ -198,6 +211,11 @@ a {
     font-weight: 500;
     line-height: 1em;
     margin-left: -4px;
+  }
+
+  > div {
+    border-left: 2px dotted #3b4c54;
+    padding: 0 20px 10px;
   }
 }
 
@@ -402,104 +420,7 @@ a {
 /* @end */
 
 /* @group profile */
-#profile {
-  padding: 0;
-  display: none;
-  background: $light;
-
-  > div {
-    padding: 15px;
-  }
-
-  .welcome {
-
-    h1 {
-      margin: 0 0 0.5em;
-      padding: 0 0 0.5em;
-      color: $primary;
-
-      .small {
-        color: #aaaaaa;
-        padding-top: 10px;
-      }
-    }
-  }
-
-  .profileimg {
-    position: relative;
-
-    a {
-
-      &:link,
-      &:visited {
-        position: absolute;
-        left: 10%;
-        bottom: 2%;
-        background: $primarybg;
-        color: $light;
-        padding: .2em;
-        display: block;
-        font-size: 1.3em;
-        font-weight: 200;
-        text-align: center;
-        @include border-radius(1em);
-        overflow: hidden;
-        width: 1.8em;
-        height: 33px;
-        @include transition(width 200ms ease);
-      }
-
-      .text {
-        display: inline-block;
-        overflow: hidden;
-        font-size: 0.8em;
-        line-height: 1em;
-        margin: 0;
-        padding-left: 5%;
-        padding-right: 5%;
-        text-transform: uppercase;
-        width: 0;
-        height: 0;
-        @include transition(all 250ms ease);
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        width: 80%;
-
-        .text {
-          width: auto;
-          height: 1em;
-        }
-      }
-    }
-  }
-
-  .actions {
-    margin: 1.7em 0 0;
-
-    a {
-      padding: .7em 0 .3em;
-      display: block;
-      color: $light;
-      font-size: 2em;
-      font-weight: 200;
-      @include transition(padding-left 400ms ease);
-
-      i {
-        margin-right: .1em;
-        font-size: 1.1em;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        padding-left: .2em;
-      }
-    }
-  }
-}
+/* outsourced to profile.css.scss */
 /* @end */
 
 /* @group panel */
@@ -528,7 +449,7 @@ a {
 
           &:link,
           &:visited {
-            color: $primary;
+            color: $grey3;
             margin: 0;
             font-size: 1.25em;
             padding-top: 1em;
@@ -570,8 +491,8 @@ a {
         &.active {
 
           a {
-            border-bottom: 10px solid #076fa1;
-            color: #757575;
+            border-bottom: 10px solid $primary;
+            color: $primary;
             padding-bottom: 0;
 
             &:hover,
@@ -588,6 +509,76 @@ a {
       }
     }
   }
+}
+/* @end */
+
+/* @group panel */
+//ToDo: @Marco, please sassify!
+.panel-actions .panel-heading {
+  padding: 0;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #db485a;
+}
+
+.panel-actions ul.panel-tabs li {
+  display: inline-block;
+  font-size: 1.3em;
+  width: 25%;
+  border-color: #db485a;
+  float: left;
+}
+
+.panel-actions ul.panel-tabs li:first-child {
+  width: 50%;
+}
+
+.panel-actions ul.panel-tabs li a, .panel-actions ul.panel-tabs li a:link, .panel-actions ul.panel-tabs li a:visited {
+  color: #989898;
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: 100;
+  padding-top: 1em;
+  padding-bottom: 10px;
+  @include transition(all 200ms linear);
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #ffffff), color-stop(51%, #db485a), color-stop(100%, $primary)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#db485a', GradientType=0); /* IE6-9 */
+  background-size: 100% 210%;
+  background-position: center top;
+}
+
+.panel-actions ul.panel-tabs li a:hover, .panel-actions ul.panel-tabs li a:active {
+  color: #FFF;
+  padding-bottom: 10px;
+  background-position: center bottom;
+}
+
+.panel-actions ul.panel-tabs li.active a {
+  border-bottom: 10px solid $primary;
+  color: $primary;
+  padding-bottom: 0;
+}
+
+.panel-actions ul.panel-tabs li.active a:hover {
+  color: #ffffff;
+}
+
+.panel-actions ul.panel-tabs li a i {
+  font-size: 2.5em;
+}
+
+.panel-actions .panel-body {
+  border: none;
+}
+
+.panel-actions .tab-pane {
+  padding: 0.5em 2em;
 }
 /* @end */
 
@@ -722,9 +713,17 @@ a.btn-danger:hover, a.btn-danger:active {
   -webkit-box-shadow: none;
   color: #FFF;
 }
+
+.text-success {
+  color: #9abf04;
+}
+
+.text-danger {
+  color: #fc4d4d;
+}
 /* @end */
 
-/* @group progres */
+/* @group progress */
 //ToDo: @Marco, please sassify!
 .progress {
   position: relative;
@@ -737,61 +736,23 @@ a.btn-danger:hover, a.btn-danger:active {
 
 .progress-bar {
   background: #f4ede3;
-  background-image: -moz-linear-gradient(top, #f4ede3 0%, #e8e3dc 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4ede3), color-stop(100%, #e8e3dc)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #f4ede3 0%, #e8e3dc 100%); /* Chrome10+,Safari5.1+ */
-  background-image: -o-linear-gradient(top, #f4ede3 0%, #e8e3dc 100%); /* Opera 11.10+ */
-  background-image: -ms-linear-gradient(top, #f4ede3 0%, #e8e3dc 100%); /* IE10+ */
-  background-image: linear-gradient(to bottom, #f4ede3 0%, #e8e3dc 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4ede3', endColorstr='#e8e3dc', GradientType=0); /* IE6-9 */
-  box-shadow: none;
-  -webkit-box-shadow: none;
+  @include box-shadow(none);
 }
 
 .progress-bar-info {
   background: #00a8e2;
-  background-image: -moz-linear-gradient(top, #00a8e2 0%, #008ec0 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00a8e2), color-stop(100%, #008ec0)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #00a8e2 0%, #008ec0 100%); /* Chrome10+,Safari5.1+ */
-  background-image: -o-linear-gradient(top, #00a8e2 0%, #008ec0 100%); /* Opera 11.10+ */
-  background-image: -ms-linear-gradient(top, #00a8e2 0%, #008ec0 100%); /* IE10+ */
-  background-image: linear-gradient(to bottom, #00a8e2 0%, #008ec0 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a8e2', endColorstr='#008ec0', GradientType=0); /* IE6-9 */
 }
 
 .progress-bar-success {
   background: #9abf04;
-  background-image: -moz-linear-gradient(top, #aae200 0%, #9abf04 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #aae200), color-stop(100%, #9abf04)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #aae200 0%, #9abf04 100%); /* Chrome10+,Safari5.1+ */
-  background-image: -o-linear-gradient(top, #aae200 0%, #9abf04 100%); /* Opera 11.10+ */
-  background-image: -ms-linear-gradient(top, #aae200 0%, #9abf04 100%); /* IE10+ */
-  background-image: linear-gradient(to bottom, #aae200 0%, #9abf04 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aae200', endColorstr='#9abf04', GradientType=0); /* IE6-9 */
-  box-shadow: none;
-  -webkit-box-shadow: none;
 }
 
 .progress-bar-warning {
   background: #fbdb2c;
-  background-image: -moz-linear-gradient(top, #fbdb2c 0%, #e9d359 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fbdb2c), color-stop(100%, #e9d359)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #fbdb2c 0%, #e9d359 100%); /* Chrome10+,Safari5.1+ */
-  background-image: -o-linear-gradient(top, #fbdb2c 0%, #e9d359 100%); /* Opera 11.10+ */
-  background-image: -ms-linear-gradient(top, #fbdb2c 0%, #e9d359 100%); /* IE10+ */
-  background-image: linear-gradient(to bottom, #fbdb2c 0%, #e9d359 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fbdb2c', endColorstr='#e9d359', GradientType=0); /* IE6-9 */
 }
 
 .progress-bar-danger {
   background: #fc4d4d;
-  background-image: -moz-linear-gradient(top, #fc4d4d 0%, #eb1f1f 100%); /* FF3.6+ */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fc4d4d), color-stop(100%, #eb1f1f)); /* Chrome,Safari4+ */
-  background-image: -webkit-linear-gradient(top, #fc4d4d 0%, #eb1f1f 100%); /* Chrome10+,Safari5.1+ */
-  background-image: -o-linear-gradient(top, #fc4d4d 0%, #eb1f1f 100%); /* Opera 11.10+ */
-  background-image: -ms-linear-gradient(top, #fc4d4d 0%, #eb1f1f 100%); /* IE10+ */
-  background-image: linear-gradient(to bottom, #fc4d4d 0%, #eb1f1f 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fc4d4d', endColorstr='#eb1f1f', GradientType=0); /* IE6-9 */
 }
 
 .progress > .progress-type {
@@ -922,13 +883,12 @@ a.btn-danger:hover, a.btn-danger:active {
 .list-group-item.open .list-group-submenu {
   right: 0px;
 }
-
 /* @end */
 
 /* @group tables & lists */
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+/* > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
   background-color: #fcf9f3;
-}
+}*/
 
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
   border-top: 1px solid #f4ede3;
@@ -943,7 +903,7 @@ a.btn-danger:hover, a.btn-danger:active {
   color: #0769a1;
 }
 
-#list-table tr span {
+/*#list-table tr span {
   font-size: 1.25em;
 }
 
@@ -952,7 +912,7 @@ a.btn-danger:hover, a.btn-danger:active {
   color: #b2de68;
   margin: 0;
   padding: 0;
-}
+}*/
 
 table a:link, table a:visited {
   color: #0769a1;
@@ -963,14 +923,20 @@ table a:hover, table a:active, table a.active {
   color: #00a8e2;
   padding: 0 6px 0 12px;
 }
-
 /* @end */
 
-/* Responsive Styles */
-@media (max-width: 767px) {
+/* ### Flags ### */
+.f32 {
 
-  .carousel {
-    height: 70%;
-    /* increases the carousel height so it looks good on phones */
+  .flag {
+    padding: 7px 0 2px 36px;
+  }
+
+  input[type="checkbox"] {
+    margin-top: 10px;
+
+    &:focus {
+      outline: none;
+    }
   }
 }

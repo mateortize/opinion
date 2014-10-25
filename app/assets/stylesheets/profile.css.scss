@@ -1,172 +1,97 @@
-@mixin border-radius($borderradius) {
-  -moz-border-radius: $borderradius;
-  -webkit-border-radius: $borderradius;
-  -o-border-radius: $borderradius;
-  border-radius: $borderradius;
-}
 #profile {
+  padding: 0;
+  display: none;
+  background: $light;
 
-  table {
+  > div {
+    padding: 15px;
+  }
 
-    tr {
-      &:hover {
-        background-color: rgba($light, .2);
+  .welcome {
+
+    h1 {
+      margin: 0 0 0.5em;
+      padding: 0 0 0.5em;
+      color: $primary;
+
+      .small {
+        color: #aaaaaa;
+        padding-top: 10px;
       }
     }
   }
-}
 
-
-
-
-/* Plans */
-#plans {
-
-  ul {
-    list-style: none;
-    overflow: hidden;
+  .profileimg {
     position: relative;
 
-    &.coming-soon {
+    a {
 
-      &:before {
-        content: 'Coming soon...';
-        padding-top: 200px;
-        font-size: 2.5em;
-        font-weight: 300;
+      &:link,
+      &:visited {
         position: absolute;
-        left: 15px;
-        top: 0;
-        right: 15px;
-        bottom: 0;
-        background-color: rgba($primarybg, .7);
-        z-index: 1;
+        left: 10%;
+        bottom: 2%;
+        background: $primarybg;
         color: $light;
+        padding: .2em;
+        display: block;
+        font-size: 1.3em;
+        font-weight: 200;
         text-align: center;
+        @include border-radius(1em);
+        overflow: hidden;
+        width: 1.8em;
+        height: 33px;
+        @include transition(width 200ms ease);
+      }
+
+      .text {
+        display: inline-block;
+        overflow: hidden;
+        font-size: 0.8em;
+        line-height: 1em;
+        margin: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+        text-transform: uppercase;
+        width: 0;
+        height: 0;
+        @include transition(all 250ms ease);
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        width: 80%;
+
+        .text {
+          width: auto;
+          height: 1em;
+        }
       }
     }
+  }
 
-    li {
-      padding: 15px;
-      border: 1px solid darken($light, 2);
+  .actions {
+    margin: 1.7em 0 0;
 
-      &.plan-head {
-        padding: 0;
-        @include border-radius(5px 5px 0 0);
-        overflow: hidden;
-        text-align: center;
+    a {
+      padding: .7em 0 .3em;
+      display: block;
+      color: $light;
+      font-size: 2em;
+      font-weight: 200;
+      @include transition(padding-left 400ms ease);
 
-        h3 {
-          background-color: $primary;
-          color: $light;
-          margin: 0;
-          padding: 15px;
-          font-size: 2.3em;
-        }
+      i {
+        margin-right: .1em;
+        font-size: 1.1em;
       }
-      &.plan-image {
-        margin: 0;
-        padding: 30px;
-        text-align: center;
 
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-        .price {
-          font-size: 3.5em;
-
-          &.price-month {
-            font-size: 1.1em;
-            display: block;
-
-            .price-small {
-              font-size: 1em;
-            }
-          }
-
-          .price-small {
-            font-size: .5em;
-            color: $grey3;
-          }
-        }
-      }
-      &.yes,
-      &.no {
-        border-bottom: 1px solid darken($grey1, 5);
-        background-color: lighten($grey1, 5);
-        position: relative;
-        padding-right: 55px;
-        word-break: break-word;
-        font-weight: 400;
-        @include transition(al 300ms);
-
-        &:hover {
-          &:hover {
-            background-color: lighten($grey1, 4);
-          }
-        }
-      }
-      &.yes {
-
-        &:after {
-          content: '';
-          background: asset-url('checker.png') -2px 0px no-repeat;
-          position: absolute;
-          right: 10px;
-          top: 12px;
-          width: 30px;
-          height: 30px;
-        }
-      }
-      &.no {
-
-        &:after {
-          content: '';
-          background: asset-url('checker.png') -2px -72px no-repeat;
-          position: absolute;
-          right: 10px;
-          top: 12px;
-          width: 30px;
-          height: 30px;
-        }
-      }
-      &.upgrade {
-        background-color: $grey6;
-        color: $light;
-        text-align: center;
-        font-size: 1.2em;
-        font-weight: 600;
-        @include border-radius(0 0 5px 5px);
-      }
-      &.buy {
-        background-color: $primarybg;
-        text-align: center;
-        padding: 0;
-        overflow: hidden;
-        @include border-radius(0 0 5px 5px);
-
-        &.free {
-
-          a {
-            width: 100%;
-          }
-        }
-
-        a {
-          color: $light;
-          font-weight: 500;
-          font-size: 1.2em;
-          display: block;
-          padding: 15px;
-          border-bottom: 1px solid $grey5;
-          width: 50%;
-          @include transition(all 300ms);
-
-          &:hover {
-            background-color: $secondarybg;
-          }
-        }
+      &:hover,
+      &:active,
+      &:focus {
+        padding-left: .2em;
       }
     }
   }
