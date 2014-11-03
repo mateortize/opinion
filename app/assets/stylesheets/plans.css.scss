@@ -119,6 +119,7 @@
         @include border-radius(0 0 5px 5px);
 
         a {
+          width: 50%;
           background-color: $secondarybg;
           color: $light;
           font-weight: 500;
@@ -130,6 +131,13 @@
 
           &:hover {
             background-color: $tertiarybg;
+          }
+        }
+
+        &.free {
+
+          a {
+            width: 100%;
           }
         }
       }
