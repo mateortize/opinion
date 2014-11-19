@@ -20,11 +20,9 @@
     - if !@question.blank?
       = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 
-  %span.clearFix
+  %span.clearfix
   .row.f32
     .col-sm-12
-      %hr
       = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
         - @survey.locales.each do |locale|
           = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
-      %hr

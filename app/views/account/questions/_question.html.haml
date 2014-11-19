@@ -16,8 +16,10 @@
     = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
     = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
 
-    = link_to "", sort_account_survey_question_path(@survey, question, { move: 'higher' }) , class:'icon icon-level-up'
-    = link_to "", sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) , class:'icon icon-level-down'
+    = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
+      %i.icon.icon-up
+    = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) do
+      %i.icon.icon-down
 
 
   -#

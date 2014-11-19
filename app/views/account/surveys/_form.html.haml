@@ -18,19 +18,20 @@
       .languages.f32
         - locales = available_locales.collect{|key, value| [key.to_s, country_flag(key)]}
         - count = (locales.count / 4.0).ceil
-        - 4.times do |n|
-          .col-md-3
-            = f.collection_check_boxes :locales,
-                locales.sort[count*n..(count*(n+1)-1)],
-                :first,
-                :last,
-                hide_label: :true,
-                label_col: "",
-                control_col: "col-md-12"
+        .row
+          - 4.times do |n|
+            .col-md-3
+              = f.collection_check_boxes :locales,
+                  locales.sort[count*n..(count*(n+1)-1)],
+                  :first,
+                  :last,
+                  hide_label: :true,
+                  label_col: "",
+                  control_col: "col-md-12"
 
         .text-right.col-xs-12
-          = f.submit "Next", class: 'btn btn-primary'
-          - unless @survey.new_record?
+          = f.submit 'Save', class: 'btn btn-success'
+          -# unless @survey.new_record?
             = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
 
           - if !@survey.new_record?

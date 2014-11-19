@@ -22,7 +22,7 @@ module ApplicationHelper
     country = available_locales[code.to_sym].to_s
     if label
       if inline
-        return "<span class=\'flag #{country.downcase}\'>#{I18nData.countries[country]}</span>".html_safe
+        return "<span><span class=\'flag #{country.downcase}\'>#{I18nData.countries[country]}</span></span>".html_safe
       else
         return "<span class=\'flag #{country.downcase}\'></span>#{I18nData.countries[country]}".html_safe
       end
