@@ -10,9 +10,9 @@
   %td= survey.questions.count
   %td= survey.submissions.count
   %td
-    = survey.created_at.to_formatted_s(:long_ordinal)
+    = survey.created_at.to_formatted_s(:long)
   %td
-    = survey.updated_at.to_formatted_s(:long_ordinal)
+    = survey.updated_at.to_formatted_s(:long)
   %td
     = link_to preview_survey_path(survey), target: '_blank' do
       %span.glyphicon.glyphicon-eye-open

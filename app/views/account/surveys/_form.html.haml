@@ -1,43 +1,41 @@
-.row
-  .col-md-12
-    = bootstrap_form_for([:account, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", inline_errors: false) do |f|
-      %legend Basic Information
-      = f.error_summary
+= bootstrap_form_for([:account, @survey], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-6", inline_errors: false) do |f|
+  %legend Basic Information
+  = f.error_summary
 
-      = f.text_field :title , size: 50
-      = f.text_area :description, rows: 5 , class: "text optional redactor"
+  = f.text_field :title , size: 50
+  = f.text_area :description, rows: 5 , class: "text optional redactor"
 
-      %legend Settings
-      - if !@survey.logo.blank?
-        = f.form_group do
-          = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
-          = f.check_box :remove_logo
-      - else
-        = f.file_field :logo
-      %legend Languages
-      .languages.f32
-        - locales = available_locales.collect{|key, value| [key.to_s, country_flag(key)]}
-        - count = (locales.count / 4.0).ceil
-        .row
-          - 4.times do |n|
-            .col-md-3
-              = f.collection_check_boxes :locales,
-                  locales.sort[count*n..(count*(n+1)-1)],
-                  :first,
-                  :last,
-                  hide_label: :true,
-                  label_col: "",
-                  control_col: "col-md-12"
+  %legend Settings
+  - if !@survey.logo.blank?
+    = f.form_group do
+      = image_tag(@survey.logo_url, :class => 'img-responsive img-thumbnail')
+      = f.check_box :remove_logo
+  - else
+    = f.file_field :logo
+  %legend Languages
+  .languages.f32
+    - locales = available_locales.collect{|key, value| [key.to_s, country_flag(key)]}
+    - count = (locales.count / 4.0).ceil
+    .row
+      - 4.times do |n|
+        .col-md-3
+          = f.collection_check_boxes :locales,
+              locales.sort[count*n..(count*(n+1)-1)],
+              :first,
+              :last,
+              hide_label: :true,
+              label_col: "",
+              control_col: "col-md-12"
 
-        .text-right.col-xs-12
-          = f.submit 'Save', class: 'btn btn-success'
-          -# unless @survey.new_record?
-            = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
+    .text-right.col-xs-12
+      = f.submit 'Save', class: 'btn btn-success'
+      -# unless @survey.new_record?
+        = link_to "Edit Questions", account_survey_questions_path(@survey), class: 'btn btn-primary'
 
-          - if !@survey.new_record?
-            - if !@survey.enabled?
-              = link_to 'Publish', publish_account_survey_path(@survey), class: 'btn btn-primary', method: :put
-            - else
-              = link_to 'Unpublish', unpublish_account_survey_path(@survey), class: 'btn btn-danger', method: :put
+      - if !@survey.new_record?
+        - if !@survey.enabled?
+          = link_to 'Publish', publish_account_survey_path(@survey), class: 'btn btn-primary', method: :put
+        - else
+          = link_to 'Unpublish', unpublish_account_survey_path(@survey), class: 'btn btn-danger', method: :put
 
-          = link_to 'Cancel', :back, class: 'btn btn-default'
+      = link_to 'Cancel', :back, class: 'btn btn-default'

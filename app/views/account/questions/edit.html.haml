@@ -1,3 +1,13 @@
 = render 'account/surveys/tabs'
-%span.clearfix
-= render 'form'
+
+.panel-body
+  .tab-content
+    #tab1.tab-pane.active
+      .row.mb20
+        .col-xs-12
+          %h1
+            %small Edit Question
+            = @question.text
+      .row
+        .col-xs-12
+          = render 'form'

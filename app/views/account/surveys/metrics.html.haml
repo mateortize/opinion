@@ -1,20 +1,34 @@
 = render 'tabs'
-.tab-pane.active
-  %h2.text-right= "Total submissions : #{@survey.submission_count}"
-  - @survey.questions.each do |question|
-    %h3
-      %i.icon.icon-help-circled
-      =question.text
-    - question.answers.each do |answer|
+
+.panel-body
+  .tab-content
+    .tab-pane.active
+      .row.mb20
+        .col-xs-12
+          %h1
+            %small Survey Metrics
+            = @survey.title
+        .col-sm-8
+          %p
+            Description
+        .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+          %div
+            Submissions
+            %span.value= @survey.submission_count
       .row
-        .col-sm-2
-          %i.icon.icon-tag
-          = answer.text
-        .col-sm-1.badge.bgcolor
-          = answer.submissions.count
-    %hr
-    .row
-      - Question::GRAPH_TYPES.each do |graph_type|
-        .col-md-4.well
-          = render "/account/questions/graph_#{graph_type}", question: question
-          %br/
+        .col-xs-12
+          - @survey.questions.each do |question|
+            %h3
+              %i.icon.icon-help-circled
+              =question.text
+            - question.answers.each do |answer|
+              .row
+                .col-sm-2
+                  %i.icon.icon-tag
+                  = answer.text
+                .col-sm-1.badge.bgcolor
+                  = answer.submissions.count
+            .row
+              - Question::GRAPH_TYPES.each do |graph_type|
+                .col-md-4.well
+                  = render "/account/questions/graph_#{graph_type}", question: question

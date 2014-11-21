@@ -1,11 +1,15 @@
-- content_for :heading do
+-#- content_for :heading do
   = @survey.title
-
-
 = render 'tabs'
 
-.tab-pane.active#tab2
-  .row.intro
-    .col-xs-12
-      %h1 Edit Survey
-  = render 'form'
+.panel-body
+  .tab-content
+    #tab2.tab-pane.active
+      .row
+        .col-xs-12.mb20
+          %h1
+            %small Edit Survey
+            = @survey.title
+      .row
+        .col-xs-12
+          = render 'form'

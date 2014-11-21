@@ -171,6 +171,10 @@ a {
   border: none;
 }
 
+.mb20 {
+  margin-bottom: 20px;
+}
+
 #content {
   margin-top: 80px;
   margin-bottom: 40px;
@@ -509,76 +513,6 @@ a {
       }
     }
   }
-}
-/* @end */
-
-/* @group panel */
-//ToDo: @Marco, please sassify!
-.panel-actions .panel-heading {
-  padding: 0;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid $primary;
-}
-
-.panel-actions ul.panel-tabs li {
-  display: inline-block;
-  font-size: 1.3em;
-  width: 25%;
-  border-color: #db485a;
-  float: left;
-}
-
-.panel-actions ul.panel-tabs li:first-child {
-  width: 50%;
-}
-
-.panel-actions ul.panel-tabs li a, .panel-actions ul.panel-tabs li a:link, .panel-actions ul.panel-tabs li a:visited {
-  color: #989898;
-  margin: 0;
-  font-size: 1.25em;
-  font-weight: 100;
-  padding-top: 1em;
-  padding-bottom: 10px;
-  @include transition(all 200ms linear);
-  background: #ffffff; /* Old browsers */
-  background: -moz-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(50%, #ffffff), color-stop(51%, #db485a), color-stop(100%, $primary)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* IE10+ */
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #db485a 51%, $primary 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#db485a', GradientType=0); /* IE6-9 */
-  background-size: 100% 210%;
-  background-position: center top;
-}
-
-.panel-actions ul.panel-tabs li a:hover, .panel-actions ul.panel-tabs li a:active {
-  color: #FFF;
-  padding-bottom: 10px;
-  background-position: center bottom;
-}
-
-.panel-actions ul.panel-tabs li.active a {
-  border-bottom: 10px solid $primary;
-  color: $primary;
-  padding-bottom: 0;
-}
-
-.panel-actions ul.panel-tabs li.active a:hover {
-  color: #ffffff;
-}
-
-.panel-actions ul.panel-tabs li a i {
-  font-size: 2.5em;
-}
-
-.panel-actions .panel-body {
-  border: none;
-}
-
-.panel-actions .tab-pane {
-  padding: 0.5em 2em;
 }
 /* @end */
 

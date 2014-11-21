@@ -1,30 +1,50 @@
 = render 'account/surveys/tabs'
 
-#tab1.tab-pane
-  %p.text-right
-    = link_to 'Add New Question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
-  .row
-    .col-xs-12.table-responsive
-      %table.table.table-striped.table-condensed.table-hover#list-table
-        %thead
-          %tr
-            %th
-              %i.icon.icon-help-circled
-              Question
-            %th
-              %i.icon.icon-attention-circled
-              Answers
-            %th
-              %i.icon.icon-tags
-              Type
-            %th
-              %i.icon.icon-list-numbered
-              Position
-            %th.actions
-              %i.icon.icon-cog-alt
-              Actions
-        %tbody
-          = render @questions
+.panel-body
+  .tab-content
+    #tab1.tab-pane.active
+      .row.mb20
+        .col-xs-12
+          %h1
+            %small Add/Edit Questions
+            = @survey.title
+        .col-sm-8
+          %p
+            Here you can add new questions to your survey or edit or delete existing ones. Also, the order of the questions can be modified.
+          %p
+            There are three question types: checkbox (user can only choose one answer), multiple choice (user can choose one or more answers) and matrix (multiple sub-questions with multiple answers for each).
+        .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+          %div
+            Questions
+            %span.value= @questions.count
+      .row
+        .col-xs-12
+          .mb20
+            = link_to new_account_survey_question_path(@survey), class: 'btn btn-primary' do
+              %i.icon.icon-plus
+              Add new question
+          .row
+            .col-xs-12.table-responsive
+              %table.table.table-striped.table-condensed.table-hover#list-table
+                %thead
+                  %tr
+                    %th
+                      %i.icon.icon-help-circled
+                      Question
+                    %th
+                      %i.icon.icon-attention-circled
+                      Answers
+                    %th
+                      %i.icon.icon-tags
+                      Type
+                    %th
+                      %i.icon.icon-list-numbered
+                      Position
+                    %th.actions
+                      %i.icon.icon-cog-alt
+                      Actions
+                %tbody
+                  = render @questions
 
 %div.modal.fade{id: "modal", :role => "dialog"}
   .modal-dialog
