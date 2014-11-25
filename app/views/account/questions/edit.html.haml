@@ -8,6 +8,17 @@
           %h1
             %small Edit Question
             = @question.text
+        .col-sm-8
+          %p
+            = @question.description
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Question #
+            %span.value= @question.id
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Answers
+            %span.value= @question.answers.count
       .row
         .col-xs-12
           = render 'form'

@@ -197,6 +197,7 @@ a {
 
   .panel {
     margin-bottom: 0;
+    @include box-shadow(none);
   }
 }
 
@@ -432,8 +433,6 @@ a {
 
   .panel-heading {
     padding: 0;
-    width: 100%;
-    border: none;
     border-bottom: 1px solid $primary;
 
     ul.panel-tabs {
@@ -515,6 +514,21 @@ a {
   }
 }
 /* @end */
+
+#accordion {
+
+  .panel-heading {
+    border-bottom: none;
+
+    > h2 {
+
+      > a {
+        padding: 10px;
+        display: block;
+      }
+    }
+  }
+}
 
 /* @group alerts Buttons and soms other standards */
 //ToDo: @Marco, please sassify!
@@ -837,25 +851,27 @@ a.btn-danger:hover, a.btn-danger:active {
   color: #0769a1;
 }
 
-/*#list-table tr span {
-  font-size: 1.25em;
-}
-
-#list-table tr span.icon-ok-circled {
-  font-size: 1.5em;
-  color: #b2de68;
-  margin: 0;
-  padding: 0;
-}*/
-
 table a:link, table a:visited {
   color: #0769a1;
-  padding: 0 9px;
+  padding: 0 5px;
 }
 
 table a:hover, table a:active, table a.active {
   color: #00a8e2;
-  padding: 0 6px 0 12px;
+  padding: 0 2px 0 8px;
+}
+
+.actions {
+
+  .icon, .glyphicon {
+    font-size: 1.1em;
+  }
+
+  .placeholder {
+    width: 25px;
+    height: 20px;
+    display: inline-block;
+  }
 }
 /* @end */
 
@@ -919,4 +935,9 @@ table a:hover, table a:active, table a.active {
       }
     }
   }
+}
+
+.question-title {
+  color: $primary;
+  font-weight: 400;
 }

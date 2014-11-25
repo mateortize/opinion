@@ -1,11 +1,9 @@
 %tr
   %td
-    %h4.panel-title
-      %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#panel-question#{question.id}"}
-        - if !question.image.blank?
-          = question.text
-        - else
-          = question.text
+    = question.id
+  %td.question-title
+    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(question.description, length: 100, separator: ' ', omission: ' ...') }
+      = question.text
   %td
     = question.answers.count
   %td
@@ -13,13 +11,18 @@
   %td
     = question.position
   %td.actions
-    = link_to '', edit_account_survey_question_path(@survey, question), class: 'icon icon-pencil'
-    = link_to '', account_survey_question_path(@survey, question), class: 'icon icon-trash', data: { confirm: "Are you sure to delete?" }, method: :delete
-
-    = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
-      %i.icon.icon-up
-    = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower'  }) do
-      %i.icon.icon-down
+    = link_to edit_account_survey_question_path(@survey, question) do
+      %i.glyphicon.glyphicon-pencil
+    = link_to account_survey_question_path(@survey, question), data: { confirm: "Are you sure to delete?" }, method: :delete do
+      %i.glyphicon.glyphicon-trash
+    - if question.position > 1
+      = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
+        %i.glyphicon.glyphicon-arrow-up
+    - else
+      %span.placeholder
+    - if question.position < @questions.count
+      = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower' }) do
+        %i.glyphicon.glyphicon-arrow-down
 
 
   -#

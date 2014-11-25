@@ -1,5 +1,3 @@
-%span.clearfix
-
 #accordion.panel-group
   .panel.panel-default
     .panel-heading
@@ -10,7 +8,7 @@
       .panel-body
         .row
           .col-md-12
-            = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: "col-lg-3", control_col: "col-lg-5") do |f|
+            = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7') do |f|
               = f.error_summary
 
               %legend Basic Information
@@ -36,7 +34,7 @@
               = f.date_field :created_at, disabled: true
               = f.date_field :updated_at, disabled: true
               .text-right
-                = f.submit "Save question", class: 'btn btn-primary'
+                = f.submit 'Save question', class: 'btn btn-primary'
                 = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
   = render 'answers', survey: @survey, question: @question

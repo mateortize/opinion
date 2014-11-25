@@ -13,10 +13,10 @@
     = survey.created_at.to_formatted_s(:long)
   %td
     = survey.updated_at.to_formatted_s(:long)
-  %td
+  %td.actions
     = link_to preview_survey_path(survey), target: '_blank' do
-      %span.glyphicon.glyphicon-eye-open
+      %span.icon.glyphicon.glyphicon-eye-open
     = link_to edit_account_survey_path(survey) do
-      %span.glyphicon.glyphicon-pencil
+      %span.icon.glyphicon.glyphicon-pencil
     = link_to account_survey_path(survey), data: { confirm: 'Are you sure to delete?' }, method: :delete do
-      %span.glyphicon.glyphicon-trash
+      %span.icon.glyphicon.glyphicon-trash

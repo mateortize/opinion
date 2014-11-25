@@ -25,9 +25,19 @@
               Add new question
           .row
             .col-xs-12.table-responsive
-              %table.table.table-striped.table-condensed.table-hover#list-table
+              %table#list-table.table.table-striped.table-condensed.table-hover
+                %colgroup
+                  %col{ width: '8%' }
+                  %col{ width: '34%' }
+                  %col{ width: '13%' }
+                  %col{ width: '14%' }
+                  %col{ width: '13%' }
+                  %col{ width: '18%' }
                 %thead
                   %tr
+                    %th
+                      %i.icon.icon-number
+                      ID
                     %th
                       %i.icon.icon-help-circled
                       Question
@@ -40,7 +50,7 @@
                     %th
                       %i.icon.icon-list-numbered
                       Position
-                    %th.actions
+                    %th
                       %i.icon.icon-cog-alt
                       Actions
                 %tbody

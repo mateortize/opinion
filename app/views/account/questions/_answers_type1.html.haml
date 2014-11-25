@@ -1,7 +1,8 @@
 .col-lg-12
-  %p.text-right
+  .mb20
     = link_to new_account_survey_question_answer_path(survey, question), class: "btn btn-primary", "data-target" => "#modal", "data-toggle" => "modal" do
-      Add New Answer
+      %i.icon.icon-plus
+      Add new answer
 
 .col-lg-12
   - question.answers.each do |answer|
