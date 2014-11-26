@@ -892,6 +892,11 @@ table a:hover, table a:active, table a.active {
 }
 
 .languages {
+  margin-bottom: 15px;
+
+  .form-group {
+    margin-bottom: 0;
+  }
 
   .checkbox {
     padding-top: 0;
@@ -940,4 +945,12 @@ table a:hover, table a:active, table a.active {
 .question-title {
   color: $primary;
   font-weight: 400;
+}
+
+.img-thumbnail {
+  width: 100%;
+
+  img {
+    margin: 0 auto;
+  }
 }

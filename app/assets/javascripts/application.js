@@ -8,6 +8,7 @@
 //= require profile
 //= require raphael-min
 //= require cocoon
+//= require fileinput.min
 
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails

@@ -4,30 +4,31 @@
       %h2.panel-title
         %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"} Question
     -#    There is a class Called .in it must be removed on (Edit , New ) affter adding the questions , it will close the tab if it is removed TODO:@Xing
-    #collapseOne.panel-collapse.collapse
+    #collapseOne.panel-collapse.collapse.in
       .panel-body
         .row
           .col-md-12
-            = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7') do |f|
+            = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7 col-md-6') do |f|
               = f.error_summary
 
               %legend Basic Information
               = f.text_field :text, label: 'Question'
               = f.text_area :description, rows: 10
+
+              - if !@question.image.blank?
+                = f.form_group do
+                  .img-thumbnail
+                    = image_tag(@question.image_url, :class => 'img-responsive')
+                  = f.check_box :remove_image
+              - else
+                = f.file_field :image, accept: "image/*", class: 'fileupload'
+
               %legend Setting
               = f.select :question_type, Question::TYPES, {}, { disabled: !@question.new_record? }
               = f.hidden_field :survey_id
 
               - if @question.question_type == 3 # if 2d matrix
                 = f.select :rows, 2..20
-
-
-              - if !@question.image.blank?
-                = f.form_group do
-                  = image_tag(@question.image_url, :class => 'img-responsive img-thumbnail')
-                  = f.check_box :remove_image
-              - else
-                = f.file_field :image, accept: "image/*"
 
               = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
 
