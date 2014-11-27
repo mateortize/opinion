@@ -24,4 +24,8 @@ class Answer < ActiveRecord::Base
   def survey
     self.question.survey
   end
+
+  def submission_percentage
+    100 * self.submissions.count/[1, self.question.total_submissions_count].max
+  end
 end
