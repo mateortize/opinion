@@ -2,13 +2,14 @@
   .panel.panel-default
     .panel-heading
       %h2.panel-title
-        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseTwo"} Answers
+        %a{ data: { parent: '#accordion', toggle: 'collapse'}, href: '#collapseTwo' } Answers
     #collapseTwo.panel-collapse.collapse
       .panel-body
         .row
-          %div{id: "question#{question.id}"}
+          .matrix{ id: "question#{question.id}" }
             = render "answers_type#{question.question_type}", survey: survey, question: question
+            %span.clearfix
 
-  %div.modal.fade{id: "modal", :role => "dialog"}
+  #modal.modal.fade{ role: 'dialog' }
     .modal-dialog
       .modal-content

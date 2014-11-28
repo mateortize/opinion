@@ -1,22 +1,37 @@
-.col-lg-12
+.col-sm-12
   .mb20
-    = link_to new_account_survey_question_answer_path(survey, question), class: "btn btn-primary", "data-target" => "#modal", "data-toggle" => "modal" do
+    = link_to new_account_survey_question_answer_path(survey, question), class: 'btn btn-primary', data: { target: '#modal', toggle: 'modal' } do
       %i.icon.icon-plus
       Add new answer
 
-.col-lg-12
-  - question.answers.each do |answer|
-    .col-lg-4.panel
-      %h4.checkbox
-        %label
-          = check_box_tag "answers[]", answer.id, false
-          = answer.text
-      %hr
-      - if !answer.image.blank?
-        %a{:rel => 'lightbox', :href => answer.image_url}
-          %i.icon.icon-eye
+- if question.answers.count > 0
+  .col-sm-12.table-responsive
+    %table.table.table-striped.table-condensed.table-hover
+      %colgroup
+        %col{ width: '*' }
+        %col{ width: '18%' }
+      %thead
+        %tr
+          %th
+            %i.icon.icon-tag
+            Answer
+          %th
+            %i.icon.icon-cog-alt
+            Actions
+      %tbody
+        - question.answers.each do |answer|
+          %tr
+            %td
+              -#%h4.checkbox
+                %label
+                  = check_box_tag "answers[]", answer.id, false
+              = answer.text
+              -# if !answer.image.blank?
+                %a{:rel => 'lightbox', :href => answer.image_url}
+                  %i.icon.icon-eye
+            %td.actions
 
-      = link_to edit_account_survey_question_answer_path(answer.question.survey, answer.question, answer), class: "", "data-target" => "#modal", "data-toggle" => "modal" do
-        %i.icon.icon-pencil
-      = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-        %i.icon.icon-trash
+              = link_to edit_account_survey_question_answer_path(answer.question.survey, answer.question, answer), class: '', data: { target: '#modal', toggle: 'modal' } do
+                %i.glyphicon.glyphicon-pencil
+              = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+                %i.glyphicon.glyphicon-trash

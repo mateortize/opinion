@@ -23,39 +23,41 @@
             = link_to new_account_survey_question_path(@survey), class: 'btn btn-primary' do
               %i.icon.icon-plus
               Add new question
-          .row
-            .col-xs-12.table-responsive
-              %table#list-table.table.table-striped.table-condensed.table-hover
-                %colgroup
-                  %col{ width: '8%' }
-                  %col{ width: '34%' }
-                  %col{ width: '13%' }
-                  %col{ width: '14%' }
-                  %col{ width: '13%' }
-                  %col{ width: '18%' }
-                %thead
-                  %tr
-                    %th
-                      %i.icon.icon-number
-                      ID
-                    %th
-                      %i.icon.icon-help-circled
-                      Question
-                    %th
-                      %i.icon.icon-attention-circled
-                      Answers
-                    %th
-                      %i.icon.icon-tags
-                      Type
-                    %th
-                      %i.icon.icon-list-numbered
-                      Position
-                    %th
-                      %i.icon.icon-cog-alt
-                      Actions
-                %tbody
-                  = render @questions
 
-%div.modal.fade{id: "modal", :role => "dialog"}
+          - if @questions.count > 0
+            .row
+              .col-xs-12.table-responsive
+                %table#list-table.table.table-striped.table-condensed.table-hover
+                  %colgroup
+                    %col{ width: '8%' }
+                    %col{ width: '34%' }
+                    %col{ width: '13%' }
+                    %col{ width: '14%' }
+                    %col{ width: '13%' }
+                    %col{ width: '18%' }
+                  %thead
+                    %tr
+                      %th
+                        %i.icon.icon-number
+                        ID
+                      %th
+                        %i.icon.icon-help-circled
+                        Question
+                      %th
+                        %i.icon.icon-attention-circled
+                        Answers
+                      %th
+                        %i.icon.icon-tags
+                        Type
+                      %th
+                        %i.icon.icon-list-numbered
+                        Position
+                      %th
+                        %i.icon.icon-cog-alt
+                        Actions
+                  %tbody
+                    = render @questions
+
+#modal.modal.fade{ role: 'dialog' }
   .modal-dialog
     .modal-content

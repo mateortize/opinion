@@ -191,6 +191,11 @@ a {
   overflow: hidden;
 }
 
+.well.well-light {
+   background: none repeat scroll 0 0 #fff;
+   border: 1px solid #e2e2e2;
+ }
+
 #contentbody {
   background: $light;
   @include box-shadow(0 0 8px 0 rgba($dark, 0.25));
@@ -480,6 +485,7 @@ a {
 
           i {
             font-size: 2.5em;
+            //text-shadow: 2px 2px 3px rgba(50, 50, 50, 0.2);
           }
 
           &.smaller-icon {
@@ -834,15 +840,13 @@ a.btn-danger:hover, a.btn-danger:active {
 /* @end */
 
 /* @group tables & lists */
-/* > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-  background-color: #fcf9f3;
-}*/
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
   border-top: 1px solid #f4ede3;
-  line-height: 1.42857;
-  padding: 8px;
-  vertical-align: top;
 }
 
 .table > thead > tr > th {
@@ -952,5 +956,12 @@ table a:hover, table a:active, table a.active {
 
   img {
     margin: 0 auto;
+  }
+}
+
+.matrix {
+
+  h3 {
+    margin-top: 0;
   }
 }

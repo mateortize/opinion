@@ -1,6 +1,7 @@
 = remotipart_response do
   - unless @answer.errors.any?
     $("#question#{@question.id}").load("#{account_survey_question_path(@survey, @question)}");
+    $("div.answers span.value").text("#{@question.answers.count}");
     $('#close-button').trigger('click');
   - else
     $('form .alert').remove();
