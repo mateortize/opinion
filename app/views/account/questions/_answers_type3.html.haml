@@ -27,7 +27,7 @@
                     %label
                       = radio_button_tag "answers[]", answer.id
                   = answer.text
-                %td
+                %td.actions
                   -#.text-right
                     - if !answer.image.blank?
                       %a{:rel => 'lightbox', :href => answer.image_url}
