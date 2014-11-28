@@ -19,7 +19,7 @@
       = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
         %i.glyphicon.glyphicon-arrow-up
     - else
-      %span.placeholder
+      %span.placeholder.hor
     - if question.position < @questions.count
       = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower' }) do
         %i.glyphicon.glyphicon-arrow-down

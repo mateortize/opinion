@@ -872,9 +872,16 @@ table a:hover, table a:active, table a.active {
   }
 
   .placeholder {
-    width: 25px;
-    height: 20px;
     display: inline-block;
+    height: 15px;
+
+    &.hor {
+      width: 25px;
+    }
+
+    &.ver {
+      width: 28px;
+    }
   }
 }
 /* @end */
