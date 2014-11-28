@@ -14,6 +14,7 @@ class Question < ActiveRecord::Base
 
   belongs_to :survey
   acts_as_list scope: :survey
+  has_many :submissions, through: :answers
 
   has_many :answers, dependent: :destroy
   before_save :set_rows
@@ -23,6 +24,13 @@ class Question < ActiveRecord::Base
   validates :description, length: { maximum: 2000 }
   validate :image_file_size
   validate :validate_question_type
+
+  def total_submissions_count
+    total = 0
+    self.answers.inject do |total, answer|
+      total = answer.submissions.count
+    end
+  end
 
   def image_file_size
     if !image.blank?
