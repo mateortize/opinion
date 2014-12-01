@@ -69,22 +69,32 @@
               = @latest_survey.title
           .col-sm-8
             %p= @latest_survey.description
-          .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+          .col-xs-6.col-sm-2.infodata
+            %div
+              Questions
+              %span.value= @latest_survey.questions.count
+          .col-xs-6.col-sm-2.infodata
             %div
               Submissions
               %span.value= @latest_survey.submissions.count
 
-        - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each do |question|
-          .row
-            .col-sm-12
-              %h3= question.text
-              %p.help-text= question.description
-              - question.answers.each do |answer|
-                .progress
-                  .progress-bar.progress-bar-success{"aria-valuemax" => "#{question.submissions.count}", "aria-valuemin" => "0", "aria-valuenow" => "#{answer.submissions.count}", :role => "progressbar", :style => "width: #{answer.submission_percentage}%;"}
-                    %span.sr-only
-                      = answer.text
-                  %span.progress-type
-                    = "#{answer.submission_percentage}%"
-                    = answer.text
-      .divider
+        .row
+          .col-sm-12
+            #accordion.panel-group{ role: 'tablist', 'aria-multiselectable' => true }
+              - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each_with_index do |question, i|
+                .panel.panel-default
+                  .panel-heading{ id: "heading#{i}" }
+                    %h2.panel-title
+                      %a{ data: { toggle: 'collapse', parent: '#accordion' }, href: "#collapse#{i}", aria: { expanded: true, controls: "#collapse#{i}" } }
+                        = question.text
+                  .panel-collapse.collapse{ role: 'tabpanel', id: "collapse#{i}", 'aria-labelledby' => "heading#{i}", class: "#{'in' if i == 0}" }
+                    .panel-body
+                      %p.help-text= question.description
+                      - question.answers.each do |answer|
+                        .progress
+                          .progress-bar.progress-bar-success{ aria: { valuemax: "#{question.submissions.count}", valuemin: '0', valuenow: "#{answer.submissions.count}" }, role: 'progressbar', style: "width: #{answer.submission_percentage}%;"}
+                            %span.sr-only
+                              = answer.text
+                          %span.progress-type
+                            = "#{answer.submission_percentage}%"
+                            = answer.text
