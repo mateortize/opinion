@@ -9,7 +9,7 @@
 
       .row
         .col-xs-12
-          = bootstrap_form_for([:account, @account], url: account_profile_path, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-6', inline_errors: false) do |f|
+          = bootstrap_form_for([:account, @account], url: account_profile_path, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7 col-md-6', inline_errors: false) do |f|
             = f.error_summary
 
             %legend Basic information
@@ -18,13 +18,12 @@
             = f.text_field :email, input_html: {disabled: true}
 
             - if !@account.avatar_image.blank?
-              = f.form_group do
-                .row
-                  .col-sm-6
-                    = image_tag @account.avatar_image_url, class: 'img-responsive img-thumbnail'
-                    = f.check_box :remove_avatar_image
+              = f.form_group :avatar_image, label: { text: 'Image' } do
+                .img-thumbnail
+                  = image_tag @account.avatar_image_url, class: 'img-responsive'
+                  = f.check_box :remove_avatar_image, label: 'remove image'
             - else
-              = f.file_field :avatar_image
+              = f.file_field :avatar_image, label: 'Image', class: 'fileupload'
 
             %legend Billing Address
             = f.fields_for :billing_address do |a|
