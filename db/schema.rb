@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003193545) do
+ActiveRecord::Schema.define(version: 20141202114109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20141003193545) do
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "row",              default: 0
     t.string   "image"
     t.integer  "position"
   end
@@ -143,11 +142,12 @@ ActiveRecord::Schema.define(version: 20141003193545) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_type"
-    t.integer  "rows",          default: 1
     t.string   "image"
     t.integer  "position"
+    t.integer  "parent_id"
   end
 
+  add_index "questions", ["parent_id"], name: "index_questions_on_parent_id", using: :btree
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "submission_logs", force: true do |t|
@@ -155,7 +155,10 @@ ActiveRecord::Schema.define(version: 20141003193545) do
     t.integer  "answer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
+
+  add_index "submission_logs", ["question_id"], name: "index_submission_logs_on_question_id", using: :btree
 
   create_table "submissions", force: true do |t|
     t.string   "ip_address"

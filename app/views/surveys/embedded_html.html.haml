@@ -4,6 +4,6 @@
 
 = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
   - @survey.questions.each do |question|
-    = render 'questions', question: question
+    = render 'question', question: question
 
   = submit_tag 'Submit', class: 'btn btn-primary'

@@ -1,0 +1,17 @@
+= bootstrap_form_for([:account, @survey, @parent, @question], remote: true, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7 col-md-6') do |f|
+  = f.error_summary
+
+  = f.text_field :text, label: 'Question'
+
+  - if !@question.image.blank?
+    = f.form_group do
+      .img-thumbnail
+        = image_tag(@question.image_url, :class => 'img-responsive')
+      = f.check_box :remove_image
+  - else
+    = f.file_field :image, accept: "image/*", class: 'fileupload'
+
+  = f.select :position, [''] + @parent.children.collect{|q| [q.text, q.position]}, label: 'Position before'
+
+  .text-right
+    = f.submit 'Save question', class: 'btn btn-primary'

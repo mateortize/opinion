@@ -6,10 +6,6 @@
     #collapseTwo.panel-collapse.collapse
       .panel-body
         .row
-          .matrix{ id: "question#{question.id}" }
+          .matrix{ id: "question#{question.id}_answers" }
             = render "answers_type#{question.question_type}", survey: survey, question: question
             %span.clearfix
-
-  #modal.modal.fade{ role: 'dialog' }
-    .modal-dialog
-      .modal-content

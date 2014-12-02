@@ -1,42 +1,37 @@
-- question.rows.times do |n|
-  .col-sm-12.table-responsive.table-wrapper
-    .well.well-light
-      .pull-right
-        = link_to new_account_survey_question_answer_path(survey, question, row: n), class: '', data: { target: '#modal', toggle: 'modal' } do
-          %i.icon.icon-plus
-          Add new answer
-      %h3= "Row ##{n+1}"
-      - if question.send("answers_#{n}").count > 0
-        %table.table.table-striped.table-condensed.table-hover
-          %colgroup
-            %col{ width: '*' }
-            %col{ width: '18%' }
-          %thead
-            %tr
-              %th
-                %i.icon.icon-tag
-                Answer
-              %th
-                %i.icon.icon-cog-alt
-                Actions
-          %tbody
-            - question.send("answers_#{n}").each do |answer|
-              %tr
-                %td
-                  -#%h4.radio
-                    %label
-                      = radio_button_tag "answers[]", answer.id
-                  = answer.text
-                %td.actions
-                  -#.text-right
-                    - if !answer.image.blank?
-                      %a{:rel => 'lightbox', :href => answer.image_url}
-                        %i.glyphicon.glyphicon-eye-open
+.col-sm-12
+  .mb20
+    = link_to new_account_survey_question_answer_path(survey, question), class: 'btn btn-primary', data: { target: '#modal', toggle: 'modal' } do
+      %i.icon.icon-plus
+      Add new answer
 
-                  = link_to edit_account_survey_question_answer_path(survey, question, answer),  data: { target: '#modal', toggle: 'modal' } do
-                    %i.glyphicon.glyphicon-pencil
-                  = link_to account_survey_question_answer_path(survey, question, answer), class: 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
-                    %i.glyphicon.glyphicon-trash
-      - else
-        %p
-          no answers yet
+- if question.answers.count > 0
+  .col-sm-12.table-responsive
+    %table.table.table-striped.table-condensed.table-hover
+      %colgroup
+        %col{ width: '*' }
+        %col{ width: '18%' }
+      %thead
+        %tr
+          %th
+            %i.icon.icon-tag
+            Answer
+          %th
+            %i.icon.icon-cog-alt
+            Actions
+      %tbody
+        - question.answers.each do |answer|
+          %tr
+            %td
+              -#%h4.radio
+                %label
+                  = radio_button_tag "answer[]", answer.id
+              = answer.text
+            %td.actions
+              -# if !answer.image.blank?
+                %a{:rel => 'lightbox', :href => answer.image_url}
+                  %i.icon.icon-eye
+
+              = link_to edit_account_survey_question_answer_path(survey, question, answer),  data: { target: '#modal', toggle: 'modal' } do
+                %i.glyphicon.glyphicon-pencil
+              = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, method: :delete do
+                %i.glyphicon.glyphicon-trash

@@ -4,6 +4,7 @@
     %title Opinion7
     = render 'shared/meta_tags'
     = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body{ :class => "#{controller_name}_#{action_name}"}
@@ -17,5 +18,5 @@
               = yield
       = render "shared/footer"
       
-      = javascript_include_tag 'application'
+      
       = javascript_include_tag 'accounts'

@@ -1,8 +1,6 @@
 = bootstrap_form_for([:account, @survey, @question, @answer], remote: true, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-9') do |f|
   .answer_block
     = f.text_field :text, label: 'Answer'
-    - if @question.question_type == 3 # if 2d matrix
-      = f.hidden_field :row
 
     - if !f.object.image.blank?
       = f.form_group do
@@ -12,8 +10,6 @@
     - else
       = f.file_field :image, class: 'fileupload'
 
-    - if @question.question_type == 3 # if 2d matrix
-      = f.select :row, (0..@question.rows-1).to_a.map{|n| [n+1, n]}
 
   = f.form_group do
     .pull-right

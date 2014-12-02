@@ -28,3 +28,7 @@ $(document).ready(function() {
   });
   $('.tooltipp').tooltip();
 });
+
+$('.modal').on('hidden.bs.modal', function () {
+    $('.modal-content').html('');
+})

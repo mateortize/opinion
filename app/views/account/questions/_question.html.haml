@@ -23,28 +23,3 @@
     - if question.position < @questions.count
       = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower' }) do
         %i.glyphicon.glyphicon-arrow-down
-
-
-  -#
-  -#.panel-collapse.collapse{id: "panel-question#{question.id}"}
-  -#  .panel-body
-  -#    %p
-  -#      %strong Created at:
-  -#      = question.created_at
-  -#    %p
-  -#      %strong Updated at:
-  -#      = question.updated_at
-  -#
-  -#    - if !question.image.blank?
-  -#      %p
-  -#        %strong Question Image:
-  -#        = image_tag question.image_url, class: 'img-circle img-thumbnail'
-  -#
-  -#    - if !question.description.blank?
-  -#      %p
-  -#        %strong Description:
-  -#        = question.description
-  -#    %p
-  -#      %strong Answers
-  -#
-  -#    = render 'answers', survey: @survey, question: question

@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/amerine/acts_as_tree.git
+  revision: 6f856745965a8f07ba8b3f330a4ac9e5931707dd
+  specs:
+    acts_as_tree (2.1.0)
+      activerecord (>= 3.0.0)
+
+GIT
   remote: https://github.com/c7devteam/inatec_cc.git
   revision: 25580cbb4a9a07ce09cee1e8490663826ad80645
   specs:
@@ -109,6 +116,11 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.21)
       unf (>= 0.0.5, < 1.0.0)
+    draper (1.4.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     excon (0.39.6)
@@ -302,6 +314,7 @@ GEM
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     remotipart (1.2.1)
+    request_store (1.1.0)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -396,6 +409,7 @@ DEPENDENCIES
   active_merchant_inatec (~> 0.0.9)!
   activemerchant
   acts_as_list
+  acts_as_tree!
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
   cancancan
@@ -407,6 +421,7 @@ DEPENDENCIES
   country_select
   cucumber-rails
   devise
+  draper (~> 1.3)
   factory_girl_rails
   fog
   globalize

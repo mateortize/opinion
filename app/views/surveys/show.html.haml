@@ -9,13 +9,14 @@
         = image_tag(@survey.logo_url, :class => '' ,:style => 'width:100%' )
       %p.bg-primary.addpadding= @survey.description
     .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.nopadding
-      = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
-        - @survey.questions.each do |question|
-          .question.panel
-            = render 'questions', question: question
-        - if @survey.answers.count > 0
-          .pull-right.panel.col-md-12.text-right
-            = submit_tag 'Submit', class: 'btn btn-primary'
+      .row
+        = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
+          - @survey.questions.parent_questions.each do |question|
+            .question.panel
+              = render 'question', question: question
+          - if @survey.answers.count > 0
+            .pull-right.panel.col-md-12.text-right
+              = submit_tag 'Submit', class: 'btn btn-primary'
 
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

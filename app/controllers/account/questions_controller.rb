@@ -1,16 +1,20 @@
 class Account::QuestionsController < Account::BaseController
   
   before_filter :load_survey
-  before_filter :load_question, only: [:edit, :update, :destroy, :show, :sort]
+  before_filter :load_question, only: [:edit, :update, :destroy, :show, :sort, :answers, :children]
 
   set_tab :questions
 
   def index
-    @questions = @survey.questions
+    @questions = @survey.questions.parent_questions
   end
 
-  def show
+  def answers
     render 'manage_answers', layout: false
+  end
+
+  def children
+    render 'manage_children', layout: false
   end
 
   def new

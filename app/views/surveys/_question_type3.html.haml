@@ -7,19 +7,27 @@
     = image_tag question.image_url, class: '',style: 'width:100%'
     
 
-.row.answers
-  - question.rows.times do |n|
-    .col-md-12
-      .row.newrow
-        - question.send("answers_#{n}").each do |answer|
-          .col-md-4
+.answers
+  .row
+    .col-md-2
+    - question.answers.each do |answer|
+      .col-md-2
+        = answer.text
+        - if !answer.image.blank?
+          %a{:rel => 'lightbox', :href => answer.image_url}
+            = image_tag answer.image_url, class: ''
+  .row.newrow
+    - question.children.each do |child|
+      .col-md-12
+        .col-md-2
+          = child.text
+          - if !child.image.blank?
+            %a{:rel => 'lightbox', :href => child.image_url}
+              = image_tag child.image_url, class: '',style: 'width:100%'
+
+        - question.answers.each do |answer|
+          .col-md-2
             .customcheckbox
-              %label{for: "survey_questions_#{question.id}_rows_#{n}_answer_#{answer.id}"}
-                = radio_button_tag "survey[questions][#{question.id}][rows][#{n}][answer]", answer.id
+              %label{for: "survey_questions_#{child.id}_answer_#{answer.id}"}
+                = radio_button_tag "survey[questions][#{child.id}][answer]", answer.id
                 %i.glyphicon.glyphicon-unchecked
-                = answer.text
-                - if !answer.image.blank?
-                  %a{:rel => 'lightbox', :href => answer.image_url}
-                    = image_tag answer.image_url, class: ''
-
-

@@ -4,10 +4,17 @@ class Submission < ActiveRecord::Base
 
   validates_uniqueness_of :ip_address, scope: [:survey_id]
 
-  def create_logs(answer_ids)
-    answer_ids.each do |answer_id|
-      answer = self.survey.answers.where(id: answer_id).first
-      self.submission_logs.create(answer_id: answer_id) if !answer.blank?
+  def create_logs(questions_answers)
+    questions_answers.each do |data|
+      question = self.survey.questions.find(data.first)
+      answer_ids = []
+      answer_ids << data.last['answer'] if !data.last['answer'].blank?
+      answer_ids = data.last['answers'] if !data.last['answers'].blank?
+
+      answer_ids.each do |answer_id|
+        answer = self.survey.answers.find(answer_id)
+        self.submission_logs.create(question_id: question.id, answer_id: answer.id) if !answer.blank?
+      end
     end
   end
 end

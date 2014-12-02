@@ -13,7 +13,6 @@ class Account::AnswersController < Account::BaseController
 
   def new
     @answer = @question.answers.new
-    @answer.row = params[:row]
   end
 
   def show
@@ -55,7 +54,7 @@ class Account::AnswersController < Account::BaseController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :row, :image, :remove_image)
+    params.require(:answer).permit(:text, :image, :remove_image)
   end
 
 end

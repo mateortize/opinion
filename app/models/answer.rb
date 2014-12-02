@@ -6,6 +6,9 @@ class Answer < ActiveRecord::Base
 
   has_many :submissions, class_name: "SubmissionLog"
   belongs_to :question
+
+  acts_as_list scope: :question
+  
   validates_presence_of :text
   validates_uniqueness_of :text, scope: :question_id
   validates :text, length: { maximum: 255 }

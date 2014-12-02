@@ -17,11 +17,10 @@ class SurveysController < ApplicationController
   end
 
   def submit
-    answer_ids = prepare_answers
     @submission = @survey.submissions.create(ip_address: request.remote_addr)
     
     if @submission.valid?
-      @submission.create_logs(answer_ids)
+      @submission.create_logs(prepare_answers)
       render :success
     else
       render :failed, :status=> :not_found
@@ -37,28 +36,11 @@ class SurveysController < ApplicationController
   private
 
     def survey_submission_params
-      params.require(:survey).permit(questions:[rows:[:answer, :answers=>[]]])
+      params.require(:survey).permit(questions:[:answer, :answers=>[]])
     end
 
     def prepare_answers
-      questions_params = survey_submission_params[:questions]
-
-      answer_ids = []
-      questions_params.each do |k, question|
-        question[:rows].each do |k1, row|
-
-          if !row[:answer].blank?
-            answer_ids << row[:answer]
-          end
-
-          if !row[:answers].blank?
-            row[:answers].each do |answer|
-              answer_ids << answer
-            end
-          end
-        end
-      end
-      return answer_ids
+      questions_params = survey_submission_params[:questions].to_a
     end
 
     def allow_iframe

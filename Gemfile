@@ -22,6 +22,8 @@ gem "devise"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 
+gem 'draper', '~> 1.3'
+
 gem 'non-stupid-digest-assets'
 gem "jquery-rails"
 gem 'jquery-ui-rails', '~> 5.0.0'
@@ -40,6 +42,8 @@ gem 'country_select'
 gem 'tabs_on_rails'
 gem 'cocoon'
 gem 'active_link_to'
+gem 'acts_as_tree', github: 'amerine/acts_as_tree'
+gem 'acts_as_list'
 
 gem 'omniauth-bonofa', '~> 0.0.5'
 gem 'globalize'
@@ -59,7 +63,6 @@ gem 'mechanize'
 gem 'activemerchant'
 gem 'active_merchant_inatec', '~> 0.0.9', git: 'https://github.com/c7devteam/inatec_cc.git'
 
-gem 'acts_as_list'
 gem 'remotipart', '~> 1.2'
 gem 'rest-client'
 gem 'whenever', :require => false

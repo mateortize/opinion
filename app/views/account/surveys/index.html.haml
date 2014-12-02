@@ -81,7 +81,7 @@
         .row
           .col-sm-12
             #accordion.panel-group{ role: 'tablist', 'aria-multiselectable' => true }
-              - @latest_survey.questions[0..[2, @latest_survey.questions.count].min].each_with_index do |question, i|
+              - @latest_survey.questions.parent_questions[0..[2, @latest_survey.questions.parent_questions.count].min].each_with_index do |question, i|
                 .panel.panel-default
                   .panel-heading{ id: "heading#{i}" }
                     %h2.panel-title

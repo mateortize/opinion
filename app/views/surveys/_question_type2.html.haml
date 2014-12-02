@@ -11,10 +11,10 @@
   - question.answers.each do |answer|
     .col-sm-6.answer
       .customcheckbox
-        %label{for: "survey_questions_#{question.id}_rows_0_answer_#{answer.id}"}
+        %label{for: "survey_questions_#{question.id}_answer_#{answer.id}"}
           - if !answer.image.blank?
             %a{:rel => 'lightbox', :href => answer.image_url}
               = image_tag answer.image_url, class: 'img-thumbnail'
-          = radio_button_tag "survey[questions][#{question.id}][rows][0][answer]", answer.id
+          = radio_button_tag "survey[questions][#{question.id}][answer]", answer.id
           %i.glyphicon.glyphicon-unchecked
           = answer.text

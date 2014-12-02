@@ -1,6 +1,6 @@
 = remotipart_response do
   - unless @answer.errors.any?
-    $("#question#{@question.id}").load("#{account_survey_question_path(@survey, @question)}");
+    $("#question#{@question.id}_answers").load("#{answers_account_survey_question_path(@survey, @question)}");
     $("div.answers span.value").text("#{@question.answers.count}");
     $('#close-button').trigger('click');
   - else
