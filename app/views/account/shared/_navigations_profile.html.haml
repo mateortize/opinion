@@ -1,10 +1,14 @@
-%ul.nav
-  %li.pull-left
-    = active_link_to edit_account_profile_path, :active=>:exclusive do
-      Profile
-  %li.pull-left
-    = active_link_to account_plan_path, :active=>:exclusive do
-      Plan
-  %li.pull-left
-    = active_link_to account_subscriptions_path, :active=>:exclusive do
-      Subscriptions
+.panel-heading
+  %ul.nav.panel-tabs
+    %li.bor.w33.pull-left{ class: (:active if controller_name == 'profiles' && action_name == 'edit') }
+      = link_to edit_account_profile_path, class: 'smaller-icon truncate' do
+        %i.icon.icon-user
+        Profile
+    %li.bor.w33.pull-left{ class: (:active if controller_name == 'plans' && action_name == 'show') }
+      = link_to account_plan_path, class: 'smaller-icon truncate' do
+        %i.icon.icon-ticket
+        Plans
+    %li.w33.pull-left{ class: (:active if controller_name == 'subscriptions' && action_name == 'index') }
+      = link_to account_subscriptions_path, class: 'smaller-icon truncate' do
+        %i.icon.icon-basket
+        Subscriptions
