@@ -19,14 +19,14 @@
             %h3 Embedded HTML
 
             %pre
-              %code
-                = "<iframe src='#{embedded_html_survey_url(@survey)}' width='100%' height='400px'></iframe>"
+              %code.notranslate
+                = "<iframe src=\"#{embedded_html_survey_url(@survey)}\" width=\"100%\" height=\"400px\"></iframe>"
 
 
             %h3 Embedded Script
 
             %pre
-              %code
+              %code.notranslate
                 :escaped
                   <script language="text/javascript">
                     var opinion7SurveyScriptUrl= (("https:" == document.location.protocol) ? '#{embedded_script_survey_url(protocol: 'https')}.js' : '#{embedded_script_survey_url(protocol: 'http')}.js');
