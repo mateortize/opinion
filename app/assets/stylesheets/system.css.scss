@@ -388,6 +388,13 @@ a {
       }
     }
   }
+
+  &.navbar-fixed-top {
+
+    &.translator {
+      top: 39px;
+    }
+  }
 }
 /*  @end */
 
@@ -900,6 +907,15 @@ table a:hover, table a:active, table a.active {
       outline: none;
     }
   }
+
+  ul.locales-tabs {
+    margin-top: 20px;
+
+    .flag {
+      vertical-align: 0;
+      display: inline;
+    }
+  }
 }
 
 .languages {
@@ -972,3 +988,8 @@ table a:hover, table a:active, table a.active {
     margin-top: 0;
   }
 }
+
+#google_translate_element {
+  margin: 13px 15px 0 0;
+}
+
