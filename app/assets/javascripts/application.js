@@ -15,7 +15,7 @@
 
 $(function () {
   setTimeout(function() {
-    $('.alert').fadeOut();
+    $('.alert:not(.sticky)').fadeOut();
   }, 2500);
 });
 

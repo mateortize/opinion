@@ -1,5 +1,5 @@
 class Account::SurveysController < Account::BaseController
-  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :metrics, :publish, :unpublish]
+  before_filter :load_survey, only: [:edit, :update, :show, :destroy, :export, :statistics, :publish, :unpublish]
 
   set_tab :survey
 
@@ -45,8 +45,8 @@ class Account::SurveysController < Account::BaseController
     set_tab :export
   end
 
-  def metrics
-    set_tab :metrics
+  def statistics
+    set_tab :statistics
   end
 
   def publish

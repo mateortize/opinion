@@ -6,15 +6,19 @@
       .row.mb20
         .col-xs-12
           %h1
-            %small Survey Metrics
+            %small Survey Statistics
             = @survey.title
         .col-sm-8
           %p
             Description
-        .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Questions
+            %span.value= @survey.questions.count
+        .col-xs-6.col-sm-2.infodata
           %div
             Submissions
-            %span.value= @survey.submission_count
+            %span.value= @survey.submissions.count
       .row
         .col-xs-12
           - @survey.questions.each do |question|

@@ -18,10 +18,10 @@
       = link_to export_account_survey_path(@survey), class: 'smaller-icon truncate' do
         %i.icon.icon-file-code
         Embed
-    %li.pull-left{ class: (:active if controller_name == 'surveys' && action_name == 'metrics') }
-      = link_to metrics_account_survey_path(@survey), class: 'smaller-icon truncate' do
+    %li.pull-left{ class: (:active if controller_name == 'surveys' && action_name == 'statistics') }
+      = link_to statistics_account_survey_path(@survey), class: 'smaller-icon truncate' do
         %i.icon.icon-chart-bar
-        Metrics
+        Statistics
 
 .bread-crumb.pull-left
   -#  %span.label.bgcolor  Breadcrumb:

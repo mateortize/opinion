@@ -11,10 +11,10 @@
       .row
         .col-xs-12
           - if !@survey.account.plan.limitation_embed.blank? && @survey.account.plan.limitation_embed.to_i == 0
-            //ToDo: @Xing, please do not close alert automatically!
-            .alert.alert-danger
-              Your current plan doesn't allow you to use embed code.
-              = link_to "Please upgrade your plan.", account_plan_path
+            .alert.alert-danger.sticky
+              Your current plan doesn't allow you to use embed code!
+              %br
+              = link_to 'Please upgrade your plan.', account_plan_path
           - else
             %h3 Embedded HTML
 
