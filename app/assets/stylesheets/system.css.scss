@@ -919,6 +919,9 @@ table a:hover, table a:active, table a.active {
       vertical-align: 0;
       display: inline;
     }
+    .active > span{
+      display: block;
+    }
   }
 }
 
@@ -996,4 +999,3 @@ table a:hover, table a:active, table a.active {
 #google_translate_element {
   margin: 13px 15px 0 0;
 }
-
