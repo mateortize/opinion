@@ -2,8 +2,6 @@ class Answer < ActiveRecord::Base
   translates :text
   mount_uploader :image, SurveyUploader
 
-  scope :row, ->(number){ where(row: number) }
-
   has_many :submissions, class_name: "SubmissionLog"
   belongs_to :question
 

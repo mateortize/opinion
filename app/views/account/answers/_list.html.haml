@@ -1,0 +1,39 @@
+%table.table.table-striped.table-condensed.table-hover
+  %colgroup
+    %col{ width: '*' }
+    %col{ width: '18%' }
+  %thead
+    %tr
+      %th
+        %i.icon.icon-tag
+        Answer
+      %th
+        Position
+      %th
+        %i.icon.icon-cog-alt
+        Actions
+  %tbody
+    - question.answers.each do |answer|
+      %tr
+        %td
+          = answer.text
+          -# if !answer.image.blank?
+            %a{:rel => 'lightbox', :href => answer.image_url}
+              %i.icon.icon-eye
+        %td
+          = answer.position
+        %td.actions
+          = link_to edit_account_survey_question_answer_path(answer.question.survey, answer.question, answer), class: '', data: { target: '#modal', toggle: 'modal' } do
+            %i.glyphicon.glyphicon-pencil
+          = link_to account_survey_question_answer_path(survey, question, answer), :class => 'text-danger', data: { confirm: 'Are you sure to delete?' }, remote: true, method: :delete do
+            %i.glyphicon.glyphicon-trash
+
+          - if answer.position > 1
+            = link_to sort_account_survey_question_answer_path(@survey, question, answer, { move: 'higher' }), remote: true do
+              %i.glyphicon.glyphicon-arrow-up
+          - else
+            %span.placeholder.hor
+            
+          - if answer.position < question.answers.count
+            = link_to sort_account_survey_question_answer_path(@survey, question, answer, { move: 'lower' }), remote: true do
+              %i.glyphicon.glyphicon-arrow-down

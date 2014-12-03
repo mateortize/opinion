@@ -6,6 +6,14 @@
     #collapseTwo.panel-collapse.collapse
       .panel-body
         .row
-          .matrix{ id: "question#{question.id}_answers" }
-            = render "answers_type#{question.question_type}", survey: survey, question: question
+          .col-sm-12
+            .mb20
+              = link_to new_account_survey_question_answer_path(survey, question), class: 'btn btn-primary', data: { target: '#modal', toggle: 'modal' } do
+                %i.icon.icon-plus
+                Add new answer
+
+        .row
+          .col-sm-12
+            .matrix.table-responsive{ id: "question#{question.id}_answers" }
+              = render "account/answers/list", survey: survey, question: question
             %span.clearfix

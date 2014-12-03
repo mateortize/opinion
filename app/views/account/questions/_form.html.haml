@@ -27,7 +27,7 @@
               = f.select :question_type, Question::TYPES, {}, { disabled: !@question.new_record? }
               = f.hidden_field :survey_id
 
-              = f.select :position, [''] + @survey.questions.collect{|q| [q.text, q.position]}, label: 'Position before'
+              = f.select :position, @question.options_for_parent_position, label: 'Position before'
 
               = f.date_field :created_at, disabled: true
               = f.date_field :updated_at, disabled: true

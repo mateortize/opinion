@@ -35,12 +35,12 @@ class Account::QuestionChildrenController < Account::BaseController
 
   def destroy
     @question.destroy
-    redirect_to account_survey_questions_path(@survey)
+    render :layout => false, :template => 'account/question_children/ajax', :status => (@question.errors.any? ? :unprocessable_entity : :ok)
   end
 
   def sort
     @question.send("move_#{params[:move]}")
-    redirect_to account_survey_questions_path(@survey)
+    render :layout => false, :template => 'account/question_children/ajax', :status => (@question.errors.any? ? :unprocessable_entity : :ok)
   end
 
   private

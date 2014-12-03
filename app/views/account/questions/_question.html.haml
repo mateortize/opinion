@@ -15,11 +15,11 @@
       %i.glyphicon.glyphicon-pencil
     = link_to account_survey_question_path(@survey, question), data: { confirm: "Are you sure to delete?" }, method: :delete do
       %i.glyphicon.glyphicon-trash
-    - if question.position > 1
+    - if question.position.to_i > 1
       = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
         %i.glyphicon.glyphicon-arrow-up
     - else
       %span.placeholder.hor
-    - if question.position < @questions.count
+    - if question.position.to_i < @questions.count
       = link_to sort_account_survey_question_path(@survey, question,  { move: 'lower' }) do
         %i.glyphicon.glyphicon-arrow-down

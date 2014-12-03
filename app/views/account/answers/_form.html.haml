@@ -10,6 +10,8 @@
     - else
       = f.file_field :image, class: 'fileupload'
 
+    = f.select :position, @question.options_for_answer_position, label: 'Position before'
+
 
   = f.form_group do
     .pull-right

@@ -11,7 +11,7 @@
   - else
     = f.file_field :image, accept: "image/*", class: 'fileupload'
 
-  = f.select :position, [''] + @parent.children.collect{|q| [q.text, q.position]}, label: 'Position before'
+  = f.select :position, @parent.options_for_child_position, label: 'Position before'
 
   .text-right
     = f.submit 'Save question', class: 'btn btn-primary'

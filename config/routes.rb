@@ -17,8 +17,12 @@ Rails.application.routes.draw do
         get :answers, on: :member
         get :children, on: :member
 
-        resources :answers
-        resources :questions, controller: 'question_children'
+        resources :answers do
+          get :sort, on: :member
+        end
+        resources :questions, controller: 'question_children' do
+          get :sort, on: :member
+        end
       end
     end
 

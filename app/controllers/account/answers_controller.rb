@@ -19,9 +19,7 @@ class Account::AnswersController < Account::BaseController
   end
   
   def create
-    @answer = Answer.create(answer_params)
-    @answer.question = @question
-    @answer.save
+    @answer = @question.answers.create(answer_params)
     render :layout => false, :template => 'account/answers/ajax', :status => (@answer.errors.any? ? :unprocessable_entity : :ok)
   end
 
@@ -36,7 +34,12 @@ class Account::AnswersController < Account::BaseController
 
   def destroy
     @answer.destroy
-    redirect_to edit_account_survey_question_path(@survey, @question)
+    render :layout => false, :template => 'account/answers/ajax', :status => (@answer.errors.any? ? :unprocessable_entity : :ok)
+  end
+
+  def sort
+    @answer.send("move_#{params[:move]}")
+    render :layout => false, :template => 'account/answers/ajax', :status => (@answer.errors.any? ? :unprocessable_entity : :ok)
   end
 
   private
@@ -54,7 +57,7 @@ class Account::AnswersController < Account::BaseController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :image, :remove_image)
+    params.require(:answer).permit(:text, :image, :remove_image, :position)
   end
 
 end

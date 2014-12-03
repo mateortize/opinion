@@ -14,11 +14,14 @@ class Question < ActiveRecord::Base
     'pie', 'bar', 'line'
   ]
 
-  belongs_to :survey
+  
   acts_as_list scope:[:survey, :parent]
-  acts_as_tree order: "position"
+  acts_as_tree
+
+  belongs_to :survey
+
   has_many :submissions, class_name: "SubmissionLog"
-  has_many :answers, dependent: :destroy
+  has_many :answers, ->{ order("position ASC") }, dependent: :destroy
 
   scope :parent_questions, ->{ where(parent_id: nil) }
 
@@ -26,8 +29,6 @@ class Question < ActiveRecord::Base
   validates :description, length: { maximum: 2000 }
   validate :image_file_size
   validate :validate_question_type
-
-  after_save :set_position
 
   def image_file_size
     if !image.blank?
@@ -37,6 +38,18 @@ class Question < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def options_for_parent_position
+    [''] + self.survey.questions.parent_questions.collect{|question| [question.text, question.position]}
+  end
+
+  def options_for_child_position
+    [''] + self.children.collect{|question| [question.text, question.position]}
+  end
+
+  def options_for_answer_position
+    [''] + self.answers.collect{|answer| [answer.text, answer.position]}
   end
 
   def metric_answers
@@ -79,10 +92,6 @@ class Question < ActiveRecord::Base
   end
 
   private
-    def set_position
-      self.set_list_position(0) if self.position.blank?
-    end
-
     def validate_question_type
       if self.parent_id.blank? && self.question_type.blank?
         errors.add(:question_type, "can not be empty")

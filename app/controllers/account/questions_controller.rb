@@ -18,7 +18,7 @@ class Account::QuestionsController < Account::BaseController
   end
 
   def new
-    @question = Question.new
+    @question = @survey.questions.new
   end
 
   def create
@@ -64,7 +64,7 @@ class Account::QuestionsController < Account::BaseController
   end
 
   def question_params
-    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, :image, :remove_image, :position, answers_attributes:[:id, :text, :row, :image, :remove_image, :_destroy] )
+    params.require(:question).permit(:survey_id, :text, :description, :question_type, :rows, :image, :remove_image, :position, answers_attributes:[:id, :text, :image, :remove_image, :_destroy, :position] )
   end
 
 end
