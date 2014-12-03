@@ -912,15 +912,31 @@ table a:hover, table a:active, table a.active {
     }
   }
 
-  ul.locales-tabs {
-    margin-top: 20px;
+  ul.nav-tabs {
 
-    .flag {
-      vertical-align: 0;
-      display: inline;
-    }
-    .active > span{
-      display: block;
+    &.locales-tabs {
+      margin-top: 20px;
+
+      .flag {
+        vertical-align: 0;
+        display: inline;
+      }
+
+      li {
+
+        &.active {
+
+          > span {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #dddddd;
+            border-bottom-color: transparent;
+            background-color: white;
+            border-radius: 4px 4px 0 0;
+            margin-right: 2px;
+          }
+        }
+      }
     }
   }
 }
