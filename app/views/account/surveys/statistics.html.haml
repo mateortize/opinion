@@ -6,30 +6,27 @@
       .row.mb20
         .col-xs-12
           %h1
-            %small Survey Metrics
+            %small Survey Statistics
             = @survey.title
         .col-sm-8
           %p
             Description
-        .col-xs-6.col-sm-2.col-sm-offset-2.infodata
+        .col-xs-6.col-sm-2.infodata
+          %div
+            Questions
+            %span.value= @survey.questions.count
+        .col-xs-6.col-sm-2.infodata
           %div
             Submissions
             %span.value= @survey.submissions.count
-      .clearfix
-        - @survey.questions.parent_questions.each do |question|
 
-          - if question.children.blank?
-            .col-xs-12
-              %h3
-                %i.icon.icon-help-circled
-                =question.text
-              - question.answers.each do |answer|
-                .row
-                  .col-sm-2
-                    %i.icon.icon-tag
-                    = answer.text
-                  .col-sm-1.badge.bgcolor
-                    = answer.submissions.count
+      .row
+        .col-xs-12
+          - @survey.questions.each do |question|
+            %h3
+              %i.icon.icon-help-circled
+              =question.text
+            - question.answers.each do |answer|
               .row
                 - Question::GRAPH_TYPES.each do |graph_type|
                   .col-md-4.well

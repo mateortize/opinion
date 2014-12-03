@@ -1,91 +1,84 @@
 = render 'account/shared/navigations_profile'
 
-.modal-header
-  %h4.modal-title Plans
+.panel-body
+  .tab-content
+    #plans.tab-pane.active
+      .row
+        .col-xs-12.mb20
+          %h1 Select Plan
 
-.modal-body
+      .row
+        %ul.col-md-4
+          %li.plan-head
+            %h3 Free
+          %li.plan-image
+            = image_tag 'opinion7_free.png'
+            %span.price.price-year
+              %span 0 €
+              %span.price-small Free
+            %span.price.price-month
+              %span Create your account now!
 
+          - Package.free.limitations.each do |limitation|
+            %li{ class: limitation.status==1?'yes':'no'}
+              = limitation.description
 
-  #plans
-    %h2 Select Plan
-    .shortline.mb2
-
-    .row
-      %ul.col-md-4
-        %li.plan-head
-          %h3 Free
-        %li.plan-image
-          = image_tag 'opinion7_free.png'
-          %span.price.price-year
-            %span 0 €
-            %span.price-small Free
-          %span.price.price-month
-            %span Create your account now!
-
-        - Package.free.limitations.each do |limitation|
-          %li{ class: limitation.status==1?'yes':'no'}
-            = limitation.description
-
-        %li.upgrade.noborder
-          Use opinion7 for free!
-        %li.buy.free
-          - if !account_signed_in?
-            = link_to 'Register', new_account_registration_path
-          - else
-            = link_to 'Register', '#'
-
-      %ul.col-md-4
-        %li.plan-head
-          %h3 Pro
-        %li.plan-image
-          = image_tag 'opinion7_pro.png'
-          %span.price
-            %span 49 €
-            %span.price-small 1 year
-          %span.price.price-month
-            %span or
-            %span 4.90 €
-            %span.price-small / 1 month
-
-        - Package.pro.limitations.each do |limitation|
-          %li{ class: limitation.status==1?'yes':'no'}
-            = limitation.description
-
-        %li.upgrade.noborder
-          Upgrade to PRO
-        %li.buy
-          - Package.pro.plans.each do |plan|
-            - if account_signed_in?
-              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+          %li.upgrade.noborder
+            Use opinion7 for free!
+          %li.buy.free
+            - if !account_signed_in?
+              = link_to 'Register', new_account_registration_path
             - else
-              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
+              = link_to 'Register', '#'
 
-      %ul.col-md-4
-        %li.plan-head
-          %h3 Expert
-        %li.plan-image
-          = image_tag 'opinion7_expert.png'
-          %span.price
-            %span 62 €
-            %span.price-small 1 year
-          %span.price.price-month
-            %span or
-            %span 6.49 €
-            %span.price-small / 1 month
-        
-        - Package.expert.limitations.each do |limitation|
-          %li{ class: limitation.status==1?'yes':'no'}
-            = limitation.description
+        %ul.col-md-4
+          %li.plan-head
+            %h3 Pro
+          %li.plan-image
+            = image_tag 'opinion7_pro.png'
+            %span.price
+              %span 49 €
+              %span.price-small 1 year
+            %span.price.price-month
+              %span or
+              %span 4.90 €
+              %span.price-small / 1 month
 
-        %li.upgrade.noborder
-          Upgrade to EXPERT
-        %li.buy
-          - Package.expert.plans.each do |plan|
-            - if account_signed_in?
-              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
-            - else
-              = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
+          - Package.pro.limitations.each do |limitation|
+            %li{ class: limitation.status==1?'yes':'no'}
+              = limitation.description
 
+          %li.upgrade.noborder
+            Upgrade to PRO
+          %li.buy
+            - Package.pro.plans.each do |plan|
+              - if account_signed_in?
+                = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+              - else
+                = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'
 
+        %ul.col-md-4
+          %li.plan-head
+            %h3 Expert
+          %li.plan-image
+            = image_tag 'opinion7_expert.png'
+            %span.price
+              %span 62 €
+              %span.price-small 1 year
+            %span.price.price-month
+              %span or
+              %span 6.49 €
+              %span.price-small / 1 month
 
-.modal-footer
+          - Package.expert.limitations.each do |limitation|
+            %li{ class: limitation.status==1?'yes':'no'}
+              = limitation.description
+
+          %li.upgrade.noborder
+            Upgrade to EXPERT
+          %li.buy
+            - Package.expert.plans.each do |plan|
+              - if account_signed_in?
+                = link_to time_ago_in_words(plan.duration.months.ago) , new_account_subscription_path(plan_id: plan.id), class: 'pull-left'
+              - else
+                = link_to time_ago_in_words(plan.duration.months.ago) , new_account_registration_path(plan_id: plan.id), class: 'pull-left'

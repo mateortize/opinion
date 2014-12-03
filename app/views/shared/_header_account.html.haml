@@ -12,9 +12,18 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         %li
-          = link_to "Surveys", account_surveys_path
+          = render 'shared/google_translator'
+        - if current_account.admin?
+          %li
+            = link_to admin_root_path, target: '_blank' do
+              %i.glyphicon.glyphicon-wrench
+              %span.menu-item-parent Admin
+        %li
+          = link_to account_surveys_path do
+            %i.icon.icon-list-numbered
+            Surveys
         %li.dropdown
-          %a#profiletoggle{:href => "#"}
+          %a#profiletoggle{ href: '#' }
             %i.icon.icon-user
             %span.toggle-title Open profile
             %i.toggle-icon.glyphicon.glyphicon-circle-arrow-down
@@ -66,5 +75,3 @@
           %strong Your promolink:
         %td
           %strong= promolink_url(referrer_code: current_account.promotion_code)
-/ Profile End
-%hr.no-margin.no-padding

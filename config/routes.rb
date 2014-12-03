@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :account do
     resources :surveys do
       get :export, on: :member
-      get :metrics, on: :member
+      get :statistics, on: :member
       put :publish, on: :member
       put :unpublish, on: :member
 

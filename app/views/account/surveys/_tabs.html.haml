@@ -18,10 +18,10 @@
       = link_to export_account_survey_path(@survey), class: 'smaller-icon truncate' do
         %i.icon.icon-file-code
         Embed
-    %li.pull-left{ class: (:active if controller_name == 'surveys' && action_name == 'metrics') }
-      = link_to metrics_account_survey_path(@survey), class: 'smaller-icon truncate' do
+    %li.pull-left{ class: (:active if controller_name == 'surveys' && action_name == 'statistics') }
+      = link_to statistics_account_survey_path(@survey), class: 'smaller-icon truncate' do
         %i.icon.icon-chart-bar
-        Metrics
+        Statistics
 
 .bread-crumb.pull-left
   -#  %span.label.bgcolor  Breadcrumb:
@@ -41,6 +41,6 @@
 %span.clearfix
 .row.f32
   .col-sm-12
-    = tabs_tag :open_tabs=>{ class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
+    = tabs_tag :open_tabs => { class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation do |tab|
       - @survey.locales.each do |locale|
         = tab.send(locale, country_flag(locale, true, false), url_for({locale: locale}))
