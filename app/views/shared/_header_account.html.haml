@@ -46,8 +46,7 @@
     .col-xs-7.col-sm-7.ccol-md-7.col-lg-8.welcome
       %h1.bob
         %span.small Welcome
-        = current_account.first_name
-        = current_account.last_name
+        = current_account.full_name
       %p Creating user polls, questionnaires or scheduling meetings and events is only a few simple steps away. Never be in the dark again - with opinion7
 
   .col-xs-12.col-sm-6.col-md-5.col-lg-5.bgcolor.profilesettings
@@ -63,15 +62,16 @@
     %table.table
       %tr
         %td Company:
-        %td - none -
+        %td
+          -#ToDo: @Xing we need an additional db column for current_account.company
       %tr
         %td Account:
         %td= current_account.plan.try(:name)
       %tr
-        %td e-Mail:
+        %td Email:
         %td= current_account.email
       %tr
         %td
-          %strong Your promolink:
+          %strong Your promo link:
         %td
-          %strong= promolink_url(referrer_code: current_account.promotion_code)
+          %strong.notranslate= promolink_url(referrer_code: current_account.promotion_code)

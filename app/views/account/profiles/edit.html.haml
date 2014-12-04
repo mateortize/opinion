@@ -15,7 +15,7 @@
             %legend Basic information
             = f.text_field :first_name , size: 50
             = f.text_field :last_name , size: 50
-            = f.text_field :email, input_html: {disabled: true}
+            = f.text_field :email, disabled: true
 
             - if !@account.avatar_image.blank?
               = f.form_group :avatar_image, label: { text: 'Image' } do
@@ -30,7 +30,7 @@
               = a.text_field :address_1, required: true
               = a.text_field :address_2
               = a.text_field :city, required: true
-              = a.text_field :state, required: true
+              = a.text_field :state
               = a.text_field :postal_code, required: true
               = a.select :country, ActionView::Helpers::FormOptionsHelper::COUNTRIES, required: true, input_html: { class: 'form-control' }
 
