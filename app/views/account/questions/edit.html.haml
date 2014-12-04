@@ -21,4 +21,25 @@
             %span.value= @question.answers.count
       .row
         .col-xs-12
-          = render 'form'
+          #accordion.panel-group{ role: 'tablist', 'aria-multiselectable' => true }
+            .panel.panel-default
+              #question.panel-heading{ role: 'tab' }
+                %h2.panel-title
+                  %a{ href: '#questioncollapse', data: { toggle: 'collapse', parent: '#accordion' }, aria: { expanded: true, controls: 'questioncollapse' } }
+                    Question
+              #questioncollapse.panel-collapse.collapse.in{ role: 'tabpanel', 'aria-labelledby' => 'question' }
+                .panel-body
+                  = render 'form'
+            - if !@question.new_record?
+              .panel.panel-default
+                #answers.panel-heading{ role: 'tab' }
+                  %h2.panel-title
+                    %a{ href: '#answerscollapse', data: { toggle: 'collapse', parent: '#accordion' }, aria: { expanded: true, controls: 'answerscollapse' } }
+                      Answers
+                #answerscollapse.panel-collapse.collapse{ role: 'tabpanel', 'aria-labelledby' => 'answers' }
+                  .panel-body
+                    = render 'answers', survey: @survey, question: @question
+
+#modal.modal.fade{ role: 'dialog' }
+  .modal-dialog
+    .modal-content

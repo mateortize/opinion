@@ -1,6 +1,6 @@
 %tr
   %td
-    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(survey.description, length: 100, separator: ' ', omission: ' ...') }
+    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(survey.description, length: 200, separator: ' ', omission: ' ...') }
       = survey.title
   %td
     - if survey.enabled

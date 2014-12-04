@@ -1,3 +1,11 @@
 = render 'account/surveys/tabs'
 
-= render 'form'
+.panel-body
+  .tab-pane.active
+    .row.intro
+      .col-xs-12
+        %h1 New Question
+        %p.lead Here you can fill in the title and description of your question. Also, the languages in which the question should be available, can be selected.
+    .row
+      .col-xs-12
+        = render 'form'

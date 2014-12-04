@@ -23,7 +23,7 @@
         %i.icon.icon-chart-bar
         Statistics
 
-.bread-crumb.pull-left
+-#.bread-crumb.pull-left
   -#  %span.label.bgcolor  Breadcrumb:
     - if !@survey.blank? and !@survey.new_record?
       = link_to @survey.title, edit_account_survey_path(@survey)
@@ -38,7 +38,7 @@
   - if !@question.blank?
     = link_to 'Add new question', new_account_survey_question_path(@survey), class: 'btn btn-primary'
 
-%span.clearfix
+-#%span.clearfix
 .row.f32
   .col-sm-12
     = tabs_tag :open_tabs => { class: 'nav nav-tabs locales-tabs' }, :namespace => :navigation, active_class: 'active' do |tab|

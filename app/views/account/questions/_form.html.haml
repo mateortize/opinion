@@ -1,45 +1,32 @@
-#accordion.panel-group
-  .panel.panel-default
-    .panel-heading
-      %h2.panel-title
-        %a{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne"} Question
-    -#    There is a class Called .in it must be removed on (Edit , New ) affter adding the questions , it will close the tab if it is removed TODO:@Xing
-    #collapseOne.panel-collapse.collapse.in
-      .panel-body
-        .row
-          .col-md-12
-            = bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7 col-md-6') do |f|
-              = f.error_summary
+= bootstrap_form_for([:account, @survey, @question], layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7 col-md-6') do |f|
+  = f.error_summary
 
-              %legend Basic Information
-              = f.text_field :text, label: 'Question'
-              = f.text_area :description, rows: 10
+  %legend Basic Information
+  = f.text_field :text, label: 'Question'
+  = f.text_area :description, rows: 5
 
-              - if !@question.image.blank?
-                = f.form_group do
-                  .img-thumbnail
-                    = image_tag(@question.image_url, :class => 'img-responsive')
-                  = f.check_box :remove_image
-              - else
-                = f.file_field :image, accept: "image/*", class: 'fileupload'
+  - if !@question.image.blank?
+    = f.form_group do
+      .img-thumbnail
+        = image_tag(@question.image_url, :class => 'img-responsive')
+      = f.check_box :remove_image
+  - else
+    = f.file_field :image, accept: "image/*", class: 'fileupload'
 
-              %legend Setting
-              = f.select :question_type, Question::TYPES, {}, { disabled: !@question.new_record? }
-              = f.hidden_field :survey_id
+  %legend Setting
+  = f.select :question_type, Question::TYPES, {}, { disabled: !@question.new_record? }
+  = f.hidden_field :survey_id
 
-              = f.select :position, @question.options_for_parent_position, label: 'Position before'
+  = f.select :position, @question.options_for_parent_position, label: 'Position before', help: 'Do not select anything to add question as the last one.'
 
-              = f.date_field :created_at, disabled: true
-              = f.date_field :updated_at, disabled: true
-              .text-right
-                = f.submit 'Save question', class: 'btn btn-primary'
-                = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
+  = f.date_field :created_at, disabled: true
+  = f.date_field :updated_at, disabled: true
 
-  = render 'answers', survey: @survey, question: @question
+  .row
+    .col-sm-7.col-md-6.col-sm-offset-3
+      .pull-right
+        = f.submit 'Save question', class: 'btn btn-primary'
+        = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
 
-  - if @question.question_type == 3 && !@question.new_record?
-    = render 'questions', survey: @survey, question: @question
-
-  #modal.modal.fade{ role: 'dialog' }
-    .modal-dialog
-      .modal-content
+- if @question.question_type == 3 && !@question.new_record?
+  = render 'questions', survey: @survey, question: @question

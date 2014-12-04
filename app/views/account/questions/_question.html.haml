@@ -2,7 +2,7 @@
   %td
     = question.id
   %td.question-title
-    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(question.description, length: 100, separator: ' ', omission: ' ...') }
+    %span.tooltipp{ data: { toggle: 'tooltip', placement: 'right' }, title: truncate(question.description, length: 200, separator: ' ', omission: ' ...') }
       = question.text
   %td
     = question.answers.count
@@ -13,7 +13,7 @@
   %td.actions
     = link_to edit_account_survey_question_path(@survey, question) do
       %i.glyphicon.glyphicon-pencil
-    = link_to account_survey_question_path(@survey, question), data: { confirm: "Are you sure to delete?" }, method: :delete do
+    = link_to account_survey_question_path(@survey, question), data: { confirm: 'Are you sure to delete?' }, method: :delete do
       %i.glyphicon.glyphicon-trash
     - if question.position.to_i > 1
       = link_to sort_account_survey_question_path(@survey, question, { move: 'higher' }) do
