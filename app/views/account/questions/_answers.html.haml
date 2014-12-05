@@ -8,5 +8,5 @@
 .row
   .col-sm-12
     .matrix.table-responsive{ id: "question#{question.id}_answers" }
-      = render "account/answers/list", survey: survey, question: question
-    %span.clearfix
+      - if question.answers.count > 0
+        = render "account/answers/list", survey: survey, question: question

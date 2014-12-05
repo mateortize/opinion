@@ -27,6 +27,3 @@
       .pull-right
         = f.submit 'Save question', class: 'btn btn-primary'
         = link_to 'Back', account_survey_questions_path, class: 'btn btn-default'
-
-- if @question.question_type == 3 && !@question.new_record?
-  = render 'questions', survey: @survey, question: @question

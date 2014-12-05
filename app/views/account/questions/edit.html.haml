@@ -30,6 +30,16 @@
               #questioncollapse.panel-collapse.collapse.in{ role: 'tabpanel', 'aria-labelledby' => 'question' }
                 .panel-body
                   = render 'form'
+
+            - if @question.question_type == 3 && !@question.new_record?
+              .panel.panel-default
+                #childquestions.panel-heading{ role: 'tab' }
+                  %h2.panel-title
+                    %a{ href: '#childquestionscollapse', data: { toggle: 'collapse', parent: '#accordion' }, aria: { expanded: true, controls: 'childquestionscollapse' } }
+                      Child questions
+                #childquestionscollapse.panel-collapse.collapse{ role: 'tabpanel', 'aria-labelledby' => 'childquestions' }
+                  .panel-body
+                    = render 'questions', survey: @survey, question: @question
             - if !@question.new_record?
               .panel.panel-default
                 #answers.panel-heading{ role: 'tab' }

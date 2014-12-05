@@ -1,18 +1,13 @@
 - if !question.new_record?
-  .panel.panel-default
-    .panel-heading
-      %h2.panel-title
-        %a{ data: { parent: '#accordion', toggle: 'collapse'}, href: '#collapseThree' } Child Questions
-    #collapseThree.panel-collapse.collapse
-      .panel-body
-        .row
-          .col-sm-12
-            = link_to new_account_survey_question_question_path(survey, question), class: 'btn btn-primary', data: { target: '#modal', toggle: 'modal' } do
-              %i.icon.icon-plus
-              Add new question
+  .row
+    .col-sm-12
+      .mb20
+        = link_to new_account_survey_question_question_path(survey, question), class: 'btn btn-primary', data: { target: '#modal', toggle: 'modal' } do
+          %i.icon.icon-plus
+          Add new question
 
-        .row
-          .col-sm-12
-            .matrix.table-responsive{id: "question#{question.id}_children"}
-              - if question.children.count > 0
-                = render "account/question_children/list", survey: @survey, question: @question
+  .row
+    .col-sm-12
+      .matrix.table-responsive{id: "question#{question.id}_children"}
+        - if question.children.count > 0
+          = render "account/question_children/list", survey: @survey, question: @question
