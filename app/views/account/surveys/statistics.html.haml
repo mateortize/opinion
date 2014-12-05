@@ -22,32 +22,34 @@
 
       .row
         .col-xs-12
-          - @survey.questions.each do |question|
-            %h3
-              %i.icon.icon-help-circled
-              =question.text
-            - question.answers.each do |answer|
-              .row
-                - Question::GRAPH_TYPES.each do |graph_type|
-                  .col-md-4.well
-                    = render "/account/questions/graph_#{graph_type}", question: question
-          - else
-            %h2=question.text
-            %p=question.description
-            - question.children.each do |child|
-              .col-xs-12
-                %h3
-                  %i.icon.icon-help-circled
-                  = child.text
-
-                - child.answers.each do |answer|
-                  .row
-                    .col-sm-2
-                      %i.icon.icon-tag
-                      = answer.text
-                    .col-sm-1.badge.bgcolor
-                      = answer.submissions.count
+          - @survey.questions.parent_questions.each do |question|
+            - if question.children.count > 0
+              %h3
+                %i.icon.icon-help-circled
+                =question.text
+              %p=question.description
+              - question.answers.each do |answer|
                 .row
                   - Question::GRAPH_TYPES.each do |graph_type|
                     .col-md-4.well
-                      = render "/account/questions/graph_#{graph_type}", question: child
+                      = render "/account/questions/graph_#{graph_type}", question: question
+            - else
+              %h2=question.text
+              %p=question.description
+              - question.children.each do |child|
+                .col-xs-12
+                  %h3
+                    %i.icon.icon-help-circled
+                    = child.text
+
+                  - child.answers.each do |answer|
+                    .row
+                      .col-sm-2
+                        %i.icon.icon-tag
+                        = answer.text
+                      .col-sm-1.badge.bgcolor
+                        = answer.submissions.count
+                  .row
+                    - Question::GRAPH_TYPES.each do |graph_type|
+                      .col-md-4.well
+                        = render "/account/questions/graph_#{graph_type}", question: child
