@@ -12,6 +12,7 @@ module Account::BonofaBaio
       if account
         account.promotion_code = oauth.info.promotion_code
         account.baio_account_id = oauth.uid
+        account.company = oauth.extra.raw_info.company
       else
         password = Devise.friendly_token[0,20]
         account = Account.new(
@@ -23,7 +24,8 @@ module Account::BonofaBaio
           language:               oauth.info.language,
           info:                   oauth.info,
           password:               password,
-          password_confirmation:  password
+          password_confirmation:  password,
+          company: oauth.extra.raw_info.company
         )
       end
       #account.remote_avatar_image_url = oauth.info.profile_image_url

@@ -63,7 +63,7 @@
       %tr
         %td Company:
         %td
-          -#ToDo: @Xing we need an additional db column for current_account.company
+          = current_account.company
       %tr
         %td Account:
         %td= current_account.plan.try(:name)
