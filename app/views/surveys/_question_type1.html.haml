@@ -16,6 +16,6 @@
             %a{:rel => 'lightbox', :href => answer.image_url}
               = image_tag answer.image_url, class: ''
           -#= check_box_tag "survey[questions][#{question.id}][answers][]", answer.id, false, id: "survey_questions_#{question.id}_answers_#{answer.id}"
-          = radio_button_tag "survey[questions][#{question.id}][answer]", answer.id
-          %i.glyphicon.glyphicon-unchecked
+          = radio_button_tag "survey[questions][#{question.id}][answer]", answer.id, false, onchange: 'check_answers(this);'
+          %i.icon.icon-check-empty
           = answer.text

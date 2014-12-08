@@ -31,4 +31,20 @@ $(document).ready(function() {
 
 $('.modal').on('hidden.bs.modal', function () {
     $('.modal-content').html('');
-})
+});
+
+function check_answers(elem) {
+  $(elem).parents('.answers-wrapper').find('.customcheckbox').each(function() {
+    var selected = $(this);
+    if(selected.find('input').prop('checked') === true) {
+      selected.addClass('checked');
+      selected.find('i').removeClass('icon-check-empty');
+      selected.find('i').addClass('icon-check');
+    }
+    else {
+      selected.removeClass('checked');
+      selected.find('i').removeClass('icon-check');
+      selected.find('i').addClass('icon-check-empty');
+    }
+  });
+}

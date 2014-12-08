@@ -7,27 +7,33 @@
     = image_tag question.image_url, class: 'img-responsive'
     
 
-.answers-wrapper
-  .row
-    .col-md-2
-    - question.answers.each do |answer|
-      .col-md-2
-        = answer.text
-        - if !answer.image.blank?
-          %a{:rel => 'lightbox', :href => answer.image_url}
-            = image_tag answer.image_url, class: ''
-  .row.newrow
-    - question.children.each do |child|
-      .col-md-12
-        .col-md-2
-          = child.text
-          - if !child.image.blank?
-            %a{:rel => 'lightbox', :href => child.image_url}
-              = image_tag child.image_url, class: '',style: 'width:100%'
-
+.answers-wrapper.table-responsive
+  %table.table-striped.table-hover
+    %colgroup
+      - answer_width = 70 / question.answers.count
+      %col{ width: '30%' }
+      - question.answers.each do
+        %col{ width: "#{answer_width}%" }
+    %thead
+      %tr
+        %th
         - question.answers.each do |answer|
-          .col-md-2
-            .customcheckbox
-              %label{for: "survey_questions_#{child.id}_answer_#{answer.id}"}
-                = radio_button_tag "survey[questions][#{child.id}][answer]", answer.id
-                %i.glyphicon.glyphicon-unchecked
+          %th.text-center
+            = answer.text
+            -# if !answer.image.blank?
+              %a{:rel => 'lightbox', :href => answer.image_url}
+                = image_tag answer.image_url, class: 'img-responsive'
+    %tbody
+      - question.children.each do |child|
+        %tr.answer
+          %td
+            = child.text
+            -# if !child.image.blank?
+              %a{:rel => 'lightbox', :href => child.image_url}
+                = image_tag child.image_url, class: 'img-responsive'
+          - question.answers.each do |answer|
+            %td.text-center
+              .customcheckbox
+                %label{for: "survey_questions_#{child.id}_answer_#{answer.id}"}
+                  = radio_button_tag "survey[questions][#{child.id}][answer]", answer.id, false, onchange: 'check_answers(this);'
+                  %i.icon.icon-check-empty
