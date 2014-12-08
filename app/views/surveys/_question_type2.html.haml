@@ -4,17 +4,18 @@
   
 - if !question.image.blank?
   %a{:rel => 'lightbox', :href => question.image_url}
-    = image_tag question.image_url, class: '',style: 'width:100%'
+    = image_tag question.image_url, class: 'img-responsive'
 
 
-.row.answers
+.answers-wrapper
   - question.answers.each do |answer|
-    .col-sm-6.answer
+    .answer
       .customcheckbox
-        %label{for: "survey_questions_#{question.id}_answer_#{answer.id}"}
+        %label{for: "survey_questions_#{question.id}_answers_#{answer.id}"}
           - if !answer.image.blank?
             %a{:rel => 'lightbox', :href => answer.image_url}
               = image_tag answer.image_url, class: 'img-thumbnail'
-          = radio_button_tag "survey[questions][#{question.id}][answer]", answer.id
+          -#= radio_button_tag "survey[questions][#{question.id}][answer]", answer.id
+          = check_box_tag "survey[questions][#{question.id}][answers][]", answer.id, false, id: "survey_questions_#{question.id}_answers_#{answer.id}"
           %i.glyphicon.glyphicon-unchecked
           = answer.text

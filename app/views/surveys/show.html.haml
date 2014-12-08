@@ -1,21 +1,23 @@
-#content.mt0
-  #showsurvey.container
-    .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.panel.nopadding
-      %h2.showhl
-        %i.icon.icon-list-numbered
-        = @survey.title
+#content
+  #showsurvey.panel
+    .row
+      .col-xs-12
+        %h1
+          %i.icon.icon-list-numbered.pull-left
+          = @survey.title
+        %p.lead= @survey.description
+        - if !@survey.logo.blank?
+          = image_tag(@survey.logo_url, :class => 'img-responsive' )
+        .divider
 
-      - if !@survey.logo.blank?
-        = image_tag(@survey.logo_url, :class => '' ,:style => 'width:100%' )
-      %p.bg-primary.addpadding= @survey.description
-    .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2.nopadding
-      .row
+      .col-xs-12
         = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
           - @survey.questions.parent_questions.each do |question|
-            .question.panel
-              = render 'question', question: question
+            - if question.answers.count > 0
+              .question
+                = render 'question', question: question
           - if @survey.answers.count > 0
-            .pull-right.panel.col-md-12.text-right
+            .pull-right
               = submit_tag 'Submit', class: 'btn btn-primary'
 
 :javascript
