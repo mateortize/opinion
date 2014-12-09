@@ -2,8 +2,6 @@ class Submission < ActiveRecord::Base
   has_many :submission_logs
   belongs_to :survey
 
-  validates_uniqueness_of :ip_address, scope: [:survey_id]
-
   def create_logs(questions_answers)
     questions_answers.each do |data|
       question = self.survey.questions.find(data.first)

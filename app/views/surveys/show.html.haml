@@ -16,9 +16,14 @@
             - if question.answers.count > 0
               .question
                 = render 'question', question: question
-          - if @survey.answers.count > 0
+          - if @survey.answers.count > 0 && !@submitted
             .pull-right
               = submit_tag 'Submit', class: 'btn btn-primary'
+              
+        - if @submitted
+          %p.alert.alert-info
+            You've submitted already.
+
 
 :javascript
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

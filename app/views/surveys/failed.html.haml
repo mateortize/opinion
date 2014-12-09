@@ -1,12 +1,7 @@
 %div.alert.alert-danger.show
   %h2
     Sorry, we couldn't accept your submission.
-
-
-  - @submission.errors.full_messages.each do |message|
-    %p
-      = message
-
+  
   %br
   %p
     = link_to "Go back and try again", :back, class: 'btn btn-primary'

@@ -3,7 +3,16 @@
   = @survey.description
 
 = form_tag submit_survey_path(@survey), method: :post, id: "submit-survey-#{@survey.id}" do |f|
-  - @survey.questions.each do |question|
-    = render 'question', question: question
+  - @survey.questions.parent_questions.each do |question|
+    - if question.answers.count > 0
+      .question
+        = render 'question', question: question
+  
+  - if @survey.answers.count > 0 && !@submitted
+    .pull-right
+      = submit_tag 'Submit', class: 'btn btn-primary'
 
-  = submit_tag 'Submit', class: 'btn btn-primary'
+  - if @submitted
+    %p.alert.alert-info
+      You've submitted already.
+
